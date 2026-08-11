@@ -58,6 +58,20 @@
   overlay.addEventListener("click", function(e){ if(e.target === overlay) closeForm(); });
   document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeForm(); });
 
+
+  // Délégation : tout élément [data-besoin] ouvre le formulaire, même si le widget se charge après le clic
+  document.addEventListener("click", function(e){
+    var t = e.target;
+    while(t && t !== document){
+      if(t.getAttribute && t.getAttribute("data-besoin") !== null){
+        e.preventDefault();
+        openForm();
+        return;
+      }
+      t = t.parentNode;
+    }
+  });
+
   // Exposition globale pour que les CTA des pages puissent ouvrir le formulaire
   window.openBesoinForm = openForm;
   window.closeBesoinForm = closeForm;
