@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulateur de trésorerie simple : anticipez les mois difficiles (2026)</title>
+<meta name="description" content="Prévisionnel de trésorerie simple : entrez vos encaissements et dépenses mensuels, voyez le solde mois par mois et les alertes de découvert. Outil TPE.">
+<meta property="og:title" content="Simulateur de trésorerie simple : anticipez les mois difficiles (2026)">
+<meta property="og:description" content="Prévisionnel de trésorerie simple : entrez vos encaissements et dépenses mensuels, voyez le solde mois par mois et les alertes de découvert. Outil TPE">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "👷 Créateurs & gérants", "item": "index.html#societe"}, {"@type": "ListItem", "position": 3, "name": "💰 Simulateur de trésorerie : voyez les mois difficiles AVANT qu'ils ar", "item": "simulateur-tresorerie.html"}]}</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Comment lire votre point mort ?", "acceptedAnswer": {"@type": "Answer", "text": "Le point mort (ou seuil de rentabilité) est le chiffre d'affaires à partir duquel l'activité devient bénéficiaire : charges fixes ÷ taux de marge."}}, {"@type": "Question", "name": "Quelle trésorerie minimale pour une TPE ?", "acceptedAnswer": {"@type": "Answer", "text": "Visez 2 à 3 mois de charges fixes en réserve pour absorber les impayés et les retards de paiement."}}]}</script>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="jargon-en-clair.html">🔤 Jargon</a>
+    <a href="calendrier-fiscal-2026.html">🗓️ Calendrier</a>
+    <a href="guide-optimisation-sarl.html">📖 Guide</a>
+  
+    
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+<details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="comparateur-societes.html" class="menu-cat">⚖️ Comparateur : démarrez ici</a>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <a href="nouveautes-2026.html">📰 Nouveautés 2026</a>
+        <a href="ia-pour-compta.html">🤖 IA pour la compta</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+  </div>
+
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <a href="index.html#societe">👷 Créateurs & gérants</a> › <span>💰 Simulateur de trésorerie : voyez les mois difficiles AVANT qu'ils ar</span></nav>
+  <h1>💰 Simulateur de trésorerie : voyez les mois difficiles AVANT qu'ils arrivent</h1>
+  <p class="subtitle">La trésorerie tue plus de TPE que les impôts. Cet outil simple projette votre solde mois par mois.</p>
+  <div class="tldr"><strong>En deux mots :</strong> entrez vos <strong>encaissements</strong> et <strong>dépenses</strong> mensuels (cotisations, salaires, loyer, TVA) → le simulateur projette votre <strong>solde de trésorerie sur 12 mois</strong> et signale les mois où vous passez en négatif. C'est le complément du <a href='simulateur-point-mort.html' style='color:var(--accent);'>point mort</a> : lui dit quel CA viser, celui-ci dit quand l'argent manquera.</div>
+  <div class="card">
+    <label>💶 Encaissements mensuels moyens (€/mois)</label>
+    <input id="encaissements" type="number" value="6000" min="0" step="100" oninput="calcTreso()">
+    <label>💸 Dépenses mensuelles (cotisations, loyer, salaires, fournisseurs… €/mois)</label>
+    <input id="depenses" type="number" value="5200" min="0" step="100" oninput="calcTreso()">
+    <label>🏦 Solde de départ (€)</label>
+    <input id="solde" type="number" value="8000" min="0" step="500" oninput="calcTreso()">
+    <label>📅 Échéances ponctuelles (IS, CFE, TVA : total annuel en €)</label>
+    <input id="echeances" type="number" value="3000" min="0" step="500" oninput="calcTreso()">
+    <button class="btn" onclick="calcTreso()">💰 Projeter ma trésorerie</button>
+    <div id="resultats" style="margin-top:1.2rem;"></div>
+  </div>
+  <div class="card">
+    <div class="tip">💡 <strong>Le bon réflexe</strong> : le mois où le solde passe sous 2 mois de dépenses, agissez AVANT (relances, découvert autorisé, report d'investissement). Le <a href='impayes-clients.html' style='color:var(--accent);'>suivi des impayés</a> et le <a href='cout-paperasse.html' style='color:var(--accent);'>gain de temps</a> sont vos deux leviers.</div>
+  </div>
+  <script>
+  function fmtT(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+  function calcTreso() {
+    var enc = parseFloat(document.getElementById('encaissements').value) || 0;
+    var dep = parseFloat(document.getElementById('depenses').value) || 0;
+    var solde = parseFloat(document.getElementById('solde').value) || 0;
+    var ech = parseFloat(document.getElementById('echeances').value) || 0;
+    var rows = '', min = solde, moisMin = 0;
+    for (var m = 1; m <= 12; m++) {
+      solde += enc - dep - ech / 12;
+      if (solde < min) { min = solde; moisMin = m; }
+      rows += '<tr><td>Mois ' + m + '</td><td>' + fmtT(solde) + (solde < 0 ? ' ⚠️' : '') + '</td></tr>';
+    }
+    document.getElementById('resultats').innerHTML = '<div class="roi">🏆 Solde projeté à 12 mois : <strong>' + fmtT(solde) + '</strong>' +
+      (min < 0 ? ' : <strong>alerte : négatif dès le mois ' + moisMin + '</strong> (prévoyez relances, découvert ou report)' : ' : aucun mois négatif') + '</div><table><tr><th>Mois</th><th>Solde</th></tr>' + rows + '</table>';
+  }
+  calcTreso();
+  </script>
+  <div class="ressources"><a href="simulateur-point-mort.html">🎯 Point mort</a>
+    <a href="impayes-clients.html">📄 Impayés</a>
+    <a href="simulateur-cfe.html">🧾 CFE</a></div>
+  <div class="sources">Sources : <a href="https://www.bpifrance.fr/" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">BPI France (ressources)</a></div>
+
+  <div class="card"><h2>💡 Comment lire votre point mort ?</h2>
+  <p style="font-size:.9rem;">Le <strong>point mort</strong> (ou seuil de rentabilité) est le chiffre d'affaires à partir duquel votre activité devient bénéficiaire. En dessous : vous perdez de l'argent (charges fixes non couvertes). Au-dessus : chaque euro gagné contribue au bénéfice.</p>
+  <p style="font-size:.9rem;"><strong>Exemple :</strong> charges fixes 30 000 €/an, marge sur coûts variables de 50 % → point mort = 30 000 ÷ 0,50 = <strong>60 000 € de CA</strong>. C'est votre objectif de survie, puis votre objectif de rentabilité.</p></div>
+  <div class="card"><h2>🚨 Les 5 leviers de trésorerie (dans l'ordre)</h2>
+  <ol><li><strong>Encaisser plus vite</strong> : relances, acomptes (voir <a href="acompte-ou-arrhes.html" style="color:var(--accent);">acompte ou arrhes</a>), pénalités de retard (voir <a href="delai-paiement-facture.html" style="color:var(--accent);">délais de paiement</a>).</li>
+  <li><strong>Réduire les charges fixes</strong> : négocier loyers, assurances, abonnements.</li>
+  <li><strong>Étaler les grosses dépenses</strong> : crédit-bail, LOA (voir <a href="credit-bail-loa.html" style="color:var(--accent);">LOA vs achat</a>).</li>
+  <li><strong>Vendre ses factures</strong> : affacturage (voir <a href="affacturage.html" style="color:var(--accent);">le guide</a>).</li>
+  <li><strong>Prévoir</strong> : un budget de trésorerie sur 12 mois, révisé chaque mois.</li></ol></div>
+  <div class="card"><h2>❓ FAQ trésorerie</h2>
+  <h3>Quelle trésorerie minimale pour une TPE ?</h3>
+  <p style="font-size:.9rem;">En pratique, visez <strong>2 à 3 mois de charges fixes</strong> en réserve (le « matelas »). En dessous, un impayé ou un retard de paiement met l'activité en danger.</p>
+  <h3>Point mort et seuil de rentabilité, c'est pareil ?</h3>
+  <p style="font-size:.9rem;">Oui : le point mort (en volume ou en CA) = le seuil de rentabilité = le moment où l'activité devient bénéficiaire.</p>
+  <h3>Mon simulateur affiche une trésorerie négative : que faire ?</h3>
+  <p style="font-size:.9rem;">C'est le signal d'alerte : réduisez les charges, accélérez les encaissements, ou financez (affacturage, découvert, apport). Ne l'ignorez pas : c'est le premier signe des dépôts de bilan.</p></div>
+<div class="footer">Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · 
+    ⚠️ Information indicative : mise à jour 2026. Chaque situation est unique : consultez votre expert-comptable. · <a href="mentions-legales.html" style="color:var(--muted);">📜 Mentions légales</a> Taux vérifiés le 01/08/2026 (sources officielles).
+  </div>
+</div>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<script src="sw-register.js"></script>
+</body>
+</html>
+

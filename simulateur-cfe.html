@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulateur CFE 2026 : montant, exonération 1ʳᵉ année, acomptes</title>
+<meta property="og:image" content="https://SIMULATEUR-SARL.github.io/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:title" content="Simulateur CFE 2026 : montant, exonération 1ʳᵉ année, acomptes">
+<meta property="og:description" content="Simulateur CFE 2026 : estimez votre cotisation foncière (valeur locative, cotisation minimale), exonération créateur 1ʳᵉ année, acomptes.">
+<meta property="og:type" content="website">
+<meta name="description" content="Simulateur CFE 2026 : estimez votre cotisation foncière (valeur locative, cotisation minimale), exonération créateur 1ʳᵉ année, acomptes.">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "La CFE dépend-elle de mon CA ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Elle est calculée sur la valeur locative de vos locaux professionnels (surface × valeur au m² de la commune). Sans local, vous payez la cotisation minimale fixée par chaque commune (souvent ~50 à 200 €). Contrairement à la CVAE (supprimée pour la plupart des TPE), la CFE reste due même si vous "}}, {"@type": "Question", "name": "Suis-je exonéré la première année ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, les créateurs d'entreprise sont exonérés de CFE la 1ʳᵉ année d'activité (sous conditions : activité réelle, pas de cession/reprise). L'exonération n'est pas automatique : il faut la demander (case prévue sur la déclaration de création / via l'espace pro)."}}, {"@type": "Question", "name": "Je suis micro-entrepreneur, je dois payer la CFE ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, la micro-entreprise paie la CFE (c'est l'impôt local qui touche toutes les entreprises). En franchise de TVA, la CFE reste due. Montant souvent faible sans local (cotisation minimale)."}}, {"@type": "Question", "name": "Que se passe-t-il si je ne paie pas ?", "acceptedAnswer": {"@type": "Answer", "text": "La CFE est recouvrée comme un impôt : pénalités (10% de majoration), puis avis à tiers détenteur / saisie. En cas de difficulté, demandez un délai de paiement ou une remise gracieuse auprès de votre service des impôts."}}]}</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "👷 Créateurs & gérants", "item": "index.html#societe"}, {"@type": "ListItem", "position": 3, "name": "🧾 Simulateur CFE 2026", "item": "simulateur-cfe.html"}]}</script>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="jargon-en-clair.html">🔤 Jargon</a>
+    <a href="comparateur-societes.html">⚖️ Comparateur</a>
+    <a href="impot-societes-2026.html">🏢 IS 2026</a>
+    <a href="guide-optimisation-sarl.html">📖 Guide</a>
+  
+    
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+<details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="comparateur-societes.html" class="menu-cat">⚖️ Comparateur : démarrez ici</a>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+  </div>
+
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <a href="index.html#societe">👷 Créateurs & gérants</a> › <span>🧾 Simulateur CFE 2026</span></nav>
+  <h1>🧾 Simulateur CFE 2026</h1>
+  <p class="subtitle">La cotisation foncière des entreprises (CFE) : combien allez-vous payer ? Êtes-vous exonéré la 1ʳᵉ année ? Quand payer ? Estimation pédagogique : le taux exact dépend de votre commune.</p>
+
+  <div class="tldr">
+    <strong>TL;DR :</strong> La CFE est un <strong>impôt local annuel</strong> calculé sur la <strong>valeur locative de vos locaux professionnels</strong> (pas sur votre CA). Sans local, vous payez une <strong>cotisation minimale</strong> fixée par la commune (souvent ~50 à 200 €). Bonne nouvelle : les <strong>créateurs sont exonérés la 1ʳᵉ année</strong> (sur demande). Paiement : acompte de 50% au <strong>15 juin</strong>, solde au <strong>15 décembre</strong> (ou tout en décembre si < 3 000 €).
+  </div>
+
+  <div class="card" style="border-left: 3px solid var(--accent);">
+    <h2>📊 Estimer ma CFE</h2>
+    <div class="grid-3">
+      <div>
+        <label>Valeur locative annuelle de vos locaux (€)</label>
+        <input type="number" id="valeurLocative" value="8000" min="0" step="500">
+      </div>
+      <div>
+        <label>Taux de votre commune (estimation)</label>
+        <select id="tauxCommune">
+          <option value="0.15">15% (commune rurale)</option>
+          <option value="0.19" selected>19% (moyenne France)</option>
+          <option value="0.23">23% (commune urbaine)</option>
+          <option value="0.27">27% (grande ville)</option>
+        </select>
+      </div>
+      <div>
+        <label>Année d'activité</label>
+        <select id="annee">
+          <option value="1" selected>1ʳᵉ année (exonération possible)</option>
+          <option value="2">2ᵉ année et +</option>
+        </select>
+      </div>
+    </div>
+    <div class="switch-container" style="margin-top:.8rem;">
+      <label class="switch">
+        <input type="checkbox" id="sansLocal" onchange="calc()">
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-label">Je n'ai pas de local professionnel (cotisation minimale)</span>
+    </div>
+    <button class="btn" onclick="calc()">🧾 Calculer ma CFE</button>
+    <button class="btn-outline" style="margin-left:.5rem;" onclick="exemple()">🎨 Exemple artisan</button>
+  </div>
+
+  <div id="results" class="hidden">
+    <div class="card" style="border:1px solid var(--accent);">
+      <h2 style="color:var(--accent);">📋 Votre CFE estimée</h2>
+      <div class="grid-4" style="text-align:center;margin-bottom:1rem;">
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Base (valeur locative)</div>
+          <div class="big-num" id="base">0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Taux commune</div>
+          <div class="big-num" id="taux" style="font-size:1.1rem;">:</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">CFE annuelle brute</div>
+          <div class="big-num charge-amount" id="cfeBrute">0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">À payer cette année</div>
+          <div class="big-num" id="cfeNet">0€</div>
+        </div>
+      </div>
+      <div id="cfeTip" class="tip"></div>
+    </div>
+
+    <div class="card">
+      <h2>🗓️ Les dates à retenir (2026)</h2>
+      <table>
+        <tr><th>Échéance</th><th></th><th>Montant</th></tr>
+        <tr><td>Acompte (si CFE ≥ 3 000 €)</td><td></td><td>15 juin 2026 : 50%</td></tr>
+        <tr><td>Solde</td><td></td><td>15 décembre 2026 : 50% (ou 100% si &lt; 3 000 €)</td></tr>
+        <tr><td>Déclaration des locaux</td><td></td><td>En ligne (espace pro impots.gouv.fr)</td></tr>
+      </table>
+      <div class="tip">💡 <strong>Exonérations possibles</strong> : 1ʳᵉ année de création (sur demande), entreprises en difficulté, et pour certaines zones (QPV, ZFU-TE : la LF 2026 met fin aux ZFU-TE). Renseignez-vous auprès de votre service des impôts.</div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card" style="margin-top:1rem;">
+    <h2>❓ Questions fréquentes</h2>
+    <details>
+      <summary>La CFE dépend-elle de mon CA ?</summary>
+      <p><strong>Non.</strong> Elle est calculée sur la <strong>valeur locative de vos locaux professionnels</strong> (surface × valeur au m² de la commune). Sans local, vous payez la <strong>cotisation minimale</strong> fixée par chaque commune (souvent ~50 à 200 €). Contrairement à la CVAE (supprimée pour la plupart des TPE), la CFE reste due même si vous êtes en micro-entreprise.</p>
+    </details>
+    <details>
+      <summary>Suis-je exonéré la première année ?</summary>
+      <p>Oui, les <strong>créateurs d'entreprise sont exonérés de CFE la 1ʳᵉ année d'activité</strong> (sous conditions : activité réelle, pas de cession/reprise). L'exonération n'est pas automatique : il faut la demander (case prévue sur la déclaration de création / via l'espace pro).</p>
+    </details>
+    <details>
+      <summary>Je suis micro-entrepreneur, je dois payer la CFE ?</summary>
+      <p><strong>Oui</strong>, la micro-entreprise paie la CFE (c'est l'impôt local qui touche toutes les entreprises). En franchise de TVA, la CFE reste due. Montant souvent faible sans local (cotisation minimale).</p>
+    </details>
+    <details>
+      <summary>Que se passe-t-il si je ne paie pas ?</summary>
+      <p>La CFE est recouvrée comme un impôt : pénalités (10% de majoration), puis avis à tiers détenteur / saisie. En cas de difficulté, demandez un <strong>délai de paiement ou une remise gracieuse</strong> auprès de votre service des impôts.</p>
+    </details>
+  </div>
+
+  <div class="sources">Sources : <a href="https://entreprendre.service-public.fr/vosdroits/F23575" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">service-public F23575 (impôts locaux)</a></div>
+<div class="footer">Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · 
+    ⚠️ Estimation indicative : la CFE dépend du taux voté par votre commune. Source : service-public F2372, impots.gouv.fr. Consultez votre avis d'imposition.
+   Taux vérifiés le 01/08/2026 (sources officielles).</div>
+</div>
+
+<script src="parametres-2026.js"></script>
+<script src="moteur-calcul.js"></script>
+<script>
+function fmt(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+
+function exemple() {
+  document.getElementById('valeurLocative').value = '8000';
+  document.getElementById('tauxCommune').value = '0.19';
+  document.getElementById('annee').value = '1';
+  document.getElementById('sansLocal').checked = false;
+  calc();
+}
+
+function calc() {
+  const vl = parseFloat(document.getElementById('valeurLocative').value) || 0;
+  const taux = parseFloat(document.getElementById('tauxCommune').value) || 0.19;
+  const annee = document.getElementById('annee').value;
+  const sansLocal = document.getElementById('sansLocal').checked;
+
+  document.getElementById('results').classList.remove('hidden');
+  const set = (id, v) => document.getElementById(id).textContent = v;
+
+  // Base : valeur locative ou cotisation minimale (estimation 171 € si sans local)
+  const cotMin = 171; // ordre de grandeur cotisation minimale moyenne
+  const base = sansLocal ? cotMin : Math.max(vl, cotMin);
+  const cfeBrute = sansLocal ? cotMin : Math.round(vl * taux);
+  const exonere = annee === '1';
+  const cfeNet = exonere ? 0 : cfeBrute;
+
+  set('base', fmt(base));
+  set('taux', sansLocal ? 'minimale' : (taux * 100).toFixed(0) + '%');
+  set('cfeBrute', fmt(cfeBrute));
+  set('cfeNet', fmt(cfeNet));
+
+  document.getElementById('cfeTip').innerHTML = exonere
+    ? `🎉 <strong>1ʳᵉ année : exonération possible.</strong> Votre CFE estimée (${fmt(cfeBrute)}) peut être <strong>0 €</strong> : pensez à la demander (déclaration de création / espace pro). Sans demande, vous la paierez quand même.`
+    : `ℹ️ CFE à payer : <strong>${fmt(cfeNet)}</strong>. ${cfeNet >= 3000 ? 'Comme elle dépasse 3 000 € : acompte de 50% au 15 juin, solde au 15 décembre.' : 'Comme elle est sous 3 000 € : paiement unique au 15 décembre.'}`;
+}
+
+calc();
+</script>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="sw-register.js"></script>
+</body>
+</html>

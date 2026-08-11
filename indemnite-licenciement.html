@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indemnité de licenciement : le calcul 2026</title>
+<meta name="description" content="L'indemnité légale de licenciement en 2026 : 1/4 de mois par année (10 ans), le simulateur, les cas d'exonération. Guide salarié.">
+<meta property="og:title" content="Indemnité de licenciement 2026 : calcul (1/4 de mois par an), solde de tout compte">
+<meta property="og:description" content="Calculer l'indemnité légale de licenciement : 1/4 de mois de salaire par année d’ancienneté (1/3 après 10 ans), le préavis, et le solde de tout compte">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "👔 Salariés & parents", "item": "index.html#salarie"}, {"@type": "ListItem", "position": 3, "name": "🧮 Indemnité de licenciement : le calculateur (2026)", "item": "indemnite-licenciement.html"}]}</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "L'indemnité de licenciement est-elle imposable ?", "acceptedAnswer": {"@type": "Answer", "text": "L'indemnité légale est exonérée dans la limite de 2 PASS (96 120 € en 2026) et de l'indemnité minimale ; le surplus est imposable."}}, {"@type": "Question", "name": "Qui doit payer l'indemnité ?", "acceptedAnswer": {"@type": "Answer", "text": "L'employeur, au moment de la rupture ; en cas de liquidation, l'AGS la garantit."}}]}</script>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="jargon-en-clair.html">🔤 Jargon</a>
+    <a href="premier-salarie.html">👷 Salarié</a>
+    <a href="guide-optimisation-sarl.html">📖 Guide</a>
+  
+    
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+<details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="comparateur-societes.html" class="menu-cat">⚖️ Comparateur : démarrez ici</a>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <a href="nouveautes-2026.html">📰 Nouveautés 2026</a>
+        <a href="ia-pour-compta.html">🤖 IA pour la compta</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+  </div>
+
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <a href="index.html#salarie">👔 Salariés & parents</a> › <span>🧮 Indemnité de licenciement : le calculateur (2026)</span></nav>
+  <h1>🧮 Indemnité de licenciement : le calculateur (2026)</h1>
+  <p class="subtitle">Combien devez-vous à un salarié licencié ? La formule légale + le simulateur + ce qui reste à payer (préavis, solde de tout compte).</p>
+  <div class="tldr"><strong>Le plus important :</strong> l'indemnité légale de licenciement = <strong>1/4 de mois de salaire par année d’ancienneté</strong> jusqu'à 10 ans, puis <strong>1/3 de mois par année au-delà</strong> (salaire de référence = la moyenne des 12 derniers mois ou des 3 derniers, au plus favorable). Elle est <strong>exonérée d'impôt</strong> (sous plafonds) et non soumise à cotisations (sous plafonds aussi). S'y ajoutent : le <strong>préavis</strong> (1-2 mois) payé ou non effectué, et le <strong>solde de tout compte</strong> (congés non pris, RTT…).</div>
+  <div class="card">
+    <label>💶 Salaire brut mensuel de référence (€)</label>
+    <input id="brutL" type="number" value="2500" min="0" step="50" oninput="calcLic()">
+    <label>🗓️ Ancienneté (années)</label>
+    <input id="ancien" type="number" value="4" min="0" step="1" oninput="calcLic()">
+    <button class="btn" onclick="calcLic()">🧮 Calculer l'indemnité</button>
+    <div id="resultatsL" style="margin-top:1rem;"></div>
+  </div>
+  <script>
+  function fmtL(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+  function calcLic() {
+    var b = parseFloat(document.getElementById('brutL').value) || 0;
+    var a = parseFloat(document.getElementById('ancien').value) || 0;
+    var indemnite = 0;
+    if (a <= 10) indemnite = b / 4 * a;
+    else indemnite = b / 4 * 10 + b / 3 * (a - 10);
+    document.getElementById('resultatsL').innerHTML = '<div class="roi">🏆 <strong>Indemnité légale : ' + fmtL(indemnite) + '</strong> pour ' + a + ' ans d’ancienneté à ' + fmtL(b) + '/mois. S’ajoutent le préavis (' + fmtL(b) + '-' + fmtL(b * 2) + ') et le solde de tout compte (congés non pris).</div>';
+  }
+  calcLic();
+  </script>
+  <div class="card">
+    <div class="piege">⚠️ <strong>Erreurs fréquentes</strong> : (1) oublier le <strong>préavis</strong> (ou l'indemnité compensatrice s'il n'est pas effectué) ; (2) calculer sur le net au lieu du brut ; (3) les <strong>conventions collectives</strong> prévoient souvent PLUS que la loi (vérifiez la vôtre) ; (4) ne pas remettre les <strong>documents de fin de contrat</strong> (solde de tout compte, attestation France Travail, certificat de travail).</div>
+  </div>
+  <div class="ressources"><a href="licencier-salarie.html">👋 Licencier un salarié</a>
+    <a href="contrat-de-travail.html">📄 Contrat</a>
+    <a href="brut-net.html">💶 Bulletin</a></div>
+  <div class="sources">Sources : <a href="https://www.service-public.fr/particuliers/vosdroits/F36449" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">service-public F36449 (licenciement)</a></div>
+
+  <div class="card"><h2>📈 Les cas particuliers</h2>
+  <table><tr><th>Situation</th><th>Règle</th></tr>
+  <tr><td>Plus de 10 ans d'ancienneté</td><td>1/4 de mois par année (10 premières) + <strong>1/3 de mois par année au-delà</strong></td></tr>
+  <tr><td>Licenciement pour inaptitude</td><td>Indemnité légale <strong>doublée</strong> (depuis 2017)</td></tr>
+  <tr><td>Convention collective plus favorable</td><td>La plus favorable au salarié s'applique</td></tr>
+  <tr><td>Période d'essai</td><td>Pas d'indemnité de licenciement</td></tr></table></div>
+  <div class="card"><h2>💶 La fiscalité de l'indemnité</h2>
+  <p style="font-size:.9rem;">L'indemnité légale (et conventionnelle) de licenciement est <strong>exonérée d'impôt et de cotisations</strong> dans la limite de <strong>2 PASS (96 120 € en 2026)</strong> et de l'indemnité minimale légale. La part au-delà des limites est imposable. Les <strong>indemnités de rupture conventionnelle</strong> suivent des règles proches (voir <a href="rupture-conventionnelle.html" style="color:var(--accent);">rupture conventionnelle</a>).</p></div>
+  <div class="card"><h2>❓ FAQ licenciement</h2>
+  <h3>L'indemnité de licenciement est-elle imposable ?</h3>
+  <p style="font-size:.9rem;">L'indemnité légale/conventionnelle est exonérée dans la limite de 2 PASS et de l'indemnité minimale. Le surplus est imposable.</p>
+  <h3>Qui doit payer l'indemnité ?</h3>
+  <p style="font-size:.9rem;">L'employeur, au moment de la rupture (avec le solde de tout compte). En cas de liquidation, l'AGS (assurance des salaires) la garantit.</p>
+  <h3>L'indemnité compte-t-elle pour le chômage ?</h3>
+  <p style="font-size:.9rem;">Elle peut retarder le versement de l'ARE (délai de carence) si elle dépasse les montants exonérés. Voir <a href="allocations-chomage-are.html" style="color:var(--accent);">l'ARE</a>.</p></div>
+<div class="footer">Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · 
+    ⚠️ Information indicative : mise à jour 2026. Chaque situation est unique : consultez votre expert-comptable. · <a href="mentions-legales.html" style="color:var(--muted);">📜 Mentions légales</a> Taux vérifiés le 01/08/2026 (sources officielles).
+  </div>
+</div>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<script src="sw-register.js"></script>
+</body>
+</html>
+

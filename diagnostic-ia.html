@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 Diagnostic IA de votre entreprise : 5 questions, 3 pistes chiffrées</title>
+<meta name="description" content="Répondez à 5 questions sur votre gestion : obtenez 3 pistes d'automatisation concrètes (factures, relances, saisie) avec le temps et l'argent gagnables. 2 minutes.">
+<meta property="og:title" content="🤖 Diagnostic IA de votre entreprise">
+<meta property="og:description" content="5 questions → 3 pistes d'automatisation chiffrées pour votre entreprise.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://SIMULATEUR-SARL.github.io/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Diagnostic IA de votre entreprise","description":"Quiz 5 questions qui donne 3 pistes d'automatisation chiffrées pour TPE.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}
+</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "🤖 IA & automatisation", "item": "ia-pour-tpe.html"}, {"@type": "ListItem", "position": 3, "name": "🤖 Diagnostic IA : 3 pistes pour votre entreprise", "item": "diagnostic-ia.html"}]}</script>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="jargon-en-clair.html">🔤 Jargon</a>
+    <a href="comparateur-societes.html">⚖️ Comparateur</a>
+    <a href="ia-pour-compta.html">🤖 IA</a>
+  
+    
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+<details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="comparateur-societes.html" class="menu-cat">⚖️ Comparateur : démarrez ici</a>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <a href="nouveautes-2026.html">📰 Nouveautés 2026</a>
+        <a href="ia-pour-compta.html">🤖 IA pour la compta</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+  </div>
+
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <a href="ia-pour-tpe.html">🤖 IA & automatisation</a> › <span>🤖 Diagnostic IA : 3 pistes pour votre entreprise</span></nav>
+  <h1>🤖 Diagnostic IA : 3 pistes pour votre entreprise</h1>
+  <p class="subtitle">5 questions, 2 minutes. À la fin : les automatisations qui vous feront gagner du temps : et combien d'argent elles vous rendent.</p>
+  <div class="tldr"><strong>L’essentiel :</strong> ce diagnostic regarde <strong>où part votre temps</strong> (factures, relances, saisie, emails) et propose les 2-3 automatisations au meilleur retour. Rien n'est installé, rien n'est vendu : c'est une boussole, pas un devis.</div>
+
+  <div class="card">
+    <label>1 Quel est votre métier ?</label>
+    <select id="metier" oninput="diag()">
+      <option value="artisan">🧑‍🎨 Artisan / métier manuel (BTP, coiffure, restauration…)</option>
+      <option value="freelance">💻 Freelance / consultant / créatif</option>
+      <option value="commerce">🛒 E-commerce / boutique</option>
+      <option value="service">🏢 Services / autre</option>
+    </select>
+
+    <label>2 Combien d'heures/semaine en administratif ?</label>
+    <select id="temps" oninput="diag()">
+      <option value="2">Moins de 2 h</option>
+      <option value="4" selected>2 à 5 h</option>
+      <option value="8">5 à 10 h</option>
+      <option value="14">Plus de 10 h</option>
+    </select>
+
+    <label>3 Comment gérez-vous vos factures et relances aujourd'hui ?</label>
+    <select id="factures" oninput="diag()">
+      <option value="manuel">✍️ À la main (Word, Excel, papier)</option>
+      <option value="logiciel">💾 Un logiciel de facturation</option>
+      <option value="comptable">👔 L'expert-comptable fait tout</option>
+    </select>
+
+    <label>4 Vos clients paient-ils en retard ?</label>
+    <select id="impayes" oninput="diag()">
+      <option value="oui">Oui, régulièrement</option>
+      <option value="parfois" selected>Parfois</option>
+      <option value="non">Non, rarement</option>
+    </select>
+
+    <label>5. Recevez-vous beaucoup de documents par email (factures fournisseurs, relevés, contrats) ?</label>
+    <select id="docs" oninput="diag()">
+      <option value="peu">Peu (moins de 10/mois)</option>
+      <option value="moyen" selected>Moyen (10-30/mois)</option>
+      <option value="beaucoup">Beaucoup (30+/mois)</option>
+    </select>
+
+    <button class="btn" onclick="diag()">🤖 Voir mes 3 pistes</button>
+    <div id="resultats" style="margin-top:1.2rem;"></div>
+  </div>
+
+  <div class="ressources">
+    <a href="cout-paperasse.html">⏱️ Coût de votre paperasse</a>
+    <a href="ia-pour-compta.html">🤖 L'IA pour votre compta</a>
+    <a href="accompagnement.html">🤝 Être accompagné</a>
+  </div>
+
+  <div class="sources">Sources : <a href="https://www.francetravail.fr/" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">Analyses internes : méthodologie (voir page)</a></div>
+<div class="footer">Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · 
+    ⚠️ Information indicative : ordres de grandeur, pas un audit. L'IA facilite la gestion mais ne remplace pas votre expert-comptable. · <a href="mentions-legales.html" style="color:var(--muted);">📜 Mentions légales</a> Taux vérifiés le 01/08/2026 (sources officielles).
+  </div>
+</div>
+<script>
+function fmt(n) { return Math.round(n).toLocaleString('fr-FR'); }
+function diag() {
+  const metier = document.getElementById('metier').value;
+  const temps = parseFloat(document.getElementById('temps').value) || 0;
+  const factures = document.getElementById('factures').value;
+  const impayes = document.getElementById('impayes').value;
+  const docs = document.getElementById('docs').value;
+  const hAn = temps * 47;
+
+  // Gains estimés (ordre de grandeur, en heures/an)
+  const pistes = [];
+  if (factures !== 'logiciel') {
+    pistes.push({ t: '🧾 Passer à un logiciel de facturation (+ relances auto)', h: Math.round(hAn * 0.30) });
+  } else if (impayes !== 'non') {
+    pistes.push({ t: '📄 Activer les relances automatiques d\'impayés (J+1, J+15)', h: Math.round(hAn * 0.08) });
+  }
+  if (docs !== 'peu') {
+    pistes.push({ t: '📒 OCR + classement automatique des factures fournisseurs', h: Math.round(hAn * 0.18) });
+  }
+  if (impayes === 'oui') {
+    pistes.push({ t: '📄 Mettre en place la relance client automatisée (email + rappel)', h: Math.round(hAn * 0.12) });
+  }
+  if (metier === 'freelance') {
+    pistes.push({ t: '✉️ Templates + agent IA pour les emails récurrents', h: Math.round(hAn * 0.10) });
+  }
+  if (metier === 'commerce') {
+    pistes.push({ t: '🛒 Préparer la facturation électronique (obligatoire 09/2027)', h: Math.round(hAn * 0.15) });
+  }
+  if (metier === 'artisan') {
+    pistes.push({ t: '📱 Devis → facture automatique (un seul outil, zéro ressaisie)', h: Math.round(hAn * 0.20) });
+  }
+  if (metier === 'service') {
+    pistes.push({ t: '🗓️ Rappels de rendez-vous / suivi clients automatiques', h: Math.round(hAn * 0.10) });
+  }
+  // dédoublonne et garde 3
+  const vus = new Set(); const top = [];
+  for (const p of pistes) { if (!vus.has(p.t)) { vus.add(p.t); top.push(p); } }
+  const trois = top.slice(0, 3);
+  const totalH = trois.reduce((a, b) => a + b.h, 0);
+  const totalE = Math.round(totalH * 30); // valeur ~30 €/h
+
+  document.getElementById('resultats').innerHTML = `
+    <div class="roi">🏆 <strong>Vos 3 pistes : ~${fmt(totalH)} h/an libérées</strong> (≈ ${fmt(totalE)} €/an à 30 €/h).</div>
+    <ol style="margin:.8rem 0 .4rem 1.4rem;line-height:1.7;">
+      ${trois.map(p => `<li><strong>${p.t}</strong> : ~${fmt(p.h)} h/an</li>`).join('')}
+    </ol>
+    <p style="margin-top:.8rem;">Ces pistes correspondent à votre situation. Pour passer à l'action :</p>
+    <div style="text-align:center;margin-top:.8rem;">
+      <a href="ia-pour-compta.html" class="btn">🤖 Comprendre l'IA pour la compta</a>
+      <a href="accompagnement.html" class="btn-outline">🤝 Se faire accompagner pour les mettre en place</a>
+    </div>`;
+}
+diag();
+</script>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="sw-register.js"></script>
+</body>
+</html>

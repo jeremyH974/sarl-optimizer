@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulateur point mort 2026 : quel CA pour vivre ? (micro, SARL, SASU)</title>
+<meta name="description" content="Calculez votre point mort : le chiffre d'affaires minimum pour couvrir vos charges et votre rémunération, selon votre statut (micro, TNS, SASU). Simple et gratuit.">
+<meta property="og:image" content="https://SIMULATEUR-SARL.github.io/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:title" content="Simulateur point mort 2026 : quel CA pour vivre ?">
+<meta property="og:description" content="Le CA minimum pour couvrir vos charges et vivre, selon votre statut.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Pourquoi la société demande un CA plus élevé que la micro ?", "acceptedAnswer": {"@type": "Answer", "text": "Parce que les cotisations TNS (~45%) et le coût employeur de la SASU (~1,40x) s'appliquent sur le salaire : pour sortir 2 000 € nets, il faut ~3 640 € de salaire en SARL contre ~2 540 € de CA en micro. La société devient rentable quand les charges réelles (matériel, local…) dépassent l'abattement fo"}}, {"@type": "Question", "name": "L'impôt sur le revenu est-il inclus ?", "acceptedAnswer": {"@type": "Answer", "text": "Non, pas dans le cas général : le point mort couvre les cotisations et vos charges, mais pas votre impôt sur le revenu. Deux options : activez la case versement libératoire (micro, 2,2% : l'IR est alors inclus) ou ajoutez ~10-20% de marge selon votre tranche. Le TMI est calculé dans les simulateurs."}}, {"@type": "Question", "name": "Et si je facture plus que le point mort ?", "acceptedAnswer": {"@type": "Answer", "text": "Tout ce qui dépasse le point mort est votre marge : trésorerie, investissement, épargne (PER), ou augmentation de rémunération. C'est la zone où les leviers d'optimisation (salaire vs dividendes, PER, IK) commencent à vraiment jouer : voir le guide des 30 leviers."}}]}</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "👷 Créateurs & gérants", "item": "index.html#societe"}, {"@type": "ListItem", "position": 3, "name": "🎯 Simulateur point mort : quel chiffre d'affaires pour vivre ?", "item": "simulateur-point-mort.html"}]}</script>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="jargon-en-clair.html">🔤 Jargon</a>
+    <a href="choisir-statut-juridique.html">🧭 Choisir mon statut</a>
+    <a href="guide-optimisation-sarl.html">📖 Guide</a>
+  
+    
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+<details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="comparateur-societes.html" class="menu-cat">⚖️ Comparateur : démarrez ici</a>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+  </div>
+
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <a href="index.html#societe">👷 Créateurs & gérants</a> › <span>🎯 Simulateur point mort : quel chiffre d'affaires pour vivre ?</span></nav>
+  <h1>🎯 Simulateur point mort : quel chiffre d'affaires pour vivre ?</h1>
+  <p class="subtitle">Le point mort, c'est le CA qui couvre <strong>tout</strong> (vos charges professionnelles + votre rémunération) sans un centime de marge. En dessous : vous piochez dans vos réserves.</p>
+
+<button onclick="window.print()" class="btn-outline" style="margin-bottom:1rem;">🖨️ Imprimer / enregistrer en PDF</button>
+
+  <div class="tldr">
+    <strong>En clair :</strong> pour vivre avec 2 000 €/mois et 15 000 € de charges pro par an, il vous faut environ <strong>49 500 € de CA en micro</strong> (services) : mais <strong>~71 000 € si vous êtes gérant de SARL</strong>, parce que les cotisations (~45%) pèsent sur le salaire. Ce simulateur vous donne <strong>votre</strong> chiffre et le traduit en jours de travail.
+  </div>
+
+  <div class="card" style="border-left: 3px solid var(--accent);">
+    <h2>📊 Vos besoins</h2>
+    <div class="grid-3">
+      <div>
+        <label>Ce qu'il vous faut pour vivre (net, €/mois)</label>
+        <input type="number" id="besoin" value="2000" min="0" step="100">
+      </div>
+      <div>
+        <label>Charges professionnelles par an (€)</label>
+        <input type="number" id="charges" value="15000" min="0" step="500">
+      </div>
+      <div>
+        <label>Votre statut</label>
+        <select id="statut">
+          <option value="microS" selected>Micro-entreprise (services)</option>
+          <option value="microV">Micro-entreprise (vente)</option>
+          <option value="tns">Gérant SARL/EURL (TNS)</option>
+          <option value="sasu">Président SASU (assimilé salarié)</option>
+        </select>
+      </div>
+    </div>
+    <div class="switch-container" style="margin-top:.8rem;">
+      <label class="switch">
+        <input type="checkbox" id="vl" onchange="calc()">
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-label">Versement libératoire (micro, 2,2% : si RFR ≤ 29 579 €/part)</span>
+    </div>
+    <button class="btn" onclick="calc()">🎯 Calculer mon point mort</button>
+    <button class="btn-outline" style="margin-left:.5rem;" onclick="exemple()">🎨 Exemple artisan</button>
+  </div>
+
+  <div id="results" class="hidden">
+    <div class="card" style="border:1px solid var(--accent);">
+      <h2 style="color:var(--accent);">📋 Votre point mort</h2>
+      <div class="grid-3" style="text-align:center;margin-bottom:1rem;">
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">CA minimum par an</div>
+          <div class="big-num" id="caMin">0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Par mois (CA)</div>
+          <div class="big-num" id="caMois" style="font-size:1.2rem;">0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Jours de travail à 400 €/jour</div>
+          <div class="big-num" id="jours" style="font-size:1.2rem;">:</div>
+        </div>
+      </div>
+      <div id="pmTip" class="tip"></div>
+    </div>
+
+    <div class="card">
+      <h2>⚖️ Comparaison des statuts (mêmes besoins)</h2>
+      <table>
+        <tr><th>Statut</th><th></th><th>CA minimum</th><th>Commentaire</th></tr>
+        <tr><td>🪙 Micro services</td><td></td><td id="cmpMicroS">:</td><td>21,2% de cotisations sur le CA</td></tr>
+        <tr><td>🟠 SARL/EURL (TNS)</td><td></td><td id="cmpTns">:</td><td>~45% de cotisations sur le salaire</td></tr>
+        <tr><td>🔵 SASU</td><td></td><td id="cmpSasu">:</td><td>Coût employeur ~1,40x</td></tr>
+      </table>
+      <div id="cmpTip" class="tip"></div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card" style="margin-top:1rem;">
+    <h2>❓ Questions fréquentes</h2>
+    <details>
+      <summary>Pourquoi la société demande un CA plus élevé que la micro ?</summary>
+      <p>Parce que les cotisations TNS (~45%) et le coût employeur de la SASU (~1,40x) s'appliquent sur le <strong>salaire</strong> : pour sortir 2 000 € nets, il faut ~3 640 € de salaire en SARL contre ~2 540 € de CA en micro. La société devient rentable quand les <strong>charges réelles</strong> (matériel, local…) dépassent l'abattement forfaitaire de la micro.</p>
+    </details>
+    <details>
+      <summary>L'impôt sur le revenu est-il inclus ?</summary>
+      <p><strong>Non, pas dans le cas général</strong> : le point mort couvre les cotisations et vos charges, mais pas votre impôt sur le revenu. Deux options : activez la case <strong>versement libératoire</strong> (micro, 2,2% : l'IR est alors inclus) ou ajoutez ~10-20% de marge selon votre tranche. Le TMI est calculé dans les <a href="comparateur-societes.html" style="color:var(--accent);">simulateurs</a>.</p>
+    </details>
+    <details>
+      <summary>Et si je facture plus que le point mort ?</summary>
+      <p>Tout ce qui dépasse le point mort est votre <strong>marge</strong> : trésorerie, investissement, épargne (PER), ou augmentation de rémunération. C'est la zone où les leviers d'optimisation (salaire vs dividendes, PER, IK) commencent à vraiment jouer : voir le <a href="guide-optimisation-sarl.html" style="color:var(--accent);">guide des 30 leviers</a>.</p>
+    </details>
+  </div>
+
+  <div class="sources">Sources : <a href="https://entreprendre.service-public.fr/vosdroits/F23575" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">service-public F23575 (création & IS)</a> · <a href="https://www.legifrance.gouv.fr/eli/loi/2026/2/19/CPPX2524517L/jo/texte" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">Loi de finances 2026</a> · <a href="https://www.impots.gouv.fr/" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">impots.gouv.fr</a></div>
+<div class="footer">Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · 
+    ⚠️ Estimation indicative : les cotisations réelles varient (exonérations, bas revenus). Sources : taux 2026 (URSSAF, service-public). Consultez votre expert-comptable.
+   Taux vérifiés le 01/08/2026 (sources officielles).</div>
+</div>
+
+<script>
+function fmt(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+function fmtMois(n) { return Math.round(n / 12).toLocaleString('fr-FR') + ' €'; }
+
+function exemple() {
+  document.getElementById('besoin').value = '2000';
+  document.getElementById('charges').value = '15000';
+  document.getElementById('statut').value = 'microS';
+  document.getElementById('vl').checked = false;
+  calc();
+}
+
+function pointMort(besoinAnnuel, chargesPro, statut, vl) {
+  const total = besoinAnnuel + chargesPro;
+  if (statut === 'microS') return total / (1 - (0.212 + (vl ? 0.022 : 0)));
+  if (statut === 'microV') return total / (1 - (0.123 + (vl ? 0.022 : 0)));
+  if (statut === 'tns') return total / 0.55;      // net ≈ 55% du salaire TNS
+  return total / (0.785 / 1.40);                   // net/coût SASU ≈ 0,561
+}
+
+function calc() {
+  const besoin = parseFloat(document.getElementById('besoin').value) || 0;
+  const charges = parseFloat(document.getElementById('charges').value) || 0;
+  const statut = document.getElementById('statut').value;
+  const vl = document.getElementById('vl').checked;
+
+  document.getElementById('results').classList.remove('hidden');
+  const set = (id, v) => document.getElementById(id).textContent = v;
+
+  const ca = pointMort(besoin * 12, charges, statut, vl);
+  set('caMin', fmt(ca));
+  set('caMois', fmtMois(ca));
+  set('jours', Math.ceil(ca / 400));
+
+  const avecVL = vl && (statut === 'microS' || statut === 'microV');
+  document.getElementById('pmTip').innerHTML = `💡 Avec <strong>${fmt(besoin)}/mois</strong> de besoins personnels et <strong>${fmt(charges)}</strong> de charges pro : il vous faut <strong>${fmt(ca)} de CA/an</strong> (${fmtMois(ca)}/mois), soit environ <strong>${Math.ceil(ca / 400)} jours</strong> facturés à 400 €/jour.${avecVL ? ' Le versement libératoire (2,2%) est inclus : votre IR est couvert.' : ' ⚠️ Sans versement libératoire, l\'impôt sur le revenu s\'ajoute : ajoutez ~10-20% selon votre tranche.'}`;
+
+  // Comparaison
+  const cMicroS = pointMort(besoin * 12, charges, 'microS', false);
+  const cTns = pointMort(besoin * 12, charges, 'tns', false);
+  const cSasu = pointMort(besoin * 12, charges, 'sasu', false);
+  set('cmpMicroS', fmt(cMicroS));
+  set('cmpTns', fmt(cTns));
+  set('cmpSasu', fmt(cSasu));
+  document.getElementById('cmpTip').innerHTML = `📊 La micro demande le CA le plus faible (${fmt(cMicroS)}), mais elle ne couvre ni la retraite cadre ni vos vraies charges. La <a href="sasu-ou-micro.html" style="color:var(--accent);">basculer en société</a> devient pertinent quand vos charges réelles dépassent ~50% du CA.`;
+}
+
+calc();
+</script>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="sw-register.js"></script>
+</body>
+</html>

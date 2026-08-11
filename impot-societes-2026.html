@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IS 2026 : taux 15%/25%, dates, acomptes</title>
+<meta property="og:image" content="https://SIMULATEUR-SARL.github.io/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:title" content="IS 2026 : taux 15%/25%, dates, acomptes">
+<meta property="og:description" content="IS 2026 : 15% jusqu'à 42 500 € puis 25%. Dates : acomptes (15/03, 15/06, 15/09, 15/12), solde 15/05. Simulateur et échéancier pour votre SARL/SASU.">
+<meta property="og:type" content="website">
+<meta name="description" content="IS 2026 : 15% jusqu'à 42 500 € puis 25%. Dates : acomptes (15/03, 15/06, 15/09, 15/12), solde 15/05. Simulateur et échéancier pour votre SARL/SASU.">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Qui bénéficie du taux réduit de 15% ?", "acceptedAnswer": {"@type": "Answer", "text": "Les PME dont le CA est inférieur à 10 M€, avec un capital entièrement libéré et détenu à 75% par des personnes physiques (ou une société remplissant les mêmes conditions). Le taux réduit s'applique sur la première tranche de 42 500 € de bénéfice, le reste à 25%."}}, {"@type": "Question", "name": "Quand payer l'IS la première année ?", "acceptedAnswer": {"@type": "Answer", "text": "La 1ʳᵉ année d'exercice, il n'y a pas d'acomptes (pas d'IS N-1 de référence) : vous payez tout au solde, dans les 15 jours de la déclaration de résultat (généralement 15 mai de l'année suivante)."}}, {"@type": "Question", "name": "L'IS est-il déductible du résultat ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. L'IS est calculé sur le bénéfice, il ne se déduit pas (contrairement au salaire ou aux charges). C'est un impôt sur le résultat : c'est le \"double étage\" qu'on compare toujours à l'option IR en EURL."}}, {"@type": "Question", "name": "Mon exercice ne clos pas au 31/12, quelles dates ?", "acceptedAnswer": {"@type": "Answer", "text": "Les acomptes sont dus aux 15 mars, juin, septembre, décembre qui suivent la clôture (délai de 3 mois et 15 jours pour les acomptes), et le solde dans les 15 jours suivant la déclaration de résultat (au plus tard le 2ᵉ jour ouvré après le 1er mai). Le principe : 4 acomptes + solde, calés sur votre cl"}}]}</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "👷 Créateurs & gérants", "item": "index.html#societe"}, {"@type": "ListItem", "position": 3, "name": "🏢 Impôt sur les sociétés 2026 : taux, dates, acomptes", "item": "impot-societes-2026.html"}]}</script>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="jargon-en-clair.html">🔤 Jargon</a>
+    <a href="comparateur-societes.html">⚖️ Comparateur</a>
+    <a href="simulateur-cfe.html">🧾 CFE</a>
+    <a href="guide-optimisation-sarl.html">📖 Guide</a>
+  
+    
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+<details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="comparateur-societes.html" class="menu-cat">⚖️ Comparateur : démarrez ici</a>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+  </div>
+
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <a href="index.html#societe">👷 Créateurs & gérants</a> › <span>🏢 Impôt sur les sociétés 2026 : taux, dates, acomptes</span></nav>
+  <h1>🏢 Impôt sur les sociétés 2026 : taux, dates, acomptes</h1>
+  <p class="subtitle">Le taux, le seuil du taux réduit, les 4 acomptes et le solde : avec un mini-calcul pour votre bénéfice. Tout ce qu'un dirigeant de SARL/SASU doit savoir sur l'IS en 2026.</p>
+
+  <div class="tldr">
+    <strong>TL;DR :</strong> L'IS 2026 : <strong>15% jusqu'à 42 500 €</strong> de bénéfice (PME &lt; 10 M€ de CA), <strong>25% au-delà</strong>. Paiement par <strong>4 acomptes</strong> (15 mars, 15 juin, 15 septembre, 15 décembre) + <strong>solde au 15 mai</strong> de l'année suivante. Si votre IS est faible, vous pouvez payer en une fois. <strong>Calculez le vôtre ci-dessous.</strong>
+  </div>
+
+  <div class="card" style="border-left: 3px solid var(--accent);">
+    <h2>📊 Calculer mon IS 2026</h2>
+    <div class="grid-3">
+      <div>
+        <label>Bénéfice imposable estimé (€/an)</label>
+        <input type="number" id="benefice" value="47000" min="0" step="1000">
+      </div>
+      <div>
+        <label>Exercice clos au</label>
+        <select id="exercice">
+          <option value="2026" selected>31/12/2026</option>
+          <option value="2025">31/12/2025 (déclaré en 2026)</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn" onclick="calc()">🏢 Calculer l'IS</button>
+    <button class="btn-outline" style="margin-left:.5rem;" onclick="exemple()">🎨 Exemple N2C (47 000 €)</button>
+  </div>
+
+  <div id="results" class="hidden">
+    <div class="card" style="border:1px solid var(--accent);">
+      <h2 style="color:var(--accent);">📋 Votre IS</h2>
+      <div class="grid-4" style="text-align:center;margin-bottom:1rem;">
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Tranche à 15%</div>
+          <div class="big-num" id="part15">0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Tranche à 25%</div>
+          <div class="big-num" id="part25">0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">IS total</div>
+          <div class="big-num charge-amount" id="isTotal">0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Bénéfice net après IS</div>
+          <div class="big-num net-amount" id="netIs">0€</div>
+        </div>
+      </div>
+      <div id="isTip" class="tip"></div>
+    </div>
+
+    <div class="card">
+      <h2>🗓️ L'échéancier 2026 (exercice clos au 31/12)</h2>
+      <table>
+        <tr><th>Échéance</th><th></th><th>Quoi</th></tr>
+        <tr><td>15 mars 2026</td><td></td><td>1ᵉʳ acompte (25% de l'IS N-1)</td></tr>
+        <tr><td>15 juin 2026</td><td></td><td>2ᵉ acompte (25%)</td></tr>
+        <tr><td>15 septembre 2026</td><td></td><td>3ᵉ acompte (25%)</td></tr>
+        <tr><td>15 décembre 2026</td><td></td><td>4ᵉ acompte (25%)</td></tr>
+        <tr><td>15 mai 2027</td><td></td><td>Solde (IS dû − acomptes) + déclaration 2065/2031</td></tr>
+      </table>
+      <div class="tip">💡 <strong>Petites entreprises</strong> : si l'IS de l'exercice précédent est &lt; 3 000 €, vous pouvez payer <strong>en une fois</strong> (solde au 15 mai) sans acomptes. Et la <strong>réduction d'IS pour les PME</strong> (11 250 €) est déjà intégrée dans le taux réduit de 15%.</div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card" style="margin-top:1rem;">
+    <h2>❓ Questions fréquentes</h2>
+    <details>
+      <summary>Qui bénéficie du taux réduit de 15% ?</summary>
+      <p>Les <strong>PME</strong> dont le CA est inférieur à 10 M€, avec un capital entièrement libéré et détenu à 75% par des personnes physiques (ou une société remplissant les mêmes conditions). Le taux réduit s'applique sur la <strong>première tranche de 42 500 €</strong> de bénéfice, le reste à 25%.</p>
+    </details>
+    <details>
+      <summary>Quand payer l'IS la première année ?</summary>
+      <p>La 1ʳᵉ année d'exercice, il n'y a <strong>pas d'acomptes</strong> (pas d'IS N-1 de référence) : vous payez tout au <strong>solde</strong>, dans les 15 jours de la déclaration de résultat (généralement 15 mai de l'année suivante).</p>
+    </details>
+    <details>
+      <summary>L'IS est-il déductible du résultat ?</summary>
+      <p><strong>Non.</strong> L'IS est calculé <strong>sur</strong> le bénéfice, il ne se déduit pas (contrairement au salaire ou aux charges). C'est un impôt sur le résultat : c'est le "double étage" qu'on compare toujours à l'option IR en EURL.</p>
+    </details>
+    <details>
+      <summary>Mon exercice ne clos pas au 31/12, quelles dates ?</summary>
+      <p>Les acomptes sont dus aux 15 mars, juin, septembre, décembre <strong>qui suivent la clôture</strong> (délai de 3 mois et 15 jours pour les acomptes), et le solde dans les 15 jours suivant la déclaration de résultat (au plus tard le 2ᵉ jour ouvré après le 1er mai). Le principe : 4 acomptes + solde, calés sur votre clôture.</p>
+    </details>
+  </div>
+
+  <div class="sources">Sources : <a href="https://entreprendre.service-public.fr/vosdroits/F23575" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">service-public F23575 (IS)</a> · <a href="https://www.legifrance.gouv.fr/eli/loi/2026/2/19/CPPX2524517L/jo/texte" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">Loi de finances 2026</a></div>
+<div class="footer">Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · 
+    ⚠️ Information indicative : taux 2026 sourcés (BPI France, service-public F3896). Les dates sont celles de l'exercice civil. Consultez votre expert-comptable.
+   Taux vérifiés le 01/08/2026 (sources officielles).</div>
+</div>
+
+<script src="parametres-2026.js"></script>
+<script src="moteur-calcul.js"></script>
+<script>
+function fmt(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+
+function exemple() {
+  document.getElementById('benefice').value = '47000';
+  document.getElementById('exercice').value = '2026';
+  calc();
+}
+
+function calc() {
+  const benefice = parseFloat(document.getElementById('benefice').value) || 0;
+  document.getElementById('results').classList.remove('hidden');
+  const set = (id, v) => document.getElementById(id).textContent = v;
+
+  const is = calcIs(benefice);
+  const seuil15 = IS_BRACKETS[0][1]; // 42 500 €
+  const part15 = Math.min(benefice, seuil15) * IS_BRACKETS[0][2];
+  const part25 = Math.max(0, benefice - seuil15) * IS_BRACKETS[1][2];
+  set('part15', fmt(part15));
+  set('part25', fmt(part25));
+  set('isTotal', fmt(is));
+  set('netIs', fmt(Math.max(0, benefice - is)));
+
+  document.getElementById('isTip').innerHTML = benefice <= seuil15
+    ? `Votre bénéfice (${fmt(benefice)}) reste sous le seuil de ${fmt(seuil15)} : tout est imposé à <strong>15%</strong>. IS = ${fmt(is)}.`
+    : `⚠️ Votre bénéfice (${fmt(benefice)}) dépasse ${fmt(seuil15)} : ${fmt(Math.max(0, benefice - seuil15))} passent à 25%. IS total = ${fmt(is)}.`;
+}
+
+calc();
+</script>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="sw-register.js"></script>
+</body>
+</html>

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta property="og:image" content="https://SIMULATEUR-SARL.github.io/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:title" content="Optimiseur Rémunération SARL : Artisan & Conjoint">
+<meta property="og:description" content="Optimisez votre rémunération de gérant SARL/EURL 2026 : salaire vs dividendes, TMI automatique, conjoint, option IR, PER Madelin.">
+<meta property="og:type" content="website">
+<meta name="description" content="Optimisez votre rémunération de gérant SARL/EURL 2026 : salaire vs dividendes, TMI automatique, conjoint, option IR, PER Madelin.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optimiseur Rémunération SARL : Artisan & Conjoint</title>
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "C'est quoi les \"45%\" de cotisations TNS ?", "acceptedAnswer": {"@type": "Answer", "text": "Le gérant majoritaire de SARL/EURL est travailleur non salarié : cotisations maladie, retraite de base et complémentaire, invalidité-décès, CSG-CRDS, allocations familiales… Le total représente ~45% du salaire brut. Ce qui laisse ~55% de net avant impôt."}}, {"@type": "Question", "name": "Le piège des dividendes à 10% du capital, c'est quoi ?", "acceptedAnswer": {"@type": "Answer", "text": "Au-delà de 10% du capital social, les dividendes du gérant majoritaire sont réintégrés dans l'assiette des cotisations sociales (~45%). Avec 1 000 € de capital, seuls 100 €/an de dividendes sont \"propres\". Solution : augmenter le capital (voir le simulateur dividendes)."}}, {"@type": "Question", "name": "L'option IR (transparence fiscale), c'est pour qui ?", "acceptedAnswer": {"@type": "Answer", "text": "L'EURL (et la SARL familiale) peut opter pour l'impôt sur le revenu pendant 5 ans : le résultat est imposé directement à votre TMI au lieu de l'IS. Avantageux si votre TMI est bas. L'outil compare automatiquement les deux scénarios quand vous cochez l'option."}}, {"@type": "Question", "name": "Je ne me verse rien cette année, je dois quand même cotiser ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui : ~1 360 €/an de cotisations minimales (retraite de base + CSG-CRDS) sont dues même sans rémunération. C'est déductible du résultat : voir la carte \"Gérant non rémunéré\" plus haut."}}, {"@type": "Question", "name": "Pourquoi le résultat change-t-il par rapport à avant ?", "acceptedAnswer": {"@type": "Answer", "text": "Depuis la mise à jour 2026, les simulateurs vérifient que la rémunération est finançable par le résultat (salaire + cotisations + conjoint ≤ résultat). Les anciennes versions promettaient des nets impossibles sans trésorerie."}}]}</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "👷 Créateurs & gérants", "item": "index.html#societe"}, {"@type": "ListItem", "position": 3, "name": "🧮 Optimiseur SARL : Artisan & Conjoint", "item": "optimiseur-sarl-couple.html"}]}</script>
+<style>
+/* ═══ UX 2026 : base typo, mobile, accessibilité ═══ */
+html{font-size:100%;-webkit-text-size-adjust:100%;}
+body{font-size:1rem;line-height:1.7;}
+:focus-visible{outline:3px solid var(--accent,#f59e0b);outline-offset:2px;border-radius:4px;}
+::selection{background:rgba(245,158,11,.35);}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
+}
+img{max-width:100%;height:auto;}
+@media(max-width:640px){
+  body{font-size:.95rem;}
+  input,select,button{font-size:1rem !important;min-height:44px;}
+  table{display:block;overflow-x:auto;white-space:nowrap;}
+  h1{font-size:1.5rem !important;} h2{font-size:1.25rem !important;} h3{font-size:1.05rem !important;}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <a href="index.html#societe">👷 Créateurs & gérants</a> › <span>🧮 Optimiseur SARL : Artisan & Conjoint</span></nav>
+  <h1>🧮 Optimiseur SARL : Artisan & Conjoint</h1>
+  <p class="subtitle">Objectif : minimiser URSSAF + IS + IR. Spécial conjoint collaborateur/salarié. Mise à jour 2026.</p>
+
+  <div class="nav" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem;">
+    <a href="optimiseur-sarl-couple.html" style="padding:.45rem .9rem;border-radius:8px;background:var(--card);border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.85rem;font-weight:600;">🧮 Optimiseur SARL/EURL</a>
+    <a href="comparateur-societes.html" style="padding:.45rem .9rem;border-radius:8px;background:var(--card);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.85rem;">⚖️ Comparateur</a>
+    <a href="simulateur-micro-sarl.html" style="padding:.45rem .9rem;border-radius:8px;background:var(--card);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.85rem;">🪙 Micro vs SARL</a>
+    <a href="simulateur-sasu.html" style="padding:.45rem .9rem;border-radius:8px;background:var(--card);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.85rem;">🚀 SASU/SAS</a>
+    <a href="guide-optimisation-sarl.html" style="padding:.45rem .9rem;border-radius:8px;background:var(--card);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.85rem;">📖 Guide</a>
+  
+    <details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="comparateur-societes.html" class="menu-cat">⚖️ Comparateur : démarrez ici</a>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+  </div>
+
+  <div class="card" style="border-left: 3px solid var(--accent);">
+    <h2>📊 Votre situation : N2C Peinture</h2>
+    <div class="grid-3">
+      <div>
+        <label>CA HT annuel (€)</label>
+        <input type="number" id="ca" value="65000" min="0" step="1000">
+      </div>
+      <div>
+        <label>Charges pro annuelles (€)</label>
+        <input type="number" id="charges" value="18000" min="0" step="1000">
+      </div>
+      <div>
+        <label>Capital social SARL (€)</label>
+        <input type="number" id="capital" value="1000" min="0" step="500">
+      </div>
+    </div>
+    <div class="grid-3" style="margin-top:.8rem;">
+      <div>
+        <label>Type d'activité</label>
+        <select id="activite">
+          <option value="service" selected>Prestation services (artisanat)</option>
+          <option value="commercial">Achat/revente</option>
+        </select>
+      </div>
+      <div>
+        <label>TMI estimé du foyer (auto)</label>
+        <input type="text" id="tmiCalcule" value=":" readonly style="color:var(--accent);font-weight:700;">
+      </div>
+      <div>
+        <label>Autres revenus du foyer (€/an, optionnel)</label>
+        <input type="number" id="autresRevenus" value="0" min="0" step="1000">
+      </div>
+      <div>
+        <label>Régime matrimonial</label>
+        <select id="regime">
+          <option value="commun">Communauté (défaut)</option>
+          <option value="separe">Séparation de biens</option>
+        </select>
+      </div>
+      <div>
+        <label>Forme de la société</label>
+        <select id="forme">
+          <option value="sarl" selected>SARL (plusieurs associés)</option>
+          <option value="eurl">EURL (associé unique)</option>
+        </select>
+      </div>
+      <div class="switch-container" style="align-items:flex-end;">
+        <label class="switch">
+          <input type="checkbox" id="optionIR" onchange="calc()">
+          <span class="slider"></span>
+        </label>
+        <span class="toggle-label"><strong>🧾 Option IR</strong><br><span style="font-size:.72rem;color:var(--muted);">Transparence fiscale 5 ans (EURL / SARL familiale)</span></span>
+      </div>
+    </div>
+
+    <div class="switch-container">
+      <label class="switch">
+        <input type="checkbox" id="coupleMode" checked onchange="toggleCouple()">
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-label"><strong>👩‍❤️‍👨 Couple (elle + mari)</strong> travaille ensemble</span>
+    </div>
+
+    <div id="coupleOptions">
+      <div class="grid-3" style="margin-top:.8rem;">
+        <div>
+          <label>Salaire mari (€/an brut)</label>
+          <input type="number" id="salaireConjoint" value="18000" min="0" step="1000">
+        </div>
+        <div>
+          <label>Statut du conjoint</label>
+          <select id="statutConjoint">
+            <option value="collaborateur">Conjoint collaborateur</option>
+            <option value="salarie" selected>Conjoint salarié</option>
+          </select>
+        </div>
+        <div>
+          <label>Km pro conjoint / an</label>
+          <input type="number" id="kmConjoint" value="5000" min="0" step="500">
+        </div>
+      </div>
+    </div>
+
+    <button class="btn" onclick="calc()">🔍 Calculer optimisation</button>
+    <button class="btn-outline" style="margin-left:.5rem;" onclick="exemple()">🎨 Exemple type (artisan 65 k€)</button>
+  </div>
+
+  <div id="results" class="hidden">
+
+    <!-- Scénario de base (SARL sans optimisation) -->
+    <div class="card">
+      <h2>📉 Scénario de base (sans optimisation)</h2>
+      <table>
+        <tr><th>Poste</th><th></th><th>Montant</th></tr>
+        <tr><td>CA HT</td><td></td><td id="baseCa">0€</td></tr>
+        <tr><td>Charges pro</td><td></td><td id="baseCharges" class="charge-amount">0€</td></tr>
+        <tr style="border-top:2px solid var(--border);"><td><strong>Résultat brut</strong></td><td></td><td id="baseResultat">0€</td></tr>
+        <tr><td>Salaire gérante</td><td></td><td id="baseSalaire">0€</td></tr>
+        <tr><td>URSSAF/TNS (~45%)</td><td id="baseTnsLabel"></td><td id="baseTns" class="charge-amount">0€</td></tr>
+        <tr><td>IS (impôt société)</td><td></td><td id="baseIs" class="charge-amount">0€</td></tr>
+        <tr style="border-top:2px solid var(--red);"><td><strong>Total charges + impôts</strong></td><td></td><td id="baseTotalCharges" class="charge-amount" style="font-weight:700;">0€</td></tr>
+        <tr><td><strong>💶 Net en poche couple</strong></td><td></td><td id="baseNet" class="net-amount" style="font-weight:700;">0€</td></tr>
+      </table>
+    </div>
+
+    <!-- Scénario optimisé -->
+    <div class="card" style="border: 1px solid var(--accent);">
+      <h2 style="color:var(--green);">Scénario Optimisé</h2>
+      <div class="grid-4" style="text-align:center;margin-bottom:1rem;">
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">URSSAF + IS + IR</div>
+          <div class="big-num charge-amount" id="optiCharges">0€</div>
+          <div style="font-size:.75rem;color:var(--green);" id="optiEcoCharges">−0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Net couple</div>
+          <div class="big-num net-amount" id="optiNet">0€</div>
+          <div style="font-size:.75rem;color:var(--green);" id="optiGain">+0€ vs base</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Taux d'optimisation</div>
+          <div class="big-num" id="optiTaux" style="color:var(--accent);">0%</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Éco. mensuelle</div>
+          <div class="big-num net-amount" id="optiMensuel">0€</div>
+        </div>
+      </div>
+
+      <table>
+        <tr><th>Poste</th><th></th><th>Base</th><th>Optimisé</th></tr>
+        <tr><td>Résultat brut</td><td></td><td id="optiResBase">0€</td><td id="optiResOpti">0€</td></tr>
+        <tr><td>Salaire gérante</td><td></td><td id="optiSalBase">0€</td><td id="optiSalOpti">0€</td></tr>
+        <tr><td>Salaire conjoint</td><td></td><td id="optiConjBase">0€</td><td id="optiConjOpti">0€</td></tr>
+        <tr><td>URSSAF/TNS</td><td></td><td id="optiTnsBase" class="charge-amount">0€</td><td id="optiTnsOpti" class="charge-amount">0€</td></tr>
+        <tr><td>IS</td><td></td><td id="optiIsBase" class="charge-amount">0€</td><td id="optiIsOpti" class="charge-amount">0€</td></tr>
+        <tr><td>IR personnel</td><td></td><td id="optiIrBase" class="charge-amount">0€</td><td id="optiIrOpti" class="charge-amount">0€</td></tr>
+        <tr><td>IK véhicule</td><td></td><td id="optiIkBase">0€</td><td id="optiIkOpti" class="net-amount">0€</td></tr>
+        <tr><td>PER Madelin</td><td></td><td id="optiPerBase">0€</td><td id="optiPerOpti" class="net-amount">0€</td></tr>
+        <tr style="border-top:2px solid var(--green);"><td><strong>💶 Net couple</strong></td><td></td><td id="optiNetBase" class="net-amount" style="font-weight:700;">0€</td><td id="optiNetOpti" class="net-amount" style="font-weight:700;">0€</td></tr>
+      </table>
+    </div>
+
+    <!-- OPTIMISEUR TMI -->
+    <div class="card" style="border:1px solid var(--accent);">
+      <h2 style="color:var(--accent);">📊 Optimisation TMI : Rester dans la bonne tranche</h2>
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:.8rem;">L'objectif : prendre le maximum de revenu sans basculer dans la tranche d'imposition supérieure. Le gain peut être de plusieurs milliers d'euros.</p>
+      
+      <div style="background:rgba(245,158,11,.06);padding:.8rem;border-radius:8px;margin-bottom:.8rem;font-size:.82rem;">
+        <strong>Barème IR 2026 (inflation indexée) :</strong><br>
+        <span style="display:inline-block;min-width:180px;">0% jusqu'à 11 294€</span>
+        <span style="display:inline-block;min-width:180px;">11% de 11 295€ à 28 797€</span>
+        <span style="display:inline-block;min-width:180px;">30% de 28 798€ à 82 341€</span><br>
+        <span style="display:inline-block;min-width:180px;">41% de 82 342€ à 177 106€</span>
+        <span style="display:inline-block;min-width:180px;">45% au-delà de 177 107€</span>
+      </div>
+
+      <table>
+        <tr><th>Scénario</th><th></th><th>Revenu imposable</th><th>TMI</th><th>IR estimé</th></tr>
+        <tr><td><strong>👤 Gérante seule</strong></td><td>Optimal</td><td id="tmiSoloRevenu">0€</td><td id="tmiSoloTaux">0%</td><td id="tmiSoloIr" class="charge-amount">0€</td></tr>
+        <tr><td><strong>👩‍❤️‍👨 À deux (actuel)</strong></td><td>Réparti</td><td id="tmiCoupleRevenu">0€</td><td id="tmiCoupleTaux">0%</td><td id="tmiCoupleIr" class="charge-amount">0€</td></tr>
+        <tr><td><strong>💰 Max sans changer de TMI</strong></td><td id="tmiMaxLabel">Gérante</td><td id="tmiMaxRevenu">0€</td><td id="tmiMaxTaux" style="color:var(--green);">0%</td><td id="tmiMaxIr" class="charge-amount">0€</td></tr>
+        <tr><td><strong>⚠️ Si vous dépassez</strong></td><td>+1 000€</td><td id="tmiDepasseRevenu">0€</td><td id="tmiDepasseTaux" style="color:var(--red);">0%</td><td id="tmiDepasseIr" class="charge-amount" style="color:var(--red);">0€</td></tr>
+      </table>
+      <div id="tmiConseil" class="tip" style="font-size:.82rem;margin-top:.5rem;"></div>
+    </div>
+
+    <!-- OPTION IR -->
+    <div class="card" id="carteOptionIR" style="border:1px solid var(--blue);display:none;">
+      <h2 style="color:var(--blue);">🧾 Option IR : transparence fiscale (EURL / SARL familiale, 5 ans)</h2>
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:.6rem;">L'entreprise opte pour l'impôt sur le revenu : plus d'IS, le résultat est imposé directement à votre TMI. La rémunération fait partie du résultat (pas de salaire déductible séparé).</p>
+      <table>
+        <tr><td>Résultat imposable (après IK + PER)</td><td></td><td id="oirResultat">0€</td></tr>
+        <tr><td>Cotisations TNS (sur tout le résultat)</td><td></td><td id="oirTns" class="charge-amount">0€</td></tr>
+        <tr><td>IR personnel (barème, sans abattement 10%)</td><td></td><td id="oirIr" class="charge-amount">0€</td></tr>
+        <tr style="border-top:2px solid var(--blue);"><td><strong>Net en poche</strong></td><td></td><td id="oirNet" class="net-amount" style="font-weight:700;">0€</td></tr>
+      </table>
+      <div id="oirConseil" class="tip"></div>
+    </div>
+
+    <!-- ASTUCE ROI -->
+    <div class="card" style="border:1px solid var(--green);">
+      <h2 style="color:var(--green);">🏆 L'astuce Roi pour votre SARL/EURL</h2>
+      <div id="astuceRoi"></div>
+    </div>
+
+    <!-- GÉRANT NON RÉMUNÉRÉ -->
+    <div class="card" style="border:1px solid var(--blue);">
+      <h2 style="color:var(--blue);">📉 Gérant non rémunéré ? Les cotisations minimales</h2>
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:.6rem;">Si le gérant majoritaire ne se verse <strong>aucune rémunération</strong> (ni salaire, ni dividendes), il doit quand même payer des cotisations minimales :</p>
+      <table>
+        <tr><td>Retraite de base (assiette minimale)</td><td></td><td>~960 €/an</td></tr>
+        <tr><td>CSG-CRDS + divers</td><td></td><td>~400 €/an</td></tr>
+        <tr style="border-top:2px solid var(--blue);"><td><strong>Total cotisations minimales 2026</strong></td><td></td><td style="font-weight:700;color:var(--blue);">~1 360 €/an</td></tr>
+      </table>
+      <div class="tip" style="border-left-color:var(--blue);">💡 <strong>À savoir</strong> : même sans rémunération, ~1 360 €/an de cotisations sont dues (source : moteur officiel URSSAF 2026, revenu professionnel 0 €). Ces cotisations sont déductibles du résultat. Le cas se pose souvent la première année d'activité : prévoyez cette charge.</div>
+    </div>
+
+    <!-- LIEN VERS LE GUIDE COMPLET -->
+    <div class="card" style="text-align:center;border:1px solid var(--accent);padding:1.2rem;">
+      <h2 style="color:var(--accent);margin-bottom:.5rem;">📖 Guide Complet : 30 Leviers d'Optimisation SARL</h2>
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:.8rem;">Tous les leviers détaillés avec explications simples, exemples concrets et sources expertes (Banque Populaire, BPIFrance, URSSAF, experts-comptables).</p>
+      <a href="guide-optimisation-sarl.html" target="_blank" style="display:inline-block;background:var(--accent);color:#0f172a;padding:.7rem 2rem;border-radius:8px;font-size:.95rem;font-weight:600;text-decoration:none;transition:opacity .2s;">📖 Ouvrir le Guide Complet →</a>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card" style="margin-top:1.5rem;">
+    <h2>❓ Questions fréquentes</h2>
+    <details>
+      <summary>C'est quoi les "45%" de cotisations TNS ?</summary>
+      <p>Le gérant majoritaire de SARL/EURL est travailleur non salarié : cotisations maladie, retraite de base et complémentaire, invalidité-décès, CSG-CRDS, allocations familiales… Le total représente ~45% du salaire brut. Ce qui laisse ~55% de net avant impôt.</p>
+    </details>
+    <details>
+      <summary>Le piège des dividendes à 10% du capital, c'est quoi ?</summary>
+      <p>Au-delà de 10% du capital social, les dividendes du gérant majoritaire sont réintégrés dans l'assiette des cotisations sociales (~45%). Avec 1 000 € de capital, seuls 100 €/an de dividendes sont "propres". Solution : augmenter le capital (voir le <a href="simulateur-dividendes.html" style="color:var(--accent);">simulateur dividendes</a>).</p>
+    </details>
+    <details>
+      <summary>L'option IR (transparence fiscale), c'est pour qui ?</summary>
+      <p>L'EURL (et la SARL familiale) peut opter pour l'impôt sur le revenu pendant 5 ans : le résultat est imposé directement à votre TMI au lieu de l'IS. Avantageux si votre TMI est bas. L'outil compare automatiquement les deux scénarios quand vous cochez l'option.</p>
+    </details>
+    <details>
+      <summary>Je ne me verse rien cette année, je dois quand même cotiser ?</summary>
+      <p>Oui : ~1 360 €/an de cotisations minimales (retraite de base + CSG-CRDS) sont dues même sans rémunération. C'est déductible du résultat : voir la carte "Gérant non rémunéré" plus haut.</p>
+    </details>
+    <details>
+      <summary>Pourquoi le résultat change-t-il par rapport à avant ?</summary>
+      <p>Depuis la mise à jour 2026, les simulateurs vérifient que la rémunération est finançable par le résultat (salaire + cotisations + conjoint ≤ résultat). Les anciennes versions promettaient des nets impossibles sans trésorerie.</p>
+    </details>
+  </div>
+
+  <div style="margin-top:1.5rem;padding:1rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--muted);text-align:center;">
+    ⚠️ Simulation indicative : mise à jour 2026. Chaque situation est unique. Consultez votre expert-comptable.
+  </div>
+</div>
+
+<script src="parametres-2026.js"></script>
+<script src="moteur-calcul.js"></script>
+<script>
+// ═══════════════ EXEMPLE TYPE (cas N2C : artisan peintre + conjoint) ═══════════════
+function exemple() {
+  document.getElementById('ca').value = '65000';
+  document.getElementById('charges').value = '18000';
+  document.getElementById('capital').value = '1000';
+  document.getElementById('activite').value = 'service';
+  document.getElementById('coupleMode').checked = true;
+  document.getElementById('salaireConjoint').value = '18000';
+  document.getElementById('statutConjoint').value = 'collaborateur';
+  document.getElementById('kmConjoint').value = '5000';
+  document.getElementById('autresRevenus').value = '0';
+  calc();
+}
+
+function toggleCouple() {
+  document.getElementById('coupleOptions').style.display = document.getElementById('coupleMode').checked ? 'block' : 'none';
+  calc();
+}
+
+function calc() {
+  const ca = parseFloat(document.getElementById('ca').value) || 0;
+  const charges = parseFloat(document.getElementById('charges').value) || 0;
+  const capital = parseFloat(document.getElementById('capital').value) || 1000;
+  const couple = document.getElementById('coupleMode').checked;
+  const salConjoint = couple ? parseFloat(document.getElementById('salaireConjoint').value) || 0 : 0;
+  const kmConjoint = couple ? parseFloat(document.getElementById('kmConjoint').value) || 0 : 0;
+  const statutConjoint = couple ? document.getElementById('statutConjoint').value : 'none';
+  const autresRevenus = parseFloat(document.getElementById('autresRevenus').value) || 0;
+
+  const resultat = ca - charges;
+
+  // ── TMI estimé du foyer : calculé automatiquement ──
+  // Approximation : salaire gérant ~60% du résultat (net TNS ~55%),
+  // + conjoint net, abattement 10%, + autres revenus du foyer
+  const salGerEstime = Math.min(Math.floor(resultat * 0.6 / 1000) * 1000, 40000);
+  const revenuImposableEstime = (salGerEstime * 0.55 + (couple ? salConjoint * 0.78 : 0)) * 0.9 + autresRevenus;
+  const tmiSelect = Math.round(calcTmiBracket(revenuImposableEstime).taux * 100);
+  document.getElementById('tmiCalcule').value = tmiSelect + '%';
+
+  // IK barème 2026 (6CV, ~0.51€/km) : taux centralisé dans parametres-2026.js
+  const kmPro = Math.min((ca / 60000) * 15000, 15000); // Estimé pro
+  const ikTotal = kmPro * TAUX_IK + (couple ? kmConjoint * TAUX_IK : 0);
+  const ikGerante = (kmPro * TAUX_IK);
+
+  // PER Madelin (conseil : ~5% du CA)
+  const perConseil = Math.round(ca * 0.05);
+
+  // --- BASE SCENARIO (sans optimisation, salaire unique) ---
+  let baseSalaire = Math.min(Math.floor(resultat * 0.65 / 1000) * 1000, 35000);
+  // ⚠️ Contrainte de financement : le scénario de base doit tenir dans le résultat
+  // (sinon il promet un net impossible sans trésorerie extérieure).
+  const baseCoutConjoint = (couple && statutConjoint === 'salarie') ? salConjoint * 1.45
+    : (couple && statutConjoint === 'collaborateur') ? salConjoint * 1.12 : 0;
+  while (baseSalaire > 0 && baseSalaire + calcTns(baseSalaire) + baseCoutConjoint + perConseil > resultat - ikTotal) {
+    baseSalaire -= 1000;
+  }
+  let baseTns = calcTns(baseSalaire);
+  let baseResApres = resultat - baseSalaire - baseTns;
+  let baseIs = calcIs(baseResApres);
+  let baseNetSal = baseSalaire - baseTns;
+  let baseIr = calcIr(baseNetSal * 0.9 * 0.6 + (tmiSelect > 0 ? 0 : 0));
+  let baseTotalCouple = baseNetSal + (couple && statutConjoint === 'salarie' ? salConjoint * 0.78 : (couple && statutConjoint === 'collaborateur' ? 0 : 0));
+  let baseTotalCharges = baseTns + baseIs + baseIr;
+
+  // --- OPTIMISED SCENARIO ---
+  let bestNet = -1, best = null;
+
+  // Test combinaisons salaire gérante (pas de 500) + conjoint
+  // ⚠️ Contrainte de financement : salaire + cotisations + PER <= résultat
+  // (sinon le scénario suppose une trésorerie extérieure non financée).
+  const maxSal = Math.floor(resultat * 0.90 / 500) * 500;
+  for (let sal = 2000; sal <= maxSal + 100; sal += 500) {
+    for (let sc = 0; sc <= (couple ? Math.min(salConjoint + 5000, 22000) : 0); sc += 1000) {
+      // IK déduites du résultat
+      let resApresIK = resultat + ikTotal; // Les IK sont une charge déduite du résultat
+      let resReel = resultat - ikTotal;
+      
+      // Salaire + TNS
+      let tns = calcTns(sal);
+      // Si conjoint salarié : charges patronales ~45% en plus
+      let chargesConjoint = (couple && statutConjoint === 'salarie' && sc > 0) ? sc * 0.45 : 0;
+      let coutConjoint = (couple && statutConjoint === 'salarie' && sc > 0) ? sc + chargesConjoint : (couple && statutConjoint === 'collaborateur' && sc > 0) ? sc * 0.12 : 0;
+      
+      // PER déduit
+      let per = perConseil;
+
+      // Financement : salaire + TNS + conjoint + PER doivent tenir dans le résultat
+      if (sal + tns + coutConjoint + per > resReel) continue;
+
+      let resIs = resReel - sal - tns - coutConjoint - per;
+      
+      let isDue = calcIs(resIs);
+      let netIs = Math.max(0, resIs - isDue);
+      
+      // Dividendes safe
+      let seuil = capital * 0.10;
+      let divBrut = Math.min(netIs, Math.round(seuil));
+      let divNet = Math.round(divBrut * (1 - PFU));
+      
+      // IR personnel
+      let salNet = sal - tns;
+      let revenuImposable = salNet * 0.9; // abattement 10%
+      let ir = calcIr(revenuImposable);
+      
+      // Net couple
+      let conjointNet = 0;
+      if (couple && statutConjoint === 'salarie' && sc > 0) conjointNet = sc * 0.78; // Net après charges
+      else if (couple && statutConjoint === 'collaborateur' && sc > 0) conjointNet = sc * 0.88; // ~12% cotisations
+      
+      let totalNet = salNet + divNet + conjointNet + per;
+      
+      if (totalNet > bestNet) {
+        bestNet = totalNet;
+        best = { sal, tns: Math.round(tns), sc, chargesConjoint: Math.round(chargesConjoint), 
+                 coutConjoint: Math.round(coutConjoint), per, resIs: Math.round(resIs),
+                 isDue, divBrut, divNet, salNet: Math.round(salNet), conjointNet: Math.round(conjointNet),
+                 totalNet: Math.round(totalNet), ir, ikTotal: Math.round(ikTotal) };
+      }
+    }
+  }
+
+  // --- AFFICHAGE ---
+  document.getElementById('results').classList.remove('hidden');
+
+  // Base
+  document.getElementById('baseCa').textContent = fmt(ca);
+  document.getElementById('baseCharges').textContent = '-' + fmt(charges);
+  document.getElementById('baseResultat').textContent = fmt(resultat);
+  document.getElementById('baseSalaire').textContent = fmt(baseSalaire);
+  document.getElementById('baseTns').textContent = '-' + fmt(Math.round(baseTns));
+  document.getElementById('baseIs').textContent = '-' + fmt(baseIs);
+  document.getElementById('baseTotalCharges').textContent = '-' + fmt(Math.round(baseTotalCharges));
+  document.getElementById('baseNet').textContent = fmt(Math.round(baseTotalCouple));
+
+  // Optimisé
+  const optiTotalCharges = best.tns + best.isDue + best.ir;
+  document.getElementById('optiCharges').textContent = fmt(optiTotalCharges);
+  document.getElementById('optiEcoCharges').textContent = '−' + fmt(Math.round(baseTotalCharges - optiTotalCharges));
+  document.getElementById('optiNet').textContent = fmt(best.totalNet);
+  document.getElementById('optiGain').textContent = '+' + fmt(Math.round(best.totalNet - baseTotalCouple)) + ' vs base';
+  const tauxOpti = resultat > 0 ? Math.round((resultat - optiTotalCharges) / resultat * 100) : 0;
+  document.getElementById('optiTaux').textContent = tauxOpti + '%';
+  document.getElementById('optiMensuel').textContent = '+' + fmt(Math.round((best.totalNet - baseTotalCouple) / 12));
+
+  // Tableau comparatif
+  document.getElementById('optiResBase').textContent = fmt(resultat);
+  document.getElementById('optiResOpti').textContent = fmt(resultat);
+  document.getElementById('optiSalBase').textContent = fmt(baseSalaire);
+  document.getElementById('optiSalOpti').textContent = fmt(best.sal);
+  document.getElementById('optiConjBase').textContent = couple ? '0€' : ':';
+  document.getElementById('optiConjOpti').textContent = couple ? fmt(best.sc) : ':';
+  document.getElementById('optiTnsBase').textContent = '-' + fmt(Math.round(baseTns));
+  document.getElementById('optiTnsOpti').textContent = '-' + fmt(Math.round(best.tns + (best.coutConjoint || 0)));
+  document.getElementById('optiIsBase').textContent = '-' + fmt(baseIs);
+  document.getElementById('optiIsOpti').textContent = '-' + fmt(best.isDue);
+  document.getElementById('optiIrBase').textContent = '-' + fmt(baseIr);
+  document.getElementById('optiIrOpti').textContent = '-' + fmt(best.ir);
+  document.getElementById('optiIkBase').textContent = '0€';
+  document.getElementById('optiIkOpti').textContent = '~' + fmt(best.ikTotal);
+  document.getElementById('optiPerBase').textContent = '0€';
+  document.getElementById('optiPerOpti').textContent = fmt(best.per) + ' (épargne)';
+  document.getElementById('optiNetBase').textContent = fmt(Math.round(baseTotalCouple));
+  document.getElementById('optiNetOpti').textContent = fmt(best.totalNet);
+
+  // Scroll
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  
+  // --- TMI OPTIMIZATION (v3 : calcul direct depuis les inputs) ---
+  // calcIrExact / calcTmiBracket : fonctions partagées (moteur-calcul.js)
+  // Calcul direct du revenu imposable à partir des champs du formulaire
+  const caIn = parseFloat(document.getElementById('ca').value) || 0;
+  const chargesIn = parseFloat(document.getElementById('charges').value) || 0;
+  const capIn = parseFloat(document.getElementById('capital').value) || 1000;
+  const coupleIn = document.getElementById('coupleMode').checked;
+  const salConjIn = coupleIn ? parseFloat(document.getElementById('salaireConjoint').value) || 0 : 0;
+  const statutConjIn = coupleIn ? document.getElementById('statutConjoint').value : 'none';
+  const kmConjIn = coupleIn ? parseFloat(document.getElementById('kmConjoint').value) || 0 : 0;
+  
+  const resultatIn = caIn - chargesIn;
+  const kmProIn = Math.min((caIn / 60000) * 15000, 15000);
+  const ikTotalIn = Math.round(kmProIn * TAUX_IK + (coupleIn ? kmConjIn * TAUX_IK : 0));
+  const perIn = Math.round(caIn * 0.05);
+  
+  // Simuler un salaire réaliste
+  const salEstime = Math.min(Math.floor(resultatIn * 0.60 / 1000) * 1000, 40000);
+  const tnsEstime = Math.round(calcTns(salEstime));
+  const salNetIn = Math.max(0, salEstime - tnsEstime);
+  
+  // Revenu conjoint
+  const conjointNetIn = (coupleIn && statutConjIn === 'salarie' && salConjIn > 0) ? Math.round(salConjIn * 0.78) 
+    : (coupleIn && statutConjIn === 'collaborateur' && salConjIn > 0) ? Math.round(salConjIn * 0.88) : 0;
+  
+  // Revenus imposables (abattement 10%)
+  const rSolo = Math.max(0, Math.round(salNetIn * 0.9));
+  const rConjoint = Math.max(0, Math.round(conjointNetIn * 0.9));
+  const rTotal = rSolo + rConjoint;
+  
+  const tSolo = calcTmiBracket(rSolo);
+  const tTotal = calcTmiBracket(rTotal);
+  
+  // Afficher
+  document.getElementById('tmiSoloRevenu').textContent = fmt(rSolo);
+  document.getElementById('tmiSoloTaux').textContent = tSolo.nom;
+  document.getElementById('tmiSoloIr').textContent = fmt(calcIrExact(rSolo));
+  
+  document.getElementById('tmiCoupleRevenu').textContent = fmt(rTotal);
+  document.getElementById('tmiCoupleTaux').textContent = tTotal.nom;
+  document.getElementById('tmiCoupleIr').textContent = fmt(calcIrExact(rTotal));
+  
+  // Max avant changement de tranche  
+  const labelTmi = coupleIn ? 'Gérante + conjoint' : 'Gérante';
+  document.getElementById('tmiMaxLabel').textContent = labelTmi;
+  const plafond = coupleIn ? tTotal.seuil : tSolo.seuil;
+  document.getElementById('tmiMaxRevenu').textContent = fmt(plafond);
+  document.getElementById('tmiMaxTaux').textContent = tTotal.nom;
+  document.getElementById('tmiMaxIr').textContent = fmt(calcIrExact(plafond));
+  
+  // Si dépasse
+  const dep = plafond + 1000;
+  const tDep = calcTmiBracket(dep);
+  document.getElementById('tmiDepasseRevenu').textContent = fmt(dep);
+  document.getElementById('tmiDepasseTaux').textContent = tDep.nom;
+  const irDep = calcIrExact(dep);
+  const irPlaf = calcIrExact(plafond);
+  document.getElementById('tmiDepasseIr').textContent = fmt(irDep);
+  
+  // Conseil
+  const marge = Math.max(0, plafond - (coupleIn ? rTotal : rSolo));
+  let conseilHtml = '';
+  if (marge > 0) {
+    const margeAnnuelle = Math.round(marge / 0.9);
+    const margeMensuelle = Math.round(margeAnnuelle / 12);
+    conseilHtml = `💡 <strong>Marge disponible</strong> : vous pouvez encore prendre <strong>${fmt(margeAnnuelle)}</strong> de salaire annuel supplémentaire (${fmt(margeMensuelle)}/mois) avant de passer à ${tDep.nom}.`;
+    if (coupleIn) conseilHtml += ` En répartissant entre la gérante et le conjoint, vous optimisez les deux tranches.`;
+  } else {
+    const coutMarginal = irDep - irPlaf;
+    conseilHtml = `⚠️ Vous êtes au plafond de la tranche à ${tTotal.nom}. Chaque euro supplémentaire sera imposé à ${tDep.nom}. <strong>Coût : ${fmt(coutMarginal)}€ d'IR en plus pour 1 000€ de revenu.</strong>`;
+  }
+  if (tTotal.taux >= 0.30) {
+    conseilHtml += `<br><br>💡 <strong>Astuce</strong> : À ${tTotal.nom}, privilégiez les leviers sans IR (IK, CESU, PER, location) plutôt que du salaire.`;
+  }
+  document.getElementById('tmiConseil').innerHTML = conseilHtml;
+
+  // ── OPTION IR (transparence fiscale : EURL / SARL familiale, 5 ans) ──
+  const optionIR = document.getElementById('optionIR').checked;
+  const forme = document.getElementById('forme').value;
+  const carteIR = document.getElementById('carteOptionIR');
+  if (optionIR) {
+    // Résultat imposable : après IK + PER. La rémunération du gérant fait partie
+    // du résultat (régime des sociétés de personnes) : pas de salaire déductible.
+    const resIR = Math.max(0, resultat - ikTotal - perConseil);
+    // Cotisations TNS calculées sur l'ensemble du résultat (règle société de personnes)
+    const tnsIR = calcTns(resIR);
+    // IR au barème sur le résultat complet (BIC/BNC : pas d'abattement 10%)
+    const irIR = calcIrExact(resIR);
+    const netIR = resIR - tnsIR - irIR;
+    const netIRavecPer = netIR + perConseil; // PER = épargne, comparable au scénario IS
+    carteIR.style.display = 'block';
+    document.getElementById('oirResultat').textContent = fmt(resIR);
+    document.getElementById('oirTns').textContent = '-' + fmt(Math.round(tnsIR));
+    document.getElementById('oirIr').textContent = '-' + fmt(irIR);
+    document.getElementById('oirNet').textContent = fmt(Math.round(netIR));
+    const gainIR = netIRavecPer - best.totalNet;
+    const formeLabel = forme === 'eurl' ? 'EURL' : 'SARL familiale';
+    document.getElementById('oirConseil').innerHTML = gainIR > 0
+      ? `<strong>L'option IR gagne ${fmt(Math.round(gainIR))}</strong> vs le scénario IS (${fmt(Math.round(best.totalNet))}). Le résultat (${fmt(resIR)}) est imposé directement à votre TMI sans double étage IS. ⚠️ Les cotisations TNS (~45%) portent sur <strong>tout</strong> le résultat, distribué ou non. Option : 5 ans, prorogeable : utile en ${formeLabel} quand le TMI est bas.`
+      : `ℹ️ <strong>L'option IR perd ${fmt(Math.round(-gainIR))}</strong> vs le scénario IS. Le double étage salaire + IS reste plus efficace à votre TMI. L'option IR devient intéressante quand votre TMI effectif est inférieur au taux d'IS + flat tax combinés.`;
+  } else {
+    carteIR.style.display = 'none';
+  }
+
+  // ── Astuce Roi ──
+  const astuces = [];
+  if (perIn > 0) {
+    const gainPer = Math.round(perIn * 0.15 + perIn * Math.max(tmiSelect, 0) * 0.55);
+    astuces.push(`<div class="roi">🧓 <strong>PER Madelin versé par la société</strong> : votre recommandation de ${fmt(perIn)} (5% du CA) est déduite du résultat : double économie IS (15%) + IR (TMI ${tmiSelect}%). Le versement direct par la société fait la déduction sans sortir d'argent de votre poche. <span class="gain">~${fmt(gainPer)}/an</span></div>`);
+  }
+  if (couple && statutConjoint === 'salarie') {
+    const econCollab = Math.round(salConjoint * (CONJOINT.salarie.chargesPatronales - CONJOINT.collaborateur.cotisations));
+    astuces.push(`<div class="roi">👩‍❤️‍👨 <strong>Conjoint collaborateur au lieu de salarié</strong> : sur les ${fmt(salConjoint)} de rémunération du conjoint, le statut collaborateur (~12%) économise ${fmt(econCollab)}/an vs salarié (~45%). Limité à 5 ans (réforme 2022). <span class="gain">${fmt(econCollab)}/an</span></div>`);
+  }
+  if (typeof netIRavecPer !== 'undefined' && netIRavecPer - best.totalNet > 0) {
+    const gainIRok = Math.round(netIRavecPer - best.totalNet);
+    astuces.push(`<div class="roi">🏛️ <strong>L'option IR gagne chez vous</strong> : en transparence fiscale (5 ans), votre net serait de ${fmt(Math.round(netIRavecPer))} vs ${fmt(Math.round(best.totalNet))} à l'IS : <strong>+${fmt(gainIRok)}/an</strong>. Prorogeable, à comparer chaque année. <span class="gain">+${fmt(gainIRok)}/an</span></div>`);
+  }
+  if (capital * 0.10 < 1000) {
+    astuces.push(`<div class="roi">📈 <strong>Capital social trop petit</strong> : avec ${fmt(capital)} de capital, seuls ${fmt(capital * 0.10)} de dividendes/an sont protégés. Une augmentation de capital débloque des dividendes "propres" : voir le <a href="simulateur-dividendes.html" style="color:var(--green);">simulateur dividendes</a>. <span class="gain">+700 à 1 200 €/an</span></div>`);
+  }
+  if (astuces.length === 0) {
+    astuces.push(`<div class="roi">🎯 Votre optimisation est déjà bien calibrée. Pensez aux <strong>IK</strong> (${fmt(ikTotal)} intégrés ici) et à la <strong>location d'une pièce du domicile</strong> (bail écrit obligatoire) pour réduire encore le résultat imposable. <span class="gain">+500 à 1 500 €/an</span></div>`);
+  }
+  document.getElementById('astuceRoi').innerHTML = astuces.slice(0, 3).join('');
+}
+
+toggleCouple();
+</script>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="lead-widget.js"></script>
+<script>
+  // Capture de lead : affiché après les résultats
+  leadWidgetInject('#results', 'Analyse SARL personnalisée');
+</script>
+<div class="sources">Sources : <a href="https://www.urssaf.fr/portail/home.html" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">URSSAF : règles & plafonds</a> · <a href="https://entreprendre.service-public.fr/vosdroits/F23575" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">service-public F23575 (IS)</a> · <a href="https://www.legifrance.gouv.fr/eli/loi/2026/2/19/CPPX2524517L/jo/texte" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">Loi de finances 2026</a></div>
+<script src="sw-register.js"></script>
+</body>
+</html>

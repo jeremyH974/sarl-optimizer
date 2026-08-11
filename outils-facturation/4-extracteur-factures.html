@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extracteur de Factures Fournisseurs — Données Structurées</title>
+<style>
+:root{--dark:#0f172a;--card:#1e293b;--border:#334155;--text:#e2e8f0;--muted:#94a3b8;--accent:#f59e0b;--green:#22c55e;--blue:#3b82f6;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--dark);color:var(--text);line-height:1.6;}
+.container{max-width:800px;margin:0 auto;padding:30px 20px;}
+h1{text-align:center;margin-bottom:8px;font-size:1.8rem;}
+.sub{text-align:center;color:var(--muted);margin-bottom:26px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:20px;}
+.card h2{margin-bottom:12px;font-size:1.15rem;}
+textarea{width:100%;min-height:150px;background:var(--dark);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:14px;font-size:.9rem;font-family:inherit;resize:vertical;}
+textarea:focus{outline:none;border-color:var(--accent);}
+.btn{display:inline-block;padding:12px 28px;background:var(--accent);color:var(--dark);border:none;border-radius:30px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:14px;}
+.btn:hover{transform:scale(1.03);}
+.btn.small{padding:8px 16px;font-size:.8rem;margin:0 0 0 10px;}
+.result{display:none;margin-top:16px;}
+.result.show{display:block;}
+table{width:100%;border-collapse:collapse;font-size:.88rem;}
+th{text-align:left;color:var(--accent);padding:8px 10px;border-bottom:2px solid var(--border);}
+td{padding:8px 10px;border-bottom:1px solid var(--border);}
+.kv{background:var(--dark);border-radius:10px;padding:14px;margin-bottom:10px;}
+.kv div{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9rem;}
+.kv div:last-child{border-bottom:none;}
+.kv span:first-child{color:var(--muted);}
+.kv span:last-child{font-weight:600;}
+.export{display:none;margin-top:12px;}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Extracteur de données de factures",
+  "description": "Outil d'extraction automatique des informations clés d'une facture (numéro, date, montant, TVA) pour préparer la dématérialisation.",
+  "author": {"@type": "Person", "name": "Jeremy Henry", "jobTitle": "Consultant IA & automatisation"},
+  "datePublished": "2026-08-09",
+  "dateModified": "2026-08-09"
+}</script>
+</head>
+<body>
+<div class="container">
+  <h1>🧾 Extracteur de factures fournisseurs</h1>
+  <p class="sub">Collez une facture → extraction automatique des données structurées (pré-comptabilité)</p>
+
+  <div class="card">
+    <h2>📄 Collez la facture reçue</h2>
+    <textarea id="facture" placeholder="Collez ici le contenu d'une facture fournisseur (texte extrait du PDF ou email)&#10;&#10;Exemple :&#10;FACTURE N° INV-2026-0042&#10;LE FOURNISSEUR SAS&#10;10 avenue des Champs, 75008 Paris&#10;SIRET 987 654 321 00045&#10;TVA FR 98 765432104&#10;Date : 15/07/2026&#10;Client : Votre Entreprise&#10;Peinture acrylique 10L : 245,00 € HT&#10;TVA 20% : 49,00 €&#10;TOTAL TTC : 294,00 €&#10;Échéance : 15/08/2026&#10;RIB : FR76 3000 4000 5000 6000 7000 800"></textarea>
+    <button class="btn" onclick="extraire()">🧾 Extraire les données</button>
+  </div>
+
+  <div class="card">
+    <h2>📊 Données extraites</h2>
+    <div class="result" id="result"></div>
+    <div class="export" id="exportDiv">
+      <button class="btn small" onclick="exportCSV()">⬇️ Exporter en CSV</button>
+      <button class="btn small" onclick="exportJSON()">⬇️ Exporter en JSON</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>💡 À quoi ça sert ?</h2>
+    <p style="color:var(--muted);font-size:.88rem;">
+      C'est la base de la <b>pré-comptabilité automatique</b> : les données extraites alimentent votre journal comptable (ou votre workflow n8n). Fini la saisie manuelle des factures fournisseurs — l'outil fait le travail de lecture, votre logiciel fait l'écriture.
+    </p>
+  </div>
+</div>
+
+<script>
+let lastData = null;
+
+function extraire() {
+  const txt = document.getElementById('facture').value.trim();
+  const res = document.getElementById('result');
+  const exp = document.getElementById('exportDiv');
+  if (!txt) return;
+
+  const t = txt;
+
+  // Fournisseur : 1re ligne significative
+  const lignes = txt.split('\n').map(l => l.trim()).filter(l => l.length > 3);
+  const fournisseur = lignes[1] || lignes[0] || '';
+
+  // Numéro de facture
+  const mNum = t.match(/(?:facture|invoice|n°|no\.?)[\s:]*([a-z0-9\-_\/]{3,20})/i);
+  const numero = mNum ? mNum[1] : '';
+
+  // SIRET (14) / SIREN (9)
+  const mSiret = t.match(/\b(\d{3}\s?\d{3}\s?\d{3}\s?\d{5})\b/);
+  const siret = mSiret ? mSiret[1].replace(/\s/g, '') : '';
+  const mSiren = t.match(/\b(\d{9})\b/);
+  const siren = mSiren && !siret ? mSiren[1] : (siret ? siret.slice(0, 9) : '');
+
+  // TVA intracom
+  const mTva = t.match(/TVA\s*(FR\s?\d{11}|[A-Z]{2}\s?\d{11})/i);
+  const tva = mTva ? mTva[1] : '';
+
+  // Date émission
+  const mDate = t.match(/\b(\d{1,2}[\/\-\.]\d{1,2}[\/\-\.]\d{2,4})\b/);
+  const dateEmission = mDate ? mDate[1] : '';
+
+  // Montants
+  const mTtc = t.match(/total\s*ttc[\s:]*([\d\s.,]+)\s*€/i);
+  const ttc = mTtc ? mTtc[1].replace(/\s/g, '').replace(',', '.') : '';
+  const mHt = t.match(/total\s*ht[\s:]*([\d\s.,]+)\s*€/i) || t.match(/([\d\s.,]+)\s*€\s*ht/i);
+  const ht = mHt ? mHt[1].replace(/\s/g, '').replace(',', '.') : '';
+  const mTvaM = t.match(/tva\s*\d{1,2}[,\.]?\d*\s*%[\s:]*([\d\s.,]+)\s*€/i);
+  const tvaMontant = mTvaM ? mTvaM[1].replace(/\s/g, '').replace(',', '.') : '';
+  const mTaux = t.match(/tva\s*(\d{1,2}[,\.]?\d*)\s*%/i);
+  const tauxTVA = mTaux ? mTaux[1] : '';
+
+  // Échéance
+  const mEch = t.match(/(?:échéance|echeance|payment due)[\s:]*(\d{1,2}[\/\-\.]\d{1,2}[\/\-\.]\d{2,4})/i);
+  const echeance = mEch ? mEch[1] : '';
+
+  // RIB/IBAN
+  const mIban = t.match(/(?:IBAN|RIB)[\s:]*([A-Z]{2}\d{2}[\s\d]{20,})/i);
+  const iban = mIban ? mIban[1].trim() : '';
+
+  // Catégorie (heuristique par mots-clés)
+  const tl = t.toLowerCase();
+  let categorie = 'Autre';
+  if (/peinture|chantier|rénov|renov|travaux|bricolage/.test(tl)) categorie = 'Travaux/Matériaux';
+  else if (/électricit|electricit|élec/.test(tl)) categorie = 'Électricité';
+  else if (/logiciel|abonnement|saas|internet|téléphone|telephone/.test(tl)) categorie = 'Logiciels/Abonnements';
+  else if (/fournisseur|livraison|transport|essence|carburant/.test(tl)) categorie = 'Fournitures/Transport';
+  else if (/papier|encre|fournitures/.test(tl)) categorie = 'Fournitures bureau';
+
+  lastData = { fournisseur, numero, siret, siren, tva, dateEmission, echeance, ht, tvaMontant, tauxTVA, ttc, iban, categorie };
+
+  let html = '<div class="kv">';
+  const labels = [
+    ['Fournisseur', fournisseur], ['Numéro', numero], ['SIRET', siret], ['SIREN', siren],
+    ['N° TVA', tva], ['Date émission', dateEmission], ['Échéance', echeance],
+    ['Total HT', ht ? ht + ' €' : ''], ['TVA (' + tauxTVA + '%)', tvaMontant ? tvaMontant + ' €' : ''],
+    ['Total TTC', ttc ? ttc + ' €' : ''], ['IBAN', iban], ['Catégorie', categorie]
+  ];
+  labels.forEach(([k, v]) => {
+    html += '<div><span>' + k + '</span><span>' + (v || '—') + '</span></div>';
+  });
+  html += '</div>';
+
+  if (!numero && !ttc) html += '<p style="color:var(--red);font-size:.85rem;margin-top:10px;">⚠️ Peu d\'éléments détectés — vérifiez que le texte de la facture est bien collé.</p>';
+  res.innerHTML = html;
+  res.classList.add('show');
+  exp.style.display = 'block';
+}
+
+function exportCSV() {
+  if (!lastData) return;
+  const d = lastData;
+  const ligne = [d.dateEmission, d.fournisseur, d.numero, d.categorie, d.ht, d.tvaMontant, d.ttc, d.echeance, d.siret].join(';');
+  download('facture_' + (d.numero || 'export') + '.csv', 'Date;Fournisseur;Numero;Categorie;HT;TVA;TTC;Echeance;SIRET\n' + ligne);
+}
+
+function exportJSON() {
+  if (!lastData) return;
+  download('facture_' + (lastData.numero || 'export') + '.json', JSON.stringify(lastData, null, 2));
+}
+
+function download(nom, contenu) {
+  const blob = new Blob([contenu], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = nom;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+</script>
+</body>
+</html>

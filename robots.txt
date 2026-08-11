@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jeremyh974.github.io/sarl-optimizer/sitemap.xml

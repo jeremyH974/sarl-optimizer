@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulateur d'impôt sur le revenu 2026</title>
+<meta name="description" content="Calculez votre impôt 2026 en 30 secondes : barème 2026, abattement 10 %, parts, crédits d'impôt. Gratuit et sourcé.">
+<meta property="og:title" content="Simulateur d'impôt 2026">
+<meta property="og:description" content="Estimez votre impôt sur le revenu et votre TMI avec le barème 2026.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://SIMULATEUR-SARL.github.io/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Simulateur d'impôt 2026","description":"Estime l'impôt sur le revenu 2026 (barème, parts, TMI).","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}
+</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "👷 Créateurs & gérants", "item": "index.html#societe"}, {"@type": "ListItem", "position": 3, "name": "🏛️ Simulateur d'impôt 2026", "item": "simulateur-impot-2026.html"}]}</script>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="jargon-en-clair.html">🔤 Jargon</a>
+    <a href="comparateur-societes.html">⚖️ Comparateur</a>
+    <a href="flat-tax-2026.html">💶 Flat tax</a>
+  
+    
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+<details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="comparateur-societes.html" class="menu-cat">⚖️ Comparateur : démarrez ici</a>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <a href="nouveautes-2026.html">📰 Nouveautés 2026</a>
+        <a href="ia-pour-compta.html">🤖 IA pour la compta</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+  </div>
+
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <a href="index.html#societe">👷 Créateurs & gérants</a> › <span>🏛️ Simulateur d'impôt 2026</span></nav>
+  <h1>🏛️ Simulateur d'impôt 2026</h1>
+  <p class="subtitle">Combien d'impôt vais-je payer cette année ? Et surtout : dans quelle tranche (TMI) suis-je ?</p>
+  <div class="tldr"><strong>L’essentiel :</strong> votre impôt dépend de vos <strong>revenus imposables</strong> (après abattement de 10% sur les salaires) et de votre <strong>nombre de parts</strong> (1 célibataire, 2 en couple, +0,5 par enfant). Ce simulateur utilise le barème 2026 officiel et vous donne aussi votre <strong>TMI</strong> : la donnée qui compte pour optimiser (voir le guide).</div>
+
+  <div class="card">
+    <label>💼 Salaires annuels nets imposables estimés (€/an)</label>
+    <input id="salaires" type="number" value="30000" min="0" step="500" oninput="calcImp()">
+    <p style="font-size:.8rem;color:var(--muted);margin-top:.2rem;">Mettez votre net annuel (après cotisations), ex. 2 000 €/mois × 12 = 24 000 €.</p>
+    <label>➕ Autres revenus imposables (micro, locations, etc. : net imposable €/an)</label>
+    <input id="autres" type="number" value="0" min="0" step="500" oninput="calcImp()">
+    <label>👪 Nombre de parts</label>
+    <select id="parts" oninput="calcImp()">
+      <option value="1" selected>Célibataire / divorcé : 1 part</option>
+      <option value="2">Couple (marié/pacsé) : 2 parts</option>
+      <option value="2.5">Couple + 1 enfant : 2,5 parts</option>
+      <option value="3">Couple + 2 enfants : 3 parts</option>
+      <option value="1.5">Célibataire + 1 enfant : 1,5 part</option>
+    </select>
+    <button class="btn" onclick="calcImp()">🏛️ Calculer mon impôt</button>
+    <div id="resultats" style="margin-top:1.2rem;"></div>
+  </div>
+
+  <div class="card">
+    <h2>📋 Barème 2026 (sourcé)</h2>
+    <table>
+      <tr><th>Tranche</th><th></th><th>Taux</th></tr>
+      <tr><td>Jusqu'à 11 600 €</td><td></td><td>0%</td></tr>
+      <tr><td>11 600 → 29 579 €</td><td></td><td>11%</td></tr>
+      <tr><td>29 579 → 84 577 €</td><td></td><td>30%</td></tr>
+      <tr><td>84 577 → 181 917 €</td><td></td><td>41%</td></tr>
+      <tr><td>Au-delà</td><td></td><td>45%</td></tr>
+    </table>
+    <div class="tip">💡 <strong>Le TMI, c'est la clé de l'optimisation</strong> : c'est le taux de votre dernière tranche : celui qui s'applique à chaque euro supplémentaire. Le <a href="guide-optimisation-sarl.html" style="color:var(--accent);">guide 30 leviers</a> l'utilise pour choisir entre salaire et dividendes.</div>
+  </div>
+
+  <div class="ressources">
+    <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+    <a href="flat-tax-2026.html">💶 Flat tax 30%</a>
+    <a href="simulateur-dividendes.html">💸 Dividendes</a>
+  </div>
+
+  <div class="sources">Sources : <a href="https://entreprendre.service-public.fr/vosdroits/F23575" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">service-public F23575 (barème IR)</a> · <a href="https://www.legifrance.gouv.fr/eli/loi/2026/2/19/CPPX2524517L/jo/texte" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">Loi de finances 2026</a></div>
+<div class="footer">Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · 
+    ⚠️ Estimation pédagogique : ne remplace pas votre déclaration. Cas complexes (décote, plafonnement, réductions) non pris en compte. · <a href="mentions-legales.html" style="color:var(--muted);">📜 Mentions légales</a> Taux vérifiés le 01/08/2026 (sources officielles).
+  </div>
+</div>
+<script src="parametres-2026.js"></script>
+<script src="moteur-calcul.js"></script>
+<script>
+function fmt(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+function calcImp() {
+  const salaires = parseFloat(document.getElementById('salaires').value) || 0;
+  const autres = parseFloat(document.getElementById('autres').value) || 0;
+  const parts = parseFloat(document.getElementById('parts').value) || 1;
+  // Revenu imposable : salaires - abattement 10% + autres revenus
+  const abattement = Math.max(0, salaires * 0.10);
+  const imposable = Math.max(0, salaires - abattement + autres);
+  const revenuParPart = imposable / parts;
+  const impBrut = calcIr(revenuParPart) * parts;
+  const imp = Math.max(0, Math.round(impBrut));
+  const tmi = calcTmiBracket(revenuParPart).taux;
+  const tmiNom = calcTmiBracket(revenuParPart).nom;
+  document.getElementById('resultats').innerHTML = `
+    <div class="roi">🏆 <strong>Votre impôt estimé : ${fmt(imp)} / an</strong> (${fmt(imp / 12)} / mois) · revenu imposable ${fmt(imposable)} · <strong>TMI ${tmiNom} (${tmi * 100}%)</strong></div>
+    <p style="margin-top:.8rem;font-size:.85rem;color:var(--muted);">⚠️ Estimation simple (abattement 10% appliqué, pas de décote ni de réductions d'impôt). Pour le calcul officiel : impots.gouv.fr.</p>`;
+}
+calcImp();
+</script>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="sw-register.js"></script>
+</body>
+</html>

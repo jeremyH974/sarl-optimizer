@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POC Data Clients — 11 Idées (Tableau de bord)</title>
+<style>
+:root{--dark:#0f172a;--card:#1e293b;--border:#334155;--text:#e2e8f0;--muted:#94a3b8;--accent:#f59e0b;--green:#22c55e;--red:#ef4444;--blue:#3b82f6;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--dark);color:var(--text);line-height:1.6;}
+.container{max-width:1150px;margin:0 auto;padding:20px;}
+h1{font-size:1.6rem;text-align:center;margin-bottom:6px;}
+.sub{text-align:center;color:var(--muted);font-size:.9rem;margin-bottom:24px;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.96);border-bottom:1px solid var(--border);padding:8px 0;margin-bottom:20px;}
+.nav-inner{display:flex;gap:6px;overflow-x:auto;max-width:1150px;margin:0 auto;padding:0 20px;white-space:nowrap;}
+.nav a{color:var(--muted);text-decoration:none;font-size:.78rem;padding:6px 12px;border-radius:20px;border:1px solid transparent;}
+.nav a:hover{color:var(--accent);border-color:var(--accent);}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;margin-bottom:22px;}
+.card h2{font-size:1.15rem;margin-bottom:8px;color:var(--accent);}
+.card .desc{color:var(--muted);font-size:.88rem;margin-bottom:14px;}
+.card .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0;}
+.kpi-box{background:var(--dark);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center;}
+.kpi-box b{display:block;font-size:1.4rem;color:var(--accent);}
+.kpi-box span{font-size:.75rem;color:var(--muted);}
+
+table{width:100%;border-collapse:collapse;font-size:.84rem;margin:10px 0;}
+th{text-align:left;color:var(--accent);padding:8px 10px;border-bottom:2px solid var(--border);}
+td{padding:8px 10px;border-bottom:1px solid var(--border);}
+tr:hover{background:rgba(255,255,255,.03);}
+
+.tag{display:inline-block;padding:2px 10px;border-radius:16px;font-size:.72rem;font-weight:600;}
+.tag.green{background:rgba(34,197,94,.15);color:var(--green);}
+.tag.red{background:rgba(239,68,68,.15);color:var(--red);}
+.tag.blue{background:rgba(59,130,246,.15);color:var(--blue);}
+.tag.orange{background:rgba(245,158,11,.15);color:var(--accent);}
+
+input,select{background:var(--dark);border:1px solid var(--border);color:var(--text);padding:8px 12px;border-radius:8px;font-size:.85rem;margin-right:8px;}
+button{background:var(--accent);color:var(--dark);border:none;padding:8px 18px;border-radius:20px;font-weight:700;font-size:.85rem;cursor:pointer;margin-top:6px;}
+button:hover{transform:scale(1.03);}
+.result-box{background:var(--dark);border:1px solid var(--border);border-radius:10px;padding:14px;margin-top:12px;font-size:.86rem;display:none;}
+.result-box.show{display:block;}
+.heat{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:6px;}
+.heat-cell{background:var(--dark);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;font-size:.78rem;}
+.heat-cell b{display:block;font-size:1.1rem;}
+.high{color:var(--green);} .mid{color:var(--accent);} .low{color:var(--muted);}
+.bar{background:var(--dark);border-radius:8px;height:14px;overflow:hidden;margin:4px 0;}
+.bar div{height:100%;background:var(--accent);border-radius:8px;}
+.alert{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);border-radius:10px;padding:10px 14px;font-size:.82rem;margin:8px 0;}
+.alert.green{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.3);}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "🏗️ POC — Base SIRENE × Clients Legallais", "item": "poc-11-idees-legallais.html"}]}</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+<div class="container">
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <span>🏗️ POC — Base SIRENE × Clients Legallais</span></nav>
+  <h1>🏗️ POC — Base SIRENE × Clients Legallais</h1>
+  <p class="sub">11 pistes en démonstration · Données : API INSEE réelle (recherche-entreprises.api.gouv.fr) + base clients simulée · Les données internes sont fictives — à adapter aux outils en place</p>
+
+  <div class="nav"><div class="nav-inner">
+    <a href="#i1">1. Assainir</a><a href="#i2">2. Enrichir</a><a href="#i3">3. Dashboard</a>
+    <a href="#i4">4. Segmentation</a><a href="#i5">5. Radar créations</a><a href="#i6">6. Scoring</a>
+    <a href="#i7">7. Réactivation</a><a href="#i8">8. Fiche 360°</a><a href="#i9">9. E-commerce</a>
+    <a href="#i10">10. Prédiction</a><a href="#i11">11. Agents IA</a>
+  
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+
+    <details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="espace-createurs.html" class="menu-cat">👷 Espace créateurs & gérants</a>
+        <a href="espace-salaries.html" class="menu-cat">👔 Espace salariés & parents</a>
+        <a href="comparateur-societes.html" class="menu-cat menu-cta">⚖️ Comparateur : démarrez ici</a>
+        <a href="parcours-creation.html">🚀 Parcours création (8 étapes)</a>
+        <a href="parcours-gestion.html">🧰 Parcours gestion (8 étapes)</a>
+        <div class="menu-titre">👷 Créateurs &amp; gérants</div>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <div class="menu-titre">👔 Salariés &amp; parents</div>
+        <a href="parcours-parents.html">👨‍👩‍👧 Parcours parents (8 étapes)</a>
+        <a href="optimiseur-conges.html">🏖️ Optimiser mes congés</a>
+        <a href="calcul-rtt.html">⚡ Calculer mes RTT</a>
+        <a href="jours-ouvres-2026.html">🗓️ Jours ouvrés</a>
+        <a href="vacances-scolaires-2026-2027.html">🏫 Vacances scolaires</a>
+        <a href="bulletin-paie-gerant.html">💰 Bulletin de paie</a>
+        <a href="leviers-optimisation-2026.html">💶 Tous les leviers, par profil</a>
+        <div class="menu-titre">🤖 IA &amp; automatisation</div>
+        <a href="ia-pour-tpe.html">🤖 IA pour votre TPE</a>
+        <a href="abonnement-ia-tpe.html">💳 Kit IA TPE (abonnement)</a>
+        <a href="ia-pour-compta.html">🤖 IA pour la compta</a>
+        <a href="nouveautes-2026.html">📰 Nouveautés 2026</a>
+        <a href="loi-finances-2026.html">📜 Loi de finances 2026</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+  </div></div>
+
+  <!-- I1 : ASSAINISSEMENT -->
+  <div class="card" id="i1">
+    <h2>1. Assainissement de la base (conformité facturation électronique 2027)</h2>
+    <p class="desc">Piste : détecter les SIRET radiés pour sécuriser la facturation électronique 2027 (si ce contrôle n'existe pas encore). Saisissez un SIREN/SIRET — l'API INSEE vérifie l'état en direct.</p>
+    <input id="siretInput" placeholder="Ex : 563820489 (LEGALLAIS)" style="width:280px">
+    <button onclick="verifierSiret()">🔍 Vérifier</button>
+    <div class="result-box" id="siretResult"></div>
+    <div class="kpi">
+      <div class="kpi-box"><b>4,2%</b><span>de SIRET radiés estimés<br>(base 80 000 clients)</span></div>
+      <div class="kpi-box"><b>3 400</b><span>comptes à risque<br>facturation 2027</span></div>
+      <div class="kpi-box"><b>0 €</b><span>coût data<br>(API gratuite)</span></div>
+    </div>
+  </div>
+
+  <!-- I2 : ENRICHISSEMENT -->
+  <div class="card" id="i2">
+    <h2>2. Enrichissement fiche client (NAF, effectifs, ancienneté)</h2>
+    <p class="desc">Piste : chaque SIRET → métier exact (NAF), taille, ancienneté — pour enrichir la connaissance client existante. (Démo : 3 SIREN réels + recherche libre)</p>
+    <input id="sirenEnrich" placeholder="SIREN ou SIRET..." style="width:220px">
+    <button onclick="enrichir()">✨ Enrichir</button>
+    <button onclick="enrichirDemo()">🎨 Charger la démo (3 clients)</button>
+    <div id="enrichTable"></div>
+  </div>
+
+  <!-- I3 : DASHBOARD QUI SONT MES CLIENTS -->
+  <div class="card" id="i3">
+    <h2>3. "Qui sont mes clients ?" — Dashboard agrégé</h2>
+    <p class="desc">Piste : répartition des clients par métier, taille et CA — selon les reportings déjà en place.</p>
+    <div id="dashboardViz"></div>
+  </div>
+
+  <!-- I4 : SEGMENTATION -->
+  <div class="card" id="i4">
+    <h2>4. Segmentation métiers × 9 univers produits (ventes croisées)</h2>
+    <p class="desc">Piste : croiser métier (NAF) et familles de produits achetés pour identifier les ventes croisées possibles.</p>
+    <div id="heatmap"></div>
+  </div>
+
+  <!-- I5 : RADAR CREATIONS -->
+  <div class="card" id="i5">
+    <h2>5. Radar de créations d'entreprises BTP</h2>
+    <p class="desc">Piste : repérer les nouvelles entreprises BTP — un moment clé pour proposer nos services. Données RÉELLES API INSEE.</p>
+    <button onclick="radarCreations()">📡 Scanner les créations BTP récentes</button>
+    <div class="result-box" id="radarResult"></div>
+  </div>
+
+  <!-- I6 : SCORING -->
+  <div class="card" id="i6">
+    <h2>6. Scoring de potentiel (priorisation commerciale)</h2>
+    <p class="desc">Piste : un score de potentiel pour aider à prioriser l'action commerciale. Démo sur base simulée (modèle à co-construire avec les équipes).</p>
+    <div id="scoringTable"></div>
+  </div>
+
+  <!-- I7 : REACTIVATION -->
+  <div class="card" id="i7">
+    <h2>7. Réactivation des SIRET (artisan qui ferme/rouvre)</h2>
+    <p class="desc">Piste : repérer les comptes dont la société a fermé puis rouvert → proposer la bascule proprement.</p>
+    <div id="reactivTable"></div>
+  </div>
+
+  <!-- I8 : FICHE 360 -->
+  <div class="card" id="i8">
+    <h2>8. Fiche client 360°</h2>
+    <p class="desc">Piste : une vue unique SIRENE + CA + panier + produits — en complément des outils de gestion client existants. Choisissez un client simulé.</p>
+    <select id="clientSelect"></select>
+    <button onclick="fiche360()">👁️ Afficher la fiche</button>
+    <div class="result-box" id="ficheResult"></div>
+  </div>
+
+  <!-- I9 : E-COMMERCE -->
+  <div class="card" id="i9">
+    <h2>9. E-commerce data-driven (recommandations par métier)</h2>
+    <p class="desc">Piste : règles de co-achat par métier pour les recommandations e-commerce.</p>
+    <div id="recoBox"></div>
+  </div>
+
+  <!-- I10 : PREDICTION -->
+  <div class="card" id="i10">
+    <h2>🔟 Prédiction (risque de défaillance)</h2>
+    <p class="desc">Piste : score de risque croisant santé SIRENE × retards × tendance CA — à valider avec les équipes crédit.</p>
+    <div id="predTable"></div>
+  </div>
+
+  <!-- I11 : AGENTS IA -->
+  <div class="card" id="i11">
+    <h2>1.1. Agent IA commercial (résumé client avant visite)</h2>
+    <p class="desc">Piste : assistant pour préparer une visite client (résumé + actions). Démo à logique locale — version LLM possible en production.</p>
+    <select id="agentSelect"></select>
+    <button onclick="agentIA()">🤖 Générer la préparation</button>
+    <div class="result-box" id="agentResult"></div>
+  </div>
+
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   BASE CLIENTS SIMULÉE (réaliste — NAF BTP + CA + panier)
+   ═══════════════════════════════════════════════════════ */
+const CLIENTS = [
+  {siren:"107456774", nom:"MN PEINTRE EN BATIMENT", naf:"43.34Z", metier:"Peinture", eff:"1-2", ca:82000, panier:340, fam:["Peinture","Consommables"], retard:5, tendance:+8},
+  {siren:"903313146", nom:"MC PEINTRE EN BATIMENT", naf:"43.34Z", metier:"Peinture", eff:"3-5", ca:145000, panier:410, fam:["Peinture","Outillage","EPI"], retard:12, tendance:+15},
+  {siren:"913834743", nom:"PRO BAT PEINTRE", naf:"43.34Z", metier:"Peinture", eff:"1-2", ca:61000, panier:290, fam:["Peinture"], retard:0, tendance:-5},
+  {siren:"999326960", nom:"SOCIETE LEITE PEINTRE", naf:"43.34Z", metier:"Peinture", eff:"3-5", ca:98000, panier:375, fam:["Peinture","Consommables"], retard:8, tendance:+3},
+  {siren:"920148137", nom:"PETER MIX PEINTRE", naf:"43.34Z", metier:"Peinture", eff:"6-9", ca:210000, panier:455, fam:["Peinture","Outillage","EPI","Quincaillerie"], retard:3, tendance:+22},
+  {siren:"801123456", nom:"SARL ELEC NORMANDIE", naf:"43.21Z", metier:"Électricité", eff:"3-5", ca:132000, panier:520, fam:["Appareillage","Câblage","Outillage"], retard:15, tendance:+10},
+  {siren:"812987654", nom:"ELECTRICITE DU CALVADOS", naf:"43.21Z", metier:"Électricité", eff:"6-9", ca:265000, panier:610, fam:["Appareillage","Câblage","Sécurité"], retard:7, tendance:+18},
+  {siren:"824567890", nom:"PLOMBERIE FALAISE", naf:"43.22Z", metier:"Plomberie", eff:"1-2", ca:74000, panier:450, fam:["Cuivre","Robinetterie","Chauffage"], retard:2, tendance:+5},
+  {siren:"835678901", nom:"SARL CHAUFFAGE ORNE", naf:"43.22Z", metier:"Plomberie", eff:"10-19", ca:340000, panier:720, fam:["Chauffage","Cuivre","Outillage"], retard:9, tendance:-8},
+  {siren:"846789012", nom:"MENUISERIE DU BOCAGE", naf:"43.32Z", metier:"Menuiserie", eff:"3-5", ca:118000, panier:530, fam:["Bois","Quincaillerie","Colles"], retard:1, tendance:+12},
+  {siren:"857890123", nom:"TOITURE BRETTEVILLE", naf:"43.91Z", metier:"Toiture", eff:"6-9", ca:198000, panier:680, fam:["Couverture","EPI","Quincaillerie"], retard:4, tendance:+9},
+  {siren:"868901234", nom:"CARRELAGE CAEN", naf:"43.33Z", metier:"Revêtement", eff:"1-2", ca:56000, panier:380, fam:["Carrelage","Colles"], retard:0, tendance:-3},
+  {siren:"879012345", nom:"SAS PLATRERIE HEROUVILLE", naf:"43.31Z", metier:"Plâtrerie", eff:"10-19", ca:285000, panier:490, fam:["Plâtre","Cloisons","Isolation"], retard:6, tendance:+14},
+  {siren:"880123456", nom:"SARL DEMOLITION 14", naf:"43.11Z", metier:"Démolition", eff:"3-5", ca:92000, panier:760, fam:["EPI","Outillage","Location"], retard:18, tendance:-12},
+  {siren:"891234567", nom:"GROS OEUVRE FALAISE", naf:"41.20Z", metier:"Construction", eff:"20-49", ca:780000, panier:890, fam:["Quincaillerie","EPI","Outillage","Bois"], retard:11, tendance:+25},
+];
+
+const UNIVERS = ["Peinture","Appareillage","Câblage","Cuivre","Chauffage","Bois","Quincaillerie","Outillage","EPI"];
+
+/* ═══════ API INSEE réelle ═══════ */
+async function apiInsee(q) {
+  const r = await fetch("https://recherche-entreprises.api.gouv.fr/search?q=" + encodeURIComponent(q) + "&per_page=1");
+  const d = await r.json();
+  return d.results && d.results[0] ? d.results[0] : null;
+}
+
+/* ═══════ I1 : Vérifier SIRET ═══════ */
+async function verifierSiret() {
+  const q = document.getElementById('siretInput').value.trim();
+  const box = document.getElementById('siretResult');
+  if (!q) { box.innerHTML = "Saisissez un SIREN/SIRET"; box.classList.add('show'); return; }
+  box.innerHTML = "🔍 Interrogation de l'API INSEE...";
+  box.classList.add('show');
+  const e = await apiInsee(q);
+  if (!e) { box.innerHTML = "❌ Identifiant introuvable (possiblement radié ou inexistant)"; return; }
+  const s = e.siege || {};
+  const etat = s.etat_administratif === "A" ? '<span class="tag green">ACTIF</span>' : '<span class="tag red">FERMÉ</span>';
+  box.innerHTML = `<b>${e.nom_complet}</b><br>
+    SIREN : ${e.siren} · NAF : ${s.activite_principale || "?"} · ${etat}<br>
+    Adresse : ${s.adresse || "?"}<br>
+    Créé le : ${s.date_creation || "?"} · Établissements ouverts : ${e.nombre_etablissements_ouverts}/${e.nombre_etablissements}`;
+}
+
+/* ═══════ I2 : Enrichissement ═══════ */
+async function enrichir() {
+  const q = document.getElementById('sirenEnrich').value.trim();
+  if (!q) return;
+  const e = await apiInsee(q);
+  const t = document.getElementById('enrichTable');
+  if (!e) { t.innerHTML = "❌ Non trouvé"; return; }
+  const s = e.siege || {};
+  t.innerHTML = `<table><tr><th>SIREN</th><th>Nom</th><th>NAF</th><th>Effectifs</th><th>Adresse</th><th>Création</th></tr>
+    <tr><td>${e.siren}</td><td>${e.nom_complet}</td><td>${s.activite_principale || "?"}</td>
+    <td>${e.tranche_effectif_salarie || "NN"}</td><td>${s.adresse || "?"}</td><td>${s.date_creation || "?"}</td></tr></table>`;
+}
+
+function enrichirDemo() {
+  const t = document.getElementById('enrichTable');
+  t.innerHTML = `<table><tr><th>SIREN</th><th>Nom</th><th>NAF → Métier</th><th>Effectifs</th><th>Ancienneté</th></tr>
+    ${CLIENTS.slice(0,3).map(c => `<tr><td>${c.siren}</td><td>${c.nom}</td><td>${c.naf} → ${c.metier}</td><td>${c.eff}</td><td>${Math.floor(Math.random()*15+2)} ans</td></tr>`).join("")}
+    <tr><td colspan="5" style="color:var(--muted)">+ 12 autres clients enrichis en démo (API réelle en production)</td></tr></table>`;
+}
+
+/* ═══════ I3 : Dashboard ═══════ */
+function dashboardViz() {
+  const metiers = {};
+  CLIENTS.forEach(c => { metiers[c.metier] = (metiers[c.metier]||0) + c.ca; });
+  const total = Object.values(metiers).reduce((a,b)=>a+b,0);
+  const sorted = Object.entries(metiers).sort((a,b)=>b[1]-a[1]);
+  const el = document.getElementById('dashboardViz');
+  el.innerHTML = `<h3 style="font-size:.95rem;margin-bottom:10px">CA annuel par métier (base simulée — ${total.toLocaleString('fr-FR')} €)</h3>` +
+    sorted.map(([m,ca]) => `<div style="margin:6px 0"><span style="font-size:.82rem;width:130px;display:inline-block">${m}</span>
+      <div class="bar" style="width:60%;display:inline-block;vertical-align:middle"><div style="width:${(ca/total*100).toFixed(0)}%"></div></div>
+      <span style="font-size:.8rem;color:var(--muted)"> ${(ca/total*100).toFixed(1)}%</span></div>`).join("");
+}
+dashboardViz();
+
+/* ═══════ I4 : Heatmap métiers × univers ═══════ */
+function heatmap() {
+  const el = document.getElementById('heatmap');
+  el.innerHTML = `<h3 style="font-size:.9rem;margin-bottom:10px">Intensité d'achat Métier × Famille (démo)</h3><div class="heat">` +
+    UNIVERS.map(u => `<div class="heat-cell"><b>${u}</b>${Math.floor(Math.random()*100)}%</div>`).join("") +
+    `</div><p style="font-size:.78rem;color:var(--muted);margin-top:8px">En production : matrice réelle CA métier × famille depuis l'ERP → règles de recommandation.</p>`;
+}
+heatmap();
+
+/* ═══════ I5 : Radar créations BTP réelles ═══════ */
+async function radarCreations() {
+  const box = document.getElementById('radarResult');
+  box.innerHTML = "📡 Interrogation API INSEE — créations BTP récentes...";
+  box.classList.add('show');
+  try {
+    const r = await fetch("https://recherche-entreprises.api.gouv.fr/search?q=peintre&per_page=8");
+    const d = await r.json();
+    box.innerHTML = `<b>Nouvelles entreprises BTP (exemple : métier peintre) — données RÉELLES</b><br>
+    <table><tr><th>Entreprise</th><th>Ville</th><th>NAF</th><th>Création</th></tr>` +
+    d.results.map(e => { const s=e.siege||{}; return `<tr><td>${e.nom_complet}</td><td>${s.libelle_commune||"?"}</td><td>${s.activite_principale||"?"}</td><td>${s.date_creation||"?"}</td></tr>`; }).join("") +
+    `</table><p style="font-size:.78rem;color:var(--muted);margin-top:8px">En production : filtre NAF BTP + zone agence + alerte hebdo lundi 8h (workflow n8n).</p>`;
+  } catch(e) { box.innerHTML = "❌ Erreur API : " + e.message; }
+}
+
+/* ═══════ I6 : Scoring ═══════ */
+function scoring() {
+  const el = document.getElementById('scoringTable');
+  const scored = CLIENTS.map(c => {
+    const taille = { "1-2":10, "3-5":20, "6-9":30, "10-19":40, "20-49":50 }[c.eff]||10;
+    const score = Math.round(taille*0.4 + (c.ca/10000)*0.3 + (c.tendance+20)*0.3);
+    const tier = score >= 40 ? "A" : score >= 25 ? "B" : "C";
+    return {...c, score, tier};
+  }).sort((a,b)=>b.score-a.score);
+  el.innerHTML = `<h3 style="font-size:.9rem;margin-bottom:10px">Score = 40% taille + 30% CA + 30% tendance</h3>
+    <table><tr><th>Tier</th><th>Client</th><th>Métier</th><th>Score</th><th>CA</th><th>Tendance</th></tr>` +
+    scored.map(c => `<tr><td><span class="tag ${c.tier==='A'?'green':c.tier==='B'?'orange':'blue'}">${c.tier}</span></td>
+      <td>${c.nom}</td><td>${c.metier}</td><td><b>${c.score}</b></td>
+      <td>${c.ca.toLocaleString('fr-FR')} €</td><td>${c.tendance>0?'▲':'▼'} ${Math.abs(c.tendance)}%</td></tr>`).join("") + "</table>";
+}
+scoring();
+
+/* ═══════ I7 : Réactivation ═══════ */
+function reactivation() {
+  const el = document.getElementById('reactivTable');
+  el.innerHTML = `<h3 style="font-size:.9rem;margin-bottom:10px">Comptes à réactiver détectés (démo)</h3>
+    <table><tr><th>Ancien SIRET</th><th>Client</th><th>Situation</th><th>Action</th></tr>
+    <tr><td>501 234 567 00012</td><td>PEINTURE DUPONT (radiée 2025)</td><td><span class="tag red">Société fermée</span></td><td><span class="tag green">Bascule vers nouveau SIRET proposée</span></td></tr>
+    <tr><td>612 345 678 00034</td><td>ELEC MARTIN (radiée 2024)</td><td><span class="tag red">Société fermée</span></td><td><span class="tag orange">Nouveau SIRET détecté → contact</span></td></tr>
+    <tr><td>723 456 789 00056</td><td>PLOMBERIE LEROY (radiée 2026)</td><td><span class="tag orange">Fermeture récente</span></td><td><span class="tag blue">Vérifier reprise d'activité</span></td></tr></table>
+    <p style="font-size:.78rem;color:var(--muted);margin-top:8px">En production : croisement SIRENE historique (radiés + mêmes dirigeants INPI) → file d'attente service client.</p>`;
+}
+reactivation();
+
+/* ═══════ I8 : Fiche 360 ═══════ */
+function fillSelects() {
+  const opts = CLIENTS.map((c,i) => `<option value="${i}">${c.nom}</option>`).join("");
+  document.getElementById('clientSelect').innerHTML = opts;
+  document.getElementById('agentSelect').innerHTML = opts;
+}
+fillSelects();
+
+function fiche360() {
+  const c = CLIENTS[document.getElementById('clientSelect').value];
+  const box = document.getElementById('ficheResult');
+  const risque = c.retard >= 10 ? "⚠️ Paiements en retard" : "✅ Paiements sains";
+  box.innerHTML = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+    <div><b style="color:var(--accent)">${c.nom}</b><br><span style="font-size:.82rem;color:var(--muted)">
+      SIREN ${c.siren} · ${c.naf} · ${c.eff} salariés<br>Créé il y a ~8 ans</span></div>
+    <div><b>CA annuel</b> : ${c.ca.toLocaleString('fr-FR')} €<br><b>Panier moyen</b> : ${c.panier} €<br>
+      <b>Tendance</b> : ${c.tendance>0?'▲':'▼'} ${Math.abs(c.tendance)}%</div>
+    <div><b>Familles achetées</b> : ${c.fam.join(", ")}</div>
+    <div>${risque}<br><b>Univers manquants</b> : ${UNIVERS.filter(u=>!c.fam.includes(u)).slice(0,2).join(", ")} → opportunité</div>
+  </div>
+  <p style="font-size:.78rem;color:var(--muted);margin-top:10px">Fiche 360° = fusion ERP + e-commerce + CRM + SIRENE (clé : SIREN).</p>`;
+  box.classList.add('show');
+}
+
+/* ═══════ I9 : E-commerce reco ═══════ */
+function reco() {
+  const el = document.getElementById('recoBox');
+  const regles = [
+    {metier:"Peinture", reco:"Outillage (rouleaux, pinceaux), Consommables, EPI", gain:"+12% panier"},
+    {metier:"Électricité", reco:"Appareillage, Câblage, Sécurité (VMC, détection)", gain:"+9% panier"},
+    {metier:"Plomberie", reco:"Robinetterie, Chauffage, Cuivre", gain:"+11% panier"},
+  ];
+  el.innerHTML = `<h3 style="font-size:.9rem;margin-bottom:10px">Règles de co-achat par métier (démo)</h3>
+    <table><tr><th>Métier</th><th>Recommandations</th><th>Gain estimé</th></tr>` +
+    regles.map(r => `<tr><td>${r.metier}</td><td>${r.reco}</td><td><span class="tag green">${r.gain}</span></td></tr>`).join("") + "</table>";
+}
+reco();
+
+/* ═══════ I10 : Prédiction ═══════ */
+function prediction() {
+  const el = document.getElementById('predTable');
+  const rows = CLIENTS.map(c => {
+    const risque = c.retard*2 + (c.tendance<0 ? 15 : 0) + (c.eff==="1-2" ? 10 : 0);
+    const niveau = risque >= 40 ? "ÉLEVÉ" : risque >= 25 ? "MOYEN" : "FAIBLE";
+    const tag = niveau === "ÉLEVÉ" ? "red" : niveau === "MOYEN" ? "orange" : "green";
+    return `<tr><td>${c.nom}</td><td>${c.retard} j</td><td>${c.tendance>0?'▲':'▼'} ${Math.abs(c.tendance)}%</td>
+      <td><span class="tag ${tag}">${niveau}</span></td></tr>`;
+  }).join("");
+  el.innerHTML = `<h3 style="font-size:.9rem;margin-bottom:10px">Score de risque = 2×retards + pénalité baisse CA + pénalité petite structure</h3>
+    <table><tr><th>Client</th><th>Retards</th><th>Tendance</th><th>Risque</th></tr>${rows}</table>
+    <p style="font-size:.78rem;color:var(--muted);margin-top:8px">En production : + santé SIRENE (radiation imminente) + historique 24 mois, backtesté avant déploiement (charte qualité).</p>`;
+}
+prediction();
+
+/* ═══════ I11 : Agent IA ═══════ */
+function agentIA() {
+  const c = CLIENTS[document.getElementById('agentSelect').value];
+  const box = document.getElementById('agentResult');
+  const actions = [];
+  const manquants = UNIVERS.filter(u=>!c.fam.includes(u)).slice(0,2);
+  if (manquants.length) actions.push(`Proposer ${manquants.join(" et ")} — famille non achetée`);
+  if (c.retard >= 10) actions.push("Relancer paiements (2 factures en retard)");
+  if (c.tendance >= 15) actions.push("Proposer un compte privilège / tarif volume (croissance forte)");
+  if (actions.length < 3) actions.push("Demander un retour sur la dernière livraison (relation)");
+  box.innerHTML = `<b style="color:var(--accent)">Préparation de visite — ${c.nom}</b><br><br>
+    <b>🧾 Résumé :</b> ${c.metier}, ${c.eff} salariés, CA ${c.ca.toLocaleString('fr-FR')} € (+${c.tendance}%), panier ${c.panier} €.<br>
+    <b>🛒 Achète :</b> ${c.fam.join(", ")}<br><br>
+    <b>🎯 3 actions recommandées :</b><ol style="margin-left:18px;font-size:.86rem">
+    ${actions.map(a=>`<li>${a}</li>`).join("")}</ol>
+    <p style="font-size:.78rem;color:var(--muted)">En production : version LLM (DeepSeek/Claude) générant un vrai paragraphe + argumentaire métier.</p>`;
+  box.classList.add('show');
+}
+</script>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<div class="sources">Sources : <a href="https://www.legifrance.gouv.fr/eli/loi/2026/2/19/CPPX2524517L/jo/texte" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">Loi de finances 2026</a> · <a href="https://www.impots.gouv.fr/" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">impots.gouv.fr</a></div>
+<script src="sw-register.js"></script>
+</body>
+</html>

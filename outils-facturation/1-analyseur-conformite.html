@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analyseur de Conformité de Facture — Mentions Obligatoires</title>
+<style>
+:root{--dark:#0f172a;--card:#1e293b;--border:#334155;--text:#e2e8f0;--muted:#94a3b8;--accent:#f59e0b;--green:#22c55e;--red:#ef4444;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--dark);color:var(--text);line-height:1.6;}
+.container{max-width:800px;margin:0 auto;padding:30px 20px;}
+h1{text-align:center;margin-bottom:8px;font-size:1.8rem;}
+.sub{text-align:center;color:var(--muted);margin-bottom:26px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:20px;}
+.card h2{margin-bottom:12px;font-size:1.15rem;}
+textarea{width:100%;min-height:180px;background:var(--dark);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:14px;font-size:.9rem;font-family:inherit;resize:vertical;}
+textarea:focus{outline:none;border-color:var(--accent);}
+.btn{display:inline-block;padding:12px 28px;background:var(--accent);color:var(--dark);border:none;border-radius:30px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:14px;}
+.btn:hover{transform:scale(1.03);}
+.result{display:none;margin-top:18px;}
+.result.show{display:block;}
+.item{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-radius:8px;margin-bottom:8px;font-size:.9rem;background:var(--dark);}
+.item.ok{border-left:3px solid var(--green);}
+.item.fail{border-left:3px solid var(--red);}
+.badge{font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:16px;}
+.badge.ok{background:rgba(34,197,94,.15);color:var(--green);}
+.badge.fail{background:rgba(239,68,68,.15);color:var(--red);}
+.score{text-align:center;padding:20px;border-radius:12px;margin-bottom:16px;font-size:1.2rem;}
+.score.good{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);}
+.score.bad{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);}
+.score b{font-size:2rem;display:block;}
+.note{color:var(--muted);font-size:.82rem;margin-top:10px;}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Analyseur de conformité facturation électronique",
+  "description": "Outil gratuit pour vérifier si votre entreprise est conforme à la facturation électronique 2026-2027 : calendrier, obligations et étapes.",
+  "author": {"@type": "Person", "name": "Jeremy Henry", "jobTitle": "Consultant IA & automatisation"},
+  "datePublished": "2026-08-09",
+  "dateModified": "2026-08-09"
+}</script>
+</head>
+<body>
+<div class="container">
+  <h1>📋 Analyseur de conformité de facture</h1>
+  <p class="sub">Collez votre facture (texte) → vérification automatique des mentions obligatoires</p>
+
+  <div class="card">
+    <h2>📄 Votre facture</h2>
+    <textarea id="facture" placeholder="Collez ici le contenu de votre facture (ou la saisissez à la main)&#10;&#10;Exemple :&#10;FACTURE N° 2026-001&#10;SARL Exemple - 12 rue des Lilas, 14170 Épaney&#10;SIRET 123 456 789 00012 - SIREN 123456789&#10;TVA FR 12 345678901&#10;Client : M. Dupont&#10;Prestation peinture salon : 800,00 € HT&#10;TVA 20% : 160,00 €&#10;Total TTC : 960,00 €&#10;Échéance : 15/09/2026&#10;Pénalités de retard : 3x taux légal + indemnité 40€"></textarea>
+    <button class="btn" onclick="analyser()">🔍 Analyser ma facture</button>
+  </div>
+
+  <div class="card">
+    <h2>📊 Résultat</h2>
+    <div class="result" id="result"></div>
+    <p class="note" style="display:none" id="note">⚠️ L'analyse est indicative : une vraie facture électronique doit être émise via une plateforme certifiée (PDP). L'outil vérifie les mentions réglementaires (art. L.441-9 Code de commerce).</p>
+  </div>
+
+  <div class="card">
+    <h2>✅ Les 12 mentions obligatoires</h2>
+    <p style="color:var(--muted);font-size:.85rem;">1. Identité complète du vendeur (nom, adresse) · 2. SIREN/SIRET · 3. N° TVA intracommunautaire · 4. Identité du client · 5. Date d'émission · 6. Numéro de facture (séquentiel) · 7. Désignation des prestations · 8. Prix unitaire HT · 9. Taux de TVA et montant · 10. Total HT et TTC · 11. Date d'échéance · 12. Pénalités de retard + indemnité 40€</p>
+  </div>
+</div>
+
+<script>
+function analyser() {
+  const txt = document.getElementById('facture').value.trim();
+  const res = document.getElementById('result');
+  const note = document.getElementById('note');
+  if (!txt) { res.innerHTML = '<div class="score bad"><b>❌</b>Veuillez coller une facture d\'abord</div>'; res.classList.add('show'); return; }
+
+  const t = txt.toLowerCase();
+  const checks = [];
+
+  // 1. Identité vendeur (nom + adresse)
+  const a = /sarl|eurl|sas|sasu|entreprise|auto-entrepreneur|micro/i.test(txt) && /\d+\s*(rue|av|boulevard|bd|chem|allée|place|impasse|route|lieu-dit)|[0-9]{5}\s[a-z]/i.test(txt);
+  checks.push(['Identité vendeur (nom + adresse)', a, 'Votre nom + adresse complète doivent figurer en tête de facture']);
+
+  // 2. SIREN (9 chiffres)
+  const siren = /\b\d{9}\b/.test(txt);
+  checks.push(['SIREN (9 chiffres)', siren, 'Format : 123 456 789']);
+
+  // 3. SIRET (14 chiffres)
+  const siret = /\b\d{14}\b|\b\d{3}\s\d{3}\s\d{3}\s\d{5}\b/.test(txt);
+  checks.push(['SIRET (14 chiffres)', siret, 'SIREN + NIC (5 chiffres)']);
+
+  // 4. N° TVA intracom
+  const tva = /tva\s*(fr)?\s*\d{11}|fr\s?\d{11}/i.test(txt);
+  checks.push(['N° TVA intracommunautaire', tva, 'Format : FR + 11 chiffres']);
+
+  // 5. Identité client
+  const client = /(client|facturé à|à l'attention|destinataire|m\.\s|madame|monsieur|société|sarl|eurl)/i.test(txt);
+  checks.push(['Identité du client', client, 'Nom du client (particulier ou société)']);
+
+  // 6. Date d'émission
+  const date = /\b\d{1,2}[\/\-\.]\d{1,2}[\/\-\.]\d{2,4}\b|\b\d{1,2}\s(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)\s\d{4}\b/i.test(txt);
+  checks.push(['Date d\'émission', date, 'Date de création de la facture']);
+
+  // 7. Numéro séquentiel
+  const num = /(facture\s*n°|n°\s*facture|n°\s*\d{2,6}|facture\s*\d{2,6})/i.test(txt);
+  checks.push(['Numéro de facture (séquentiel)', num, 'Format : N° 2026-001, séquentiel et unique']);
+
+  // 8. Désignation prestation
+  const prest = /(prestation|travaux|fourniture|vente|pose|rénovation|installation|service|marchandise|chantier)/i.test(txt);
+  checks.push(['Désignation des prestations', prest, 'Description claire de ce qui est vendu']);
+
+  // 9. Prix unitaire HT
+  const pu = /\d+[\s.,]?\d*\s*(€|euros|eur|ht)\b/i.test(txt);
+  checks.push(['Prix unitaire HT', pu, 'Montant hors taxes par prestation']);
+
+  // 10. TVA (taux + montant)
+  const tvaM = /(tva|t\.v\.a|taxe)/i.test(txt) && /\d{1,2}[,\.]?\d*\s*%/.test(txt);
+  checks.push(['Taux de TVA + montant', tvaM, 'Ex : TVA 20% : 160,00 €']);
+
+  // 11. Total HT et TTC
+  const total = /(total\s*ht|total\s*ttc|net\s*à\s*payer|total)/i.test(txt) && /ttc|net\s*à\s*payer/i.test(txt);
+  checks.push(['Total HT et TTC', total, 'Les 2 totaux doivent apparaître']);
+
+  // 12. Échéance
+  const echeance = /(échéance|echeance|règlement|payable|à\s*payer\s*(le|avant)|sous\s*\d+\s*jours)/i.test(txt);
+  checks.push(['Date d\'échéance', echeance, 'Date limite de paiement']);
+
+  // 13. Pénalités + indemnité 40€
+  const penal = /(pénalités|penalites|indemnité|indemnite|intérêts? de retard|taux légal|12,4)/i.test(txt);
+  checks.push(['Pénalités de retard + indemnité 40€', penal, 'Mention obligatoire : "3x taux légal + 40€" (sinon amende 75 000€)']);
+
+  const ok = checks.filter(c => c[1]).length;
+  const pct = Math.round(ok / checks.length * 100);
+
+  let html = `<div class="score ${pct >= 80 ? 'good' : pct >= 50 ? 'good' : 'bad'}"><b>${ok}/${checks.length}</b>${pct >= 80 ? '✅ Facture conforme' : pct >= 50 ? '⚠️ Partiellement conforme' : '❌ Facture non conforme'}</div>`;
+  checks.forEach(([label, pass, hint]) => {
+    html += `<div class="item ${pass ? 'ok' : 'fail'}"><span>${pass ? '✅' : '❌'} ${label}</span><span class="badge ${pass ? 'ok' : 'fail'}">${pass ? 'OK' : 'MANQUANT'}</span></div>`;
+    if (!pass) html += `<div style="color:var(--muted);font-size:.78rem;padding:0 14px 8px;">💡 ${hint}</div>`;
+  });
+
+  res.innerHTML = html;
+  res.classList.add('show');
+  note.style.display = 'block';
+}
+</script>
+</body>
+</html>

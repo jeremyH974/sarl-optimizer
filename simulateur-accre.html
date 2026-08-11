@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACRE 2026 : simulateur (25% la 1ʳᵉ année)</title>
+<meta property="og:image" content="https://SIMULATEUR-SARL.github.io/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:title" content="ACRE 2026 : simulateur (25% la 1ʳᵉ année)">
+<meta property="og:description" content="ACRE 2026 : exonération de 25% des cotisations la 1ère année (LFSS 2026 : seuil 75% du PASS). Versement libératoire : éligibilité RFR et calcul. Combien vous économisez ?">
+<meta property="og:type" content="website">
+<meta name="description" content="ACRE 2026 : exonération de 25% des cotisations la 1ère année (LFSS 2026 : seuil 75% du PASS). Versement libératoire : éligibilité RFR et calcul. Combien vous économisez ?">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "L'ACRE c'est quoi exactement ?", "acceptedAnswer": {"@type": "Answer", "text": "L'aide aux créateurs et repreneurs d'entreprise : 25% d'exonération de cotisations sociales pendant 12 mois (depuis la LFSS 2026 : elle était de 50% avant). À demander dans les 45 jours de la création auprès de l'URSSAF. Exonération complète si votre revenu ≤ 75% du PASS (36 045 € en 2026), dégressi"}}, {"@type": "Question", "name": "L'ACRE est-il compatible avec le versement libératoire ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui en micro-entreprise : l'ACRE porte sur les cotisations sociales, le versement libératoire porte sur l'impôt. Les deux se cumulent. En société, l'ACRE réduit les cotisations du gérant, mais le versement libératoire n'existe pas (le résultat est imposé à l'IS)."}}, {"@type": "Question", "name": "Qui n'a pas droit à l'ACRE ?", "acceptedAnswer": {"@type": "Answer", "text": "Sont exclus : les activités financières, le cumul créateur/retraite dans certains cas, les créateurs qui étaient déjà gérants majoritaires dans les 12 mois précédents, et la reprise d'une entreprise par un salarié qui la dirigeait déjà. Demandez la confirmation à l'URSSAF."}}, {"@type": "Question", "name": "Le versement libératoire, comment ça marche ?", "acceptedAnswer": {"@type": "Answer", "text": "Si votre RFR (N-2) est sous le seuil (29 579 € pour 1 part, 59 158 € pour 2), vous payez un % fixe du CA (2,2% services / 1,7% vente) au lieu de l'IR au barème. Simple, mais attention : il remplace tout votre IR (pas seulement celui de l'activité) : comparez avec le barème réel avant d'opter."}}, {"@type": "Question", "name": "L'ACRE existe-t-elle en SASU ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. L'ACRE est réservée aux travailleurs non salariés : micro-entrepreneur, gérant majoritaire de SARL/EURL, EI. Le président de SASU (assimilé salarié) n'y a pas droit. C'est une erreur fréquente (requête \"acre sasu\") : si vous hésitez entre EURL et SASU, l'ACRE peut faire pencher la balance la 1ʳ"}}, {"@type": "Question", "name": "Où demander l'ACRE ?", "acceptedAnswer": {"@type": "Answer", "text": "À la création : le formulaire ACRE est intégré à la déclaration de début d'activité (guichet unique) ou à adresser à l'URSSAF dans les 45 jours suivant l'immatriculation. Source : service-public F11677."}}]}</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "👷 Créateurs & gérants", "item": "index.html#societe"}, {"@type": "ListItem", "position": 3, "name": "💸 Simulateur début d'activité : ACRE + versement libératoire (2026)", "item": "simulateur-accre.html"}]}</script>
+</head>
+<body>
+<div class="container">
+
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <a href="index.html#societe">👷 Créateurs & gérants</a> › <span>💸 Simulateur début d'activité : ACRE + versement libératoire (2026)</span></nav>
+  <h1>💸 Simulateur début d'activité : ACRE + versement libératoire (2026)</h1>
+  <p class="subtitle">Combien économisez-vous la première année grâce à l'ACRE (25% de cotisations en moins : LFSS 2026) ? Et le versement libératoire est-il fait pour vous ? Taux 2026 sourcés.</p>
+
+  <div class="nav">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="jargon-en-clair.html">🔤 Jargon</a>
+    <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+    <a href="comparateur-societes.html">⚖️ Comparateur</a>
+    <a href="passage-micro-societe.html">🔄 Micro → société</a>
+    <a href="guide-optimisation-sarl.html">📖 Guide</a>
+  
+    
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+<details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="comparateur-societes.html" class="menu-cat">⚖️ Comparateur : démarrez ici</a>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+  </div>
+
+  <div class="card" style="border-left: 3px solid var(--accent);">
+    <h2>📊 Votre situation</h2>
+    <div class="grid-3">
+      <div>
+        <label>CA prévisionnel HT (€/an)</label>
+        <input type="number" id="ca" value="45000" min="0" step="1000">
+      </div>
+      <div>
+        <label>Type d'activité</label>
+        <select id="activite">
+          <option value="service" selected>Prestations de services</option>
+          <option value="vente">Achat/revente</option>
+        </select>
+      </div>
+      <div>
+        <label>Statut</label>
+        <select id="statut">
+          <option value="micro" selected>Micro-entreprise</option>
+          <option value="tns">SARL/EURL (gérant TNS)</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid-3" style="margin-top:.8rem;">
+      <div>
+        <label>Rémunération prévue (€/an brut, si société)</label>
+        <input type="number" id="salaire" value="24000" min="0" step="1000">
+      </div>
+      <div>
+        <label>RFR de l'avis d'imposition N-2 (€)</label>
+        <input type="number" id="rfr" value="20000" min="0" step="500">
+      </div>
+      <div>
+        <label>Nombre de parts fiscales</label>
+        <select id="parts">
+          <option value="1" selected>1 part</option>
+          <option value="2">2 parts (couple)</option>
+          <option value="3">3 parts (couple + enfant)</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn" onclick="calc()">💸 Calculer mes économies</button>
+    <button class="btn-outline" style="margin-left:.5rem;" onclick="exemple()">🎨 Exemple type (artisan 45 k€)</button>
+  </div>
+
+  <div id="results" class="hidden">
+
+    <div class="card" style="border:1px solid var(--accent);">
+      <h2 style="color:var(--green);">🎉 ACRE : exonération de la 1ʳᵉ année</h2>
+      <div class="grid-4" style="text-align:center;margin-bottom:1rem;">
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Votre éligibilité</div>
+          <div class="big-num" id="acreElig" style="font-size:1.1rem;">:</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Cotisations 1ʳᵉ année sans ACRE</div>
+          <div class="big-num charge-amount" id="cotSans">0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Cotisations avec ACRE</div>
+          <div class="big-num charge-amount" id="cotAvec">0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Économie ACRE</div>
+          <div class="big-num net-amount" id="economieAcre">0€</div>
+        </div>
+      </div>
+      <div id="acreTip" class="tip"></div>
+    </div>
+
+    <div class="card" style="border:1px solid var(--accent);">
+      <h2 style="color:var(--accent);">🧾 Versement libératoire (micro uniquement)</h2>
+      <div class="grid-4" style="text-align:center;margin-bottom:1rem;">
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Éligibilité RFR</div>
+          <div class="big-num" id="vlElig" style="font-size:1.1rem;">:</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Impôt au barème (est.)</div>
+          <div class="big-num charge-amount" id="vlBarème">0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Versement libératoire</div>
+          <div class="big-num charge-amount" id="vlMontant">0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Économie IR</div>
+          <div class="big-num net-amount" id="vlEconomie">0€</div>
+        </div>
+      </div>
+      <div id="vlTip" class="tip"></div>
+    </div>
+
+    <div class="card" style="border:1px solid var(--green);">
+      <h2 style="color:var(--green);">🏆 Bilan première année (avec ACRE + VL si éligible)</h2>
+      <table>
+        <tr><th>Poste</th><th></th><th>Montant</th></tr>
+        <tr><td>Cotisations URSSAF (1ʳᵉ année)</td><td></td><td id="bCot" class="charge-amount">0€</td></tr>
+        <tr><td>Impôt sur le revenu</td><td></td><td id="bIr" class="charge-amount">0€</td></tr>
+        <tr style="border-top:2px solid var(--green);"><td><strong>Total prélèvements 1ʳᵉ année</strong></td><td></td><td id="bTotal" style="font-weight:700;">0€</td></tr>
+        <tr><td><strong>Économies totales vs sans ACRE/VL</strong></td><td></td><td id="bGain" class="net-amount" style="font-weight:700;">0€</td></tr>
+      </table>
+    </div>
+
+    <!-- ASTUCE ROI -->
+    <div class="card" style="border:1px solid var(--green);">
+      <h2 style="color:var(--green);">🏆 L'astuce Roi pour votre début d'activité</h2>
+      <div id="astuceRoi"></div>
+    </div>
+
+  </div>
+
+  <!-- FAQ -->
+  <div class="card" style="margin-top:1rem;">
+    <h2>❓ Questions fréquentes</h2>
+    <details>
+      <summary>L'ACRE c'est quoi exactement ?</summary>
+      <p>L'aide aux créateurs et repreneurs d'entreprise : <strong>25% d'exonération de cotisations sociales pendant 12 mois</strong> (depuis la LFSS 2026 : elle était de 50% avant). À demander dans les <strong>45 jours</strong> de la création auprès de l'URSSAF. Exonération complète si votre revenu ≤ 75% du PASS (36 045 € en 2026), dégressive jusqu'au PASS (48 060 €).</p>
+    </details>
+    <details>
+      <summary>L'ACRE est-il compatible avec le versement libératoire ?</summary>
+      <p>Oui en micro-entreprise : l'ACRE porte sur les cotisations sociales, le versement libératoire porte sur l'impôt. Les deux se cumulent. En société, l'ACRE réduit les cotisations du gérant, mais le versement libératoire n'existe pas (le résultat est imposé à l'IS).</p>
+    </details>
+    <details>
+      <summary>Qui n'a pas droit à l'ACRE ?</summary>
+      <p>Sont exclus : les activités financières, le cumul créateur/retraite dans certains cas, les créateurs qui étaient déjà gérants majoritaires dans les 12 mois précédents, et la reprise d'une entreprise par un salarié qui la dirigeait déjà. Demandez la confirmation à l'URSSAF.</p>
+    </details>
+    <details>
+      <summary>Le versement libératoire, comment ça marche ?</summary>
+      <p>Si votre RFR (N-2) est sous le seuil (29 579 € pour 1 part, 59 158 € pour 2), vous payez un <strong>% fixe du CA</strong> (2,2% services / 1,7% vente) au lieu de l'IR au barème. Simple, mais attention : il remplace tout votre IR (pas seulement celui de l'activité) : comparez avec le barème réel avant d'opter.</p>
+    </details>
+    <details>
+      <summary>L'ACRE existe-t-elle en SASU ?</summary>
+      <p><strong>Non.</strong> L'ACRE est réservée aux travailleurs non salariés : micro-entrepreneur, gérant majoritaire de SARL/EURL, EI. Le président de SASU (assimilé salarié) n'y a pas droit. C'est une erreur fréquente (requête "acre sasu") : si vous hésitez entre EURL et SASU, l'ACRE peut faire pencher la balance la 1ʳᵉ année (~25% des cotisations en moins).</p>
+    </details>
+    <details>
+      <summary>Où demander l'ACRE ?</summary>
+      <p>À la création : le formulaire ACRE est intégré à la déclaration de début d'activité (guichet unique) ou à adresser à l'URSSAF dans les 45 jours suivant l'immatriculation. Source : service-public F11677.</p>
+    </details>
+  </div>
+
+  <div style="margin-top:1.5rem;padding:1rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--muted);text-align:center;">
+    ⚠️ Simulation indicative : taux 2026 sourcés (service-public F11677 ACRE, F36244 versement libératoire, PASS 2026 : 48 060 €). L'éligibilité exacte dépend de votre dossier. Consultez votre expert-comptable.
+  </div>
+</div>
+
+<script src="parametres-2026.js"></script>
+<script src="moteur-calcul.js"></script>
+<script>
+function fmt(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+
+function exemple() {
+  document.getElementById('ca').value = '45000';
+  document.getElementById('activite').value = 'service';
+  document.getElementById('statut').value = 'micro';
+  document.getElementById('salaire').value = '24000';
+  document.getElementById('rfr').value = '20000';
+  document.getElementById('parts').value = '1';
+  calc();
+}
+
+function calc() {
+  const ca = parseFloat(document.getElementById('ca').value) || 0;
+  const activite = document.getElementById('activite').value;
+  const statut = document.getElementById('statut').value;
+  const salaire = parseFloat(document.getElementById('salaire').value) || 0;
+  const rfr = parseFloat(document.getElementById('rfr').value) || 0;
+  const parts = parseFloat(document.getElementById('parts').value) || 1;
+
+  document.getElementById('results').classList.remove('hidden');
+  const set = (id, v) => document.getElementById(id).textContent = v;
+
+  // ── ACRE ──
+  // Exonération 25% la 1ère année (LFSS 2026) ; pleine si revenu ≤ 75% PASS, dégressive jusqu'au PASS
+  const seuilPlein = PASS * 0.75;
+  const tauxMicro = activite === 'vente' ? MICRO.vente.urssaf : MICRO.service.urssaf;
+  const revenuAcre = statut === 'micro' ? ca * (1 - (activite === 'vente' ? 0.71 : 0.50)) : salaire * 0.55;
+  let exoneration;
+  if (revenuAcre <= seuilPlein) exoneration = 0.25;
+  else if (revenuAcre >= PASS) exoneration = 0;
+  else exoneration = 0.25 * (1 - (revenuAcre - seuilPlein) / (PASS - seuilPlein));
+
+  const cotSans = statut === 'micro' ? ca * tauxMicro : calcTns(salaire);
+  const cotAvec = cotSans * (1 - exoneration);
+  const economieAcre = cotSans - cotAvec;
+
+  set('cotSans', fmt(cotSans));
+  set('cotAvec', fmt(cotAvec));
+  set('economieAcre', fmt(economieAcre));
+
+  const eligPlein = revenuAcre <= seuilPlein;
+  const acreElig = exoneration > 0 ? (eligPlein ? '25% pleine' : '⚠️ 25% partielle') : 'Non éligible';
+  document.getElementById('acreElig').textContent = acreElig;
+  document.getElementById('acreElig').className = 'big-num ' + (exoneration > 0 ? (eligPlein ? 'badge-green' : 'badge-amber') : 'badge-red');
+  document.getElementById('acreElig').style.fontSize = '1.05rem';
+
+  document.getElementById('acreTip').innerHTML = exoneration > 0
+    ? `💡 Votre revenu estimé (${fmt(revenuAcre)}) ${eligPlein ? 'est sous 75% du PASS (' + fmt(seuilPlein) + ') : exonération <strong>pleine de 25%</strong>' : 'dépasse 75% du PASS : exonération <strong>dégressive</strong> de ' + (exoneration * 100).toFixed(0) + '%'} pendant 12 mois. À demander dans les <strong>45 jours</strong> de la création. Économie : <strong>${fmt(economieAcre)}</strong>.`
+    : `Votre revenu estimé (${fmt(revenuAcre)}) dépasse le PASS (${fmt(PASS)}) : pas d'ACRE.`;
+
+  // ── Versement libératoire (micro uniquement) ──
+  const seuilVL = parts >= 2 ? 59158 : 29579;
+  const vlEligible = rfr <= seuilVL;
+  let irBarème = 0, vl = 0;
+  if (statut === 'micro') {
+    const abattement = activite === 'vente' ? 0.71 : 0.50;
+    const base = Math.max(0, ca * (1 - abattement) - cotAvec);
+    irBarème = calcIrExact(base);
+    vl = ca * (activite === 'vente' ? 0.017 : 0.022);
+  }
+  const vlEconomie = Math.max(0, irBarème - vl);
+
+  document.getElementById('vlElig').textContent = vlEligible ? 'Éligible' : 'Non éligible';
+  document.getElementById('vlElig').className = 'big-num ' + (vlEligible ? 'badge-green' : 'badge-red');
+  document.getElementById('vlElig').style.fontSize = '1.05rem';
+  set('vlBarème', fmt(irBarème));
+  set('vlMontant', fmt(vl));
+  set('vlEconomie', fmt(vlEconomie));
+
+  document.getElementById('vlTip').innerHTML = statut !== 'micro'
+    ? `ℹ️ Le versement libératoire ne concerne que la <strong>micro-entreprise</strong>. En société, le résultat est imposé à l'IS : pas de VL possible.`
+    : (vlEligible
+      ? `💡 RFR ${fmt(rfr)} ≤ ${fmt(seuilVL)} : vous êtes <strong>éligible</strong>. Avec le VL vous payez ${fmt(vl)} au lieu d'environ ${fmt(irBarème)} au barème. Économie : <strong>${fmt(vlEconomie)}/an</strong>. Attention : le VL remplace tout votre IR (pas seulement celui de l'activité).`
+      : `RFR ${fmt(rfr)} > ${fmt(seuilVL)} : non éligible au versement libératoire. Vous restez au barème (${fmt(irBarème)} estimé).`);
+
+  // ── Bilan ──
+  const bCot = statut === 'micro' ? cotAvec : cotAvec; // cotisations après ACRE
+  const bIr = statut === 'micro' ? (vlEligible ? vl : irBarème) : 0;
+  set('bCot', fmt(bCot));
+  set('bIr', fmt(bIr));
+  set('bTotal', fmt(bCot + bIr));
+  set('bGain', '+' + fmt(economieAcre + (statut === 'micro' && vlEligible ? vlEconomie : 0)));
+
+  // ── Astuce Roi ──
+  const astuces = [];
+  if (statut === 'micro' && exoneration > 0) {
+    astuces.push(`<div class="roi">⏰ <strong>Demandez l'ACRE dans les 45 jours de la création</strong> : sans demande, pas d'exonération. Formulaire intégré au guichet unique ou à l'URSSAF. Votre économie estimée : <strong>${fmt(economieAcre)}</strong>. <span class="gain">${fmt(economieAcre)} la 1ʳᵉ année</span></div>`);
+  }
+  if (statut === 'micro' && vlEligible) {
+    astuces.push(`<div class="roi">💎 <strong>Cumulez ACRE + versement libératoire</strong> : l'ACRE réduit vos cotisations (${fmt(economieAcre)}) ET le VL remplace votre IR (${fmt(vlEconomie)}) : total <strong>${fmt(economieAcre + vlEconomie)}/an</strong> la 1ʳᵉ année. Deux options à demander à la création, ne les laissez pas passer. <span class="gain">${fmt(economieAcre + vlEconomie)}/an</span></div>`);
+  } else if (statut === 'micro' && !vlEligible) {
+    astuces.push(`<div class="roi">💎 <strong>L'ACRE est votre levier principal</strong> : le versement libératoire n'est pas accessible (RFR ${fmt(rfr)} > seuil) : mais l'ACRE (${fmt(economieAcre)}) s'applique automatiquement si vous la demandez. Ne l'oubliez pas. <span class="gain">${fmt(economieAcre)} la 1ʳᵉ année</span></div>`);
+  }
+  if (statut === 'tns') {
+    astuces.push(`<div class="roi">🏢 <strong>En société, pensez aussi au PER Madelin</strong> : l'ACRE (${fmt(economieAcre)}) réduit vos cotisations la 1ʳᵉ année, et le PER versé par la société double la déduction (IS + IR) : plafond 4 806 € en 2026. <a href="per-madelin.html" style="color:var(--green);">Voir le guide</a>. <span class="gain">+700 €/an</span></div>`);
+  }
+  if (astuces.length === 0) {
+    astuces.push(`<div class="roi">📅 <strong>Pensez au report de vos plafonds</strong> : le plafond PER non utilisé est reportable 3 ans, et l'ACRE n'est demandable qu'une fois. Si vous démarrez une activité secondaire, vérifiez aussi la <strong>micro-sociale simplifiée</strong>. <span class="gain">anticipation = sérénité</span></div>`);
+  }
+  document.getElementById('astuceRoi').innerHTML = astuces.slice(0, 3).join('');
+}
+
+calc();
+</script>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<script src="sauvegarde.js"></script>
+<div class="sources">Sources : <a href="https://entreprendre.service-public.fr/vosdroits/F11677" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">service-public F11677 (ACRE)</a></div>
+<script src="sw-register.js"></script>
+</body>
+</html>

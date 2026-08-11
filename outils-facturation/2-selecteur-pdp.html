@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sélecteur de Plateforme Facturation Électronique (PDP)</title>
+<style>
+:root{--dark:#0f172a;--card:#1e293b;--border:#334155;--text:#e2e8f0;--muted:#94a3b8;--accent:#f59e0b;--green:#22c55e;--blue:#3b82f6;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--dark);color:var(--text);line-height:1.6;}
+.container{max-width:800px;margin:0 auto;padding:30px 20px;}
+h1{text-align:center;margin-bottom:8px;font-size:1.8rem;}
+.sub{text-align:center;color:var(--muted);margin-bottom:26px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:20px;}
+.card h2{margin-bottom:14px;font-size:1.15rem;}
+.form-group{margin-bottom:16px;}
+label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:6px;}
+select{width:100%;padding:11px 14px;background:var(--dark);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:.95rem;}
+select:focus{outline:none;border-color:var(--accent);}
+.btn{display:inline-block;padding:12px 28px;background:var(--accent);color:var(--dark);border:none;border-radius:30px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;}
+.btn:hover{transform:scale(1.03);}
+.result{display:none;margin-top:18px;}
+.result.show{display:block;}
+.reco{background:var(--dark);border:1px solid rgba(245,158,11,.4);border-radius:12px;padding:20px;margin-bottom:14px;}
+.reco h3{color:var(--accent);margin-bottom:8px;}
+.reco p{color:var(--muted);font-size:.9rem;}
+.reco ul{margin:10px 0 0 18px;color:var(--text);font-size:.88rem;}
+.alt{font-size:.85rem;color:var(--muted);padding:10px 14px;background:var(--dark);border-radius:8px;margin-top:10px;}
+.tip{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.3);border-radius:10px;padding:14px;font-size:.88rem;margin-top:14px;}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Sélecteur de plateforme de dématérialisation (PDP)",
+  "description": "Guide interactif pour choisir sa plateforme de dématérialisation partenaire selon sa taille, son activité et ses besoins.",
+  "author": {"@type": "Person", "name": "Jeremy Henry", "jobTitle": "Consultant IA & automatisation"},
+  "datePublished": "2026-08-09",
+  "dateModified": "2026-08-09"
+}</script>
+</head>
+<body>
+<div class="container">
+  <h1>🏢 Quel plateforme de facturation choisir ?</h1>
+  <p class="sub">4 questions → la PDP adaptée à votre profil (réforme 2026-2027)</p>
+
+  <div class="card">
+    <h2>📝 Votre profil</h2>
+    <div class="form-group"><label>1. Quelle est votre structure ?</label>
+      <select id="q1">
+        <option value="micro">Micro-entrepreneur / Auto-entrepreneur</option>
+        <option value="tpe">TPE / Artisan (moins de 10 salariés)</option>
+        <option value="pme">PME (10 à 249 salariés)</option>
+        <option value="pro">Profession libérale</option>
+      </select>
+    </div>
+    <div class="form-group"><label>2. Quel volume de factures par mois ?</label>
+      <select id="q2">
+        <option value="faible">Moins de 10</option>
+        <option value="moyen">10 à 50</option>
+        <option value="eleve">Plus de 50</option>
+      </select>
+    </div>
+    <div class="form-group"><label>3. Votre budget mensuel pour la facturation ?</label>
+      <select id="q3">
+        <option value="zero">0 € (je veux du gratuit)</option>
+        <option value="petit">Moins de 20 €</option>
+        <option value="confort">20 à 50 €</option>
+      </select>
+    </div>
+    <div class="form-group"><label>4. Vos besoins prioritaires ?</label>
+      <select id="q4">
+        <option value="base">Recevoir et émettre des factures</option>
+        <option value="compta">+ Comptabilité intégrée (saisie, TVA)</option>
+        <option value="relance">+ Relances automatiques & suivi paiements</option>
+        <option value="tout">Le plus complet possible</option>
+      </select>
+    </div>
+    <button class="btn" onclick="recommander()">🎯 Voir ma recommandation</button>
+  </div>
+
+  <div class="card">
+    <h2>💡 Ma recommandation</h2>
+    <div class="result" id="result"></div>
+  </div>
+</div>
+
+<script>
+function recommander() {
+  const q1 = document.getElementById('q1').value;
+  const q2 = document.getElementById('q2').value;
+  const q3 = document.getElementById('q3').value;
+  const q4 = document.getElementById('q4').value;
+  const res = document.getElementById('result');
+  let html = '';
+
+  // Cas 1 : micro + budget zéro
+  if (q1 === 'micro' && q3 === 'zero') {
+    html = `<div class="reco"><h3>🏆 Tiime ou Pennylane (offre micro gratuite)</h3>
+      <p>Les 2 leaders proposent une offre gratuite pour les micro-entrepreneurs, certifiée PDP.</p>
+      <ul><li><b>Tiime</b> : très simple, lecture auto des factures, idéal débutant</li><li><b>Pennylane</b> : plus complet, compta + relances, meilleur si vous grandissez</li></ul>
+      <p style="margin-top:8px;color:var(--accent);">👉 Testez les deux, gardez celui dont l'interface vous plaît.</p></div>
+      <div class="alt">Alternative 100% gratuite : le Portail Public de Facturation (PPF) de l'État — basique mais suffisant pour recevoir/émettre.</div>`;
+  }
+  // Cas 2 : micro/TPE budget petit, besoins simples
+  else if ((q1 === 'micro' || q1 === 'tpe') && (q3 === 'petit') && q4 === 'base') {
+    html = `<div class="reco"><h3>🏆 Tiime (à partir de ~5€/mois)</h3>
+      <p>Le plus simple du marché pour les TPE. Certifié PDP, lecture automatique des factures fournisseurs.</p>
+      <ul><li>Devis, factures, avoirs en 2 clics</li><li>Récupère vos factures fournisseurs automatiquement</li><li>Interface pensée pour les non-comptables</li></ul></div>
+      <div class="alt">Comparer aussi : <b>Qonto + facturation</b> si vous avez déjà un compte pro chez eux (tout en un).</div>`;
+  }
+  // Cas 3 : besoins compta intégrée
+  else if (q4 === 'compta') {
+    html = `<div class="reco"><h3>🏆 Pennylane (à partir de ~20€/mois)</h3>
+      <p>La référence pour PME qui veulent facturation + comptabilité sans expert-comptable lourd.</p>
+      <ul><li>Compta en partie double intégrée</li><li>TVA, déclarations, rapprochement bancaire</li><li>Collaboration avec votre expert-comptable</li></ul></div>
+      <div class="alt">Alternative : <b>Tiime</b> (plus simple) ou <b>Sage</b> (plus institutionnel, courbe d'apprentissage).</div>`;
+  }
+  // Cas 4 : relances & suivi paiements
+  else if (q4 === 'relance') {
+    html = `<div class="reco"><h3>🏆 Pennylane ou Syrha</h3>
+      <p>Pour ceux qui veulent que les impayés se relancent tout seuls.</p>
+      <ul><li><b>Pennylane</b> : relances automatiques + liens de paiement</li><li><b>Syrha</b> : spécialiste encaissement B2B, très bon sur les relances</li></ul></div>
+      <div class="alt">Astuce : même sans PDP payante, un workflow n8n peut faire les relances (voir notre outil dédié).</div>`;
+  }
+  // Cas 5 : gros volume
+  else if (q2 === 'eleve' && (q1 === 'pme' || q1 === 'tpe')) {
+    html = `<div class="reco"><h3>🏆 Sage ou Pennylane (édition avancée)</h3>
+      <p>Pour 50+ factures/mois, il faut un outil qui automatise tout :</p>
+      <ul><li><b>Sage</b> : robuste, intégrations ERP, standard des grands comptes</li><li><b>Pennylane</b> : plus moderne, UX supérieure, relances incluses</li></ul></div>`;
+  }
+  // Cas 6 : profession libérale
+  else if (q1 === 'pro') {
+    html = `<div class="reco"><h3>🏆 Tiime ou un outil métier certifié PDP</h3>
+      <p>Vérifiez d'abord si votre logiciel métier actuel est certifié PDP (beaucoup le sont).</p>
+      <ul><li>Si oui : rien à changer, activez la fonction</li><li>Si non : <b>Tiime</b> reste le plus simple en complément</li></ul></div>`;
+  }
+  // Cas 7 : défaut / tout
+  else {
+    html = `<div class="reco"><h3>🏆 Pennylane — le meilleur équilibre</h3>
+      <p>Complet, certifié PDP, pensé pour les PME françaises. Le choix le plus sûr en 2026.</p>
+      <ul><li>Facturation électronique + e-reporting automatiques</li><li>Relances, liens de paiement, compta intégrée</li><li>Tarifs transparents (offre micro gratuite incluse)</li></ul></div>
+      <div class="alt">Si vous voulez le moins cher : <b>Tiime</b>. Si vous voulez le plus pro : <b>Sage</b>.</div>`;
+  }
+
+  html += `<div class="tip">🔍 <b>Vérifiez la certification :</b> consultez l'annuaire officiel des PDP immatriculées sur <b>impots.gouv.fr → Professionnel → Facturation électronique</b>. Seule une plateforme immatriculée est autorisée.</div>`;
+  res.innerHTML = html;
+  res.classList.add('show');
+}
+</script>
+</body>
+</html>

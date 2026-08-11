@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⏱️ Combien vous coûte votre paperasse ? (calculateur 2026)</title>
+<meta name="description" content="Calculez le coût réel du temps administratif de votre entreprise : heures par semaine × valeur horaire. Et ce que l'automatisation (IA, n8n) peut vous rendre.">
+<meta property="og:title" content="⏱️ Combien vous coûte votre paperasse ?">
+<meta property="og:description" content="Le calculateur du temps perdu en admin pour TPE : et ce que l'automatisation peut vous rendre.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://SIMULATEUR-SARL.github.io/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Combien vous coûte votre paperasse ?","description":"Calculateur du coût du temps administratif pour TPE et du gain possible par automatisation.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}
+</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "👷 Créateurs & gérants", "item": "index.html#societe"}, {"@type": "ListItem", "position": 3, "name": "⏱️ Combien vous coûte votre paperasse ?", "item": "cout-paperasse.html"}]}</script>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="jargon-en-clair.html">🔤 Jargon</a>
+    <a href="comparateur-societes.html">⚖️ Comparateur</a>
+    <a href="ia-pour-compta.html">🤖 IA</a>
+    
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+<details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="comparateur-societes.html" class="menu-cat">⚖️ Comparateur : démarrez ici</a>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <a href="nouveautes-2026.html">📰 Nouveautés 2026</a>
+        <a href="cout-paperasse.html">⏱️ Coût de votre paperasse</a>
+        <a href="accompagnement.html">🤝 Accompagnement</a>
+        <a href="ia-pour-compta.html">🤖 IA pour la compta</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+    <div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+    <button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+  </div>
+
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <a href="index.html#societe">👷 Créateurs & gérants</a> › <span>⏱️ Combien vous coûte votre paperasse ?</span></nav>
+  <h1>⏱️ Combien vous coûte votre paperasse ?</h1>
+  <p class="subtitle">Chaque heure passée sur les factures, les relances, la compta et les emails est une heure que vous ne vendez pas. Le chiffrer change tout.</p>
+
+  <div class="card">
+    <label>🕐 Heures passées en administratif <strong>par semaine</strong></label>
+    <select id="heures" oninput="calcPaperasse()">
+      <option value="1">1 h ou moins</option>
+      <option value="3" selected>2 à 3 h</option>
+      <option value="5">4 à 5 h</option>
+      <option value="8">6 à 8 h</option>
+      <option value="12">9 à 12 h</option>
+      <option value="18">Plus de 12 h</option>
+    </select>
+    <label>💶 Votre valeur horaire (ce que vaut votre heure facturée)</label>
+    <input id="valeur" type="number" value="35" min="0" step="5" oninput="calcPaperasse()">
+    <p style="font-size:.8rem;color:var(--muted);margin-top:.4rem;">Conseil : prenez votre TJM ÷ 8 (ex. 280 €/jour ÷ 8 = 35 €/h), ou 20-30 €/h si vous êtes salarié du projet.</p>
+    <button class="btn" onclick="calcPaperasse()">⏱️ Calculer le coût de ma paperasse</button>
+
+    <div id="resultats" style="margin-top:1.2rem;"></div>
+  </div>
+
+  <div class="card">
+    <h2>📋 Ce que l'automatisation peut vous rendre</h2>
+    <table>
+      <tr><th>Tâche</th><th></th><th>% de votre temps admin</th><th>Réductible par…</th></tr>
+      <tr><td>Factures (création, envoi, suivi)</td><td></td><td>~25%</td><td>Logiciel de facturation + modèles (→ −50%)</td></tr>
+      <tr><td>Saisie comptable & rapprochement</td><td></td><td>~20%</td><td>OCR + rapprochement auto (→ −70%)</td></tr>
+      <tr><td>Relances d'impayés</td><td></td><td>~10%</td><td>Relances automatiques (→ −80%)</td></tr>
+      <tr><td>Emails & courrier</td><td></td><td>~25%</td><td>Templates + agent IA (→ −50%)</td></tr>
+      <tr><td>Démarches & divers</td><td></td><td>~20%</td><td>Préparation assistée (→ −30%)</td></tr>
+    </table>
+    <div class="tip">💡 <strong>Ordre de grandeur honnête</strong> : en automatisant les 4 premiers postes, les TPE gagnent en moyenne <strong>30 à 50% de leur temps administratif</strong> : soit, sur le cas ci-dessus, <strong>1 à 2 h par semaine</strong>.</div>
+  </div>
+
+  <div class="card" style="text-align:center;">
+    <p>🧭 Vous voulez savoir <strong>par où commencer</strong> ?</p>
+    <a href="diagnostic-ia.html" class="btn">🤖 Faire le diagnostic IA (5 questions)</a>
+    <a href="accompagnement.html" class="btn-outline">🤝 Être accompagné</a>
+  </div>
+
+  <div class="ressources">
+    <a href="ia-pour-compta.html">🤖 L'IA pour votre compta</a>
+    <a href="ia-factures-automatiques.html">🧾 Factures automatiques</a>
+    <a href="ia-n8n.html">🔗 n8n</a>
+    <a href="impayes-clients.html">📄 Impayés clients</a>
+  </div>
+
+  <div class="sources">Sources : <a href="https://entreprendre.service-public.fr/vosdroits/F23575" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">service-public F23575 (création & IS)</a> · <a href="https://www.legifrance.gouv.fr/eli/loi/2026/2/19/CPPX2524517L/jo/texte" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">Loi de finances 2026</a> · <a href="https://www.impots.gouv.fr/" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">impots.gouv.fr</a></div>
+<div class="footer">Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · 
+    ⚠️ Information indicative : ordres de grandeur, pas un audit. L'IA facilite la gestion mais ne remplace pas votre expert-comptable. · <a href="mentions-legales.html" style="color:var(--muted);">📜 Mentions légales</a> Taux vérifiés le 01/08/2026 (sources officielles).
+  </div>
+</div>
+<script>
+function fmt(n) { return Math.round(n).toLocaleString('fr-FR'); }
+function calcPaperasse() {
+  const h = parseFloat(document.getElementById('heures').value) || 0;
+  const v = parseFloat(document.getElementById('valeur').value) || 0;
+  const coutAn = h * v * 47; // 47 semaines travaillées
+  const coutMois = h * v * 4.2;
+  const postes = [
+    ['🧾 Factures', 0.25, 0.50],
+    ['📒 Saisie & rapprochement', 0.20, 0.70],
+    ['📄 Relances d\'impayés', 0.10, 0.80],
+    ['✉️ Emails & courrier', 0.25, 0.50],
+  ];
+  const gains = postes.map(p => ({ nom: p[0], gain: Math.round(coutAn * p[1] * p[2]) }));
+  const totalGain = gains.reduce((a, b) => a + b.gain, 0);
+  const hLib = Math.round(h * 0.35);
+  document.getElementById('resultats').innerHTML = `
+    <div class="roi">🏆 <strong>Votre paperasse vous coûte environ ${fmt(coutAn)} €/an</strong> (${fmt(coutMois)} €/mois) : c'est ${fmt(h * 47)} heures par an.</div>
+    <p style="margin-top:.8rem;"><strong>Ce que l'automatisation peut vous rendre (ordre de grandeur) :</strong></p>
+    <table>
+      <tr><th>Tâche</th><th>Gain estimé / an</th></tr>
+      ${gains.map(g => `<tr><td>${g.nom}</td><td>~${fmt(g.gain)} €</td></tr>`).join('')}
+      <tr><td><strong>Total potentiel</strong></td><td><strong>~${fmt(totalGain)} €/an</strong> (+ ~${hLib} h/semaine libérées)</td></tr>
+    </table>
+    <p style="margin-top:.8rem;">💡 Un outil à ${'~'}200 €/an qui vous libère ${fmt(totalGain)} € de temps = <strong>retour ×${Math.max(1, Math.round(totalGain / 200))}</strong>. C'est le meilleur investissement de votre boîte.</p>`;
+}
+calcPaperasse();
+</script>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="sw-register.js"></script>
+</body>
+</html>

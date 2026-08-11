@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulateur cotisations TNS 2026 : détail par poste (gérant SARL)</title>
+<meta property="og:image" content="https://SIMULATEUR-SARL.github.io/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:title" content="Simulateur cotisations TNS 2026 : détail par poste (gérant SARL)">
+<meta property="og:description" content="Simulateur cotisations TNS 2026 : détail poste par poste (maladie, retraite, CSG-CRDS), net et comparaison SASU.">
+<meta property="og:type" content="website">
+<meta name="description" content="Simulateur cotisations TNS 2026 : détail poste par poste (maladie, retraite, CSG-CRDS), net et comparaison SASU.">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Pourquoi ~45% et pas plus simple ?", "acceptedAnswer": {"@type": "Answer", "text": "Le régime TNS additionne plusieurs branches (maladie, retraite base, retraite complémentaire, invalidité, famille, formation, CSG-CRDS). Le total est ~44-45% du brut : mais sans cotisations patronales (contrairement à la SASU où le coût employeur ajoute ~25%)."}}, {"@type": "Question", "name": "Les cotisations minimales sans rémunération ?", "acceptedAnswer": {"@type": "Answer", "text": "Si le gérant ne se verse rien, il doit quand même ~1 360 €/an de cotisations minimales (retraite de base + CSG-CRDS) : voir la carte \"Gérant non rémunéré\" de l'optimiseur SARL."}}, {"@type": "Question", "name": "Ces cotisations sont-elles déductibles ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui : les cotisations TNS sont déductibles du résultat de la société (elles réduisent l'IS) et ne sont pas imposées à l'IR (elles réduisent le revenu imposable du gérant). C'est le \"double avantage\" du salaire en société."}}]}</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "👷 Créateurs & gérants", "item": "index.html#societe"}, {"@type": "ListItem", "position": 3, "name": "🧮 Simulateur cotisations TNS 2026", "item": "simulateur-cotisations-tns.html"}]}</script>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="jargon-en-clair.html">🔤 Jargon</a>
+    <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+    <a href="tns-ou-assimile-salarie.html">⚖️ TNS vs assimilé</a>
+    <a href="guide-optimisation-sarl.html">📖 Guide</a>
+  
+    
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+<details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="comparateur-societes.html" class="menu-cat">⚖️ Comparateur : démarrez ici</a>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+  </div>
+
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <a href="index.html#societe">👷 Créateurs & gérants</a> › <span>🧮 Simulateur cotisations TNS 2026</span></nav>
+  <h1>🧮 Simulateur cotisations TNS 2026</h1>
+  <p class="subtitle">Gérant majoritaire de SARL/EURL : combien coûtent vos cotisations, poste par poste, et que reste-t-il en net ? Taux 2026 sourcés (URSSAF).</p>
+
+  <div class="tldr">
+    <strong>TL;DR :</strong> Les cotisations TNS du gérant majoritaire représentent <strong>~45% du salaire brut</strong> : maladie, retraite de base (17,75% jusqu'au PASS), retraite complémentaire, invalidité-décès, allocations familiales, formation et CSG-CRDS. Pour 3 000 € de brut mensuel : ~1 335 € de cotisations, <strong>~1 665 € de net</strong>. Comparé à la SASU (net ~78% du brut mais coût société 1,40x) : le TNS laisse moins de net par euro de brut, mais coûte moins cher à la société.
+  </div>
+
+  <div class="card" style="border-left: 3px solid var(--accent);">
+    <h2>📊 Votre rémunération</h2>
+    <div class="grid-3">
+      <div>
+        <label>Salaire brut mensuel (€)</label>
+        <input type="number" id="brut" value="3000" min="0" step="100">
+      </div>
+    </div>
+    <button class="btn" onclick="calc()">🧮 Calculer mes cotisations</button>
+    <button class="btn-outline" style="margin-left:.5rem;" onclick="exemple()">🎨 Exemple 3 000 €/mois</button>
+  </div>
+
+  <div id="results" class="hidden">
+    <div class="card" style="border:1px solid var(--accent);">
+      <h2 style="color:var(--accent);">📋 Détail des cotisations TNS</h2>
+      <table>
+        <tr><th>Poste</th><th></th><th>Montant mensuel</th></tr>
+        <tr><td>Maladie-maternité (6,5%)</td><td></td><td id="dMaladie" class="charge-amount">0€</td></tr>
+        <tr><td>Retraite de base (17,75% jusqu'au PASS)</td><td></td><td id="dRetBase" class="charge-amount">0€</td></tr>
+        <tr><td>Retraite complémentaire (7%)</td><td></td><td id="dRetCompl" class="charge-amount">0€</td></tr>
+        <tr><td>Invalidité-décès (1,5%)</td><td></td><td id="dInval" class="charge-amount">0€</td></tr>
+        <tr><td>Allocations familiales (1,7%)</td><td></td><td id="dAlloc" class="charge-amount">0€</td></tr>
+        <tr><td>Formation professionnelle (0,25%)</td><td></td><td id="dForm" class="charge-amount">0€</td></tr>
+        <tr><td>CSG-CRDS (~9,8%)</td><td></td><td id="dCsg" class="charge-amount">0€</td></tr>
+        <tr style="border-top:2px solid var(--accent);"><td><strong>Total cotisations</strong></td><td></td><td id="totalCot" class="charge-amount" style="font-weight:700;">0€</td></tr>
+        <tr><td><strong>Salaire net (avant IR)</strong></td><td></td><td id="net" class="net-amount" style="font-weight:700;">0€</td></tr>
+      </table>
+      <div id="tnsTip" class="tip"></div>
+    </div>
+
+    <div class="card">
+      <h2>⚖️ Comparaison rapide avec la SASU</h2>
+      <table>
+        <tr><th>Critère</th><th>🟠 TNS (gérant majoritaire)</th><th>🔵 SASU (président)</th></tr>
+        <tr><td>Net pour ce brut</td><td id="cNetTns">0€</td><td id="cNetSasu">0€</td></tr>
+        <tr><td>Coût pour la société</td><td id="cCoutTns">0€</td><td id="cCoutSasu">0€</td></tr>
+        <tr><td>Retraite</td><td>Indépendants (~40-50%)</td><td>Régime cadre (~55-65%)</td></tr>
+        <tr><td>IK / conjoint collaborateur</td><td class="yes">✓ Oui</td><td class="no">✗ Non</td></tr>
+      </table>
+      <div id="cmpTip" class="tip"></div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card" style="margin-top:1rem;">
+    <h2>❓ Questions fréquentes</h2>
+    <details>
+      <summary>Pourquoi ~45% et pas plus simple ?</summary>
+      <p>Le régime TNS additionne plusieurs branches (maladie, retraite base, retraite complémentaire, invalidité, famille, formation, CSG-CRDS). Le total est ~44-45% du brut : mais <strong>sans cotisations patronales</strong> (contrairement à la SASU où le coût employeur ajoute ~25%).</p>
+    </details>
+    <details>
+      <summary>Les cotisations minimales sans rémunération ?</summary>
+      <p>Si le gérant ne se verse rien, il doit quand même ~1 360 €/an de cotisations minimales (retraite de base + CSG-CRDS) : voir la carte "Gérant non rémunéré" de l'<a href="optimiseur-sarl-couple.html" style="color:var(--accent);">optimiseur SARL</a>.</p>
+    </details>
+    <details>
+      <summary>Ces cotisations sont-elles déductibles ?</summary>
+      <p><strong>Oui</strong> : les cotisations TNS sont déductibles du résultat de la société (elles réduisent l'IS) et ne sont pas imposées à l'IR (elles réduisent le revenu imposable du gérant). C'est le "double avantage" du salaire en société.</p>
+    </details>
+  </div>
+
+  <div class="sources">Sources : <a href="https://entreprendre.service-public.fr/vosdroits/F23575" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">service-public F23575 (création & IS)</a> · <a href="https://www.legifrance.gouv.fr/eli/loi/2026/2/19/CPPX2524517L/jo/texte" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">Loi de finances 2026</a> · <a href="https://www.impots.gouv.fr/" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">impots.gouv.fr</a></div>
+<div class="footer">Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · 
+    ⚠️ Estimation indicative : taux 2026 (ordre de grandeur, exonérations bas revenus non détaillées). Source : URSSAF, règles officielles mon-entreprise (publicodes 2026).
+   Taux vérifiés le 01/08/2026 (sources officielles).</div>
+</div>
+
+<script src="parametres-2026.js"></script>
+<script src="moteur-calcul.js"></script>
+<script>
+function fmt(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+
+function exemple() {
+  document.getElementById('brut').value = '3000';
+  calc();
+}
+
+function calc() {
+  const brut = parseFloat(document.getElementById('brut').value) || 0;
+  document.getElementById('results').classList.remove('hidden');
+  const set = (id, v) => document.getElementById(id).textContent = v;
+
+  const mensuel = brut;
+  const annuel = brut * 12;
+  // Détail (approximation : retraite base plafonnée au PASS)
+  const dMaladie = mensuel * TNS.maladie;
+  const dRetBase = Math.min(annuel, PASS) / 12 * TNS.retraiteBase;
+  const dRetCompl = mensuel * TNS.retraiteCompl;
+  const dInval = mensuel * TNS.invalDeces;
+  const dAlloc = mensuel * TNS.allocations;
+  const dForm = mensuel * TNS.formation;
+  const dCsg = mensuel * TNS.csgCrds;
+  const total = dMaladie + dRetBase + dRetCompl + dInval + dAlloc + dForm + dCsg;
+  const net = mensuel - total;
+
+  set('dMaladie', fmt(dMaladie));
+  set('dRetBase', fmt(dRetBase));
+  set('dRetCompl', fmt(dRetCompl));
+  set('dInval', fmt(dInval));
+  set('dAlloc', fmt(dAlloc));
+  set('dForm', fmt(dForm));
+  set('dCsg', fmt(dCsg));
+  set('totalCot', fmt(total));
+  set('net', fmt(net));
+
+  document.getElementById('tnsTip').innerHTML = `💡 Pour ${fmt(mensuel)}/mois de brut : <strong>${fmt(total)} de cotisations</strong> (${(total / mensuel * 100).toFixed(1)}%), net <strong>${fmt(net)}</strong> (${(net / mensuel * 100).toFixed(1)}%). ${brut === 0 ? '⚠️ Cotisations minimales ~1 360 €/an dues même sans rémunération.' : ''}`;
+
+  // Comparaison SASU
+  const netSasu = brut * 0.785;
+  const coutSasu = brut * 1.40;
+  set('cNetTns', fmt(net));
+  set('cNetSasu', fmt(netSasu));
+  set('cCoutTns', fmt(brut));
+  set('cCoutSasu', fmt(coutSasu));
+  document.getElementById('cmpTip').innerHTML = `🔵 SASU : net ${fmt(netSasu)} mais coût société ${fmt(coutSasu)} (1,40x). 🟠 TNS : net ${fmt(net)} mais coût société ${fmt(brut)} (pas de patronales). <strong>À budget égal, le TNS sort plus de net ; à protection égale, la SASU gagne (retraite, prévoyance).</strong>`;
+}
+
+calc();
+</script>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="sw-register.js"></script>
+</body>
+</html>

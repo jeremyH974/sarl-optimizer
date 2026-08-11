@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulateur dividendes SARL 2026 : piège des 10%</title>
+<meta property="og:image" content="https://SIMULATEUR-SARL.github.io/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:title" content="Simulateur dividendes SARL 2026 : piège des 10%">
+<meta property="og:description" content="Calculez vos dividendes 2026 : capacité selon votre capital (piège des 10% en SARL), flat tax 30% vs barème révocable, et levier d'augmentation de capital.">
+<meta property="og:type" content="website">
+<meta name="description" content="Calculez vos dividendes 2026 : capacité selon votre capital (piège des 10% en SARL), flat tax 30% vs barème révocable, et levier d'augmentation de capital.">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Le piège des 10% du capital, c'est quoi exactement ?", "acceptedAnswer": {"@type": "Answer", "text": "En SARL/EURL, les dividendes du gérant majoritaire au-delà de 10% du capital social sont réintégrés dans l'assiette des cotisations sociales TNS (~45%). Le simulateur calcule le surplus et son net réel : et le levier capital montre le gain d'une augmentation de capital."}}, {"@type": "Question", "name": "Flat tax ou barème : comment choisir ?", "acceptedAnswer": {"@type": "Answer", "text": "Comparez votre TMI à 12,8% : en dessous, l'option barème (TMI + 17,2% de PS) gagne ; au-dessus, la flat tax 30% gagne. Depuis la LF 2026, ce choix est révocable chaque année : voir la page flat tax."}}, {"@type": "Question", "name": "Faut-il augmenter le capital social ?", "acceptedAnswer": {"@type": "Answer", "text": "Si votre résultat après IS dépasse 10% du capital, oui : chaque euro de capital en plus débloque 0,10 € de dividendes \"propres\" par an. L'argent reste dans l'entreprise : c'est aussi une épargne de sécurité. L'outil chiffre le gain."}}, {"@type": "Question", "name": "Salaire ou dividendes : quel est le plus efficace ?", "acceptedAnswer": {"@type": "Answer", "text": "Ça dépend de votre TMI et du taux d'IS. À TMI faible, le dividende protégé bat le salaire ; à TMI élevé, le salaire (déductible) reprend l'avantage. Le simulateur affiche le verdict pour 1 000 € de résultat."}}, {"@type": "Question", "name": "Et si je ne me verse rien du tout ?", "acceptedAnswer": {"@type": "Answer", "text": "Même sans rémunération, ~1 360 €/an de cotisations minimales TNS restent dues (gérant majoritaire). C'est déductible du résultat : voir la carte \"Gérant non rémunéré\"."}}]}</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "👷 Créateurs & gérants", "item": "index.html#societe"}, {"@type": "ListItem", "position": 3, "name": "💰 Simulateur de dividendes : 2026", "item": "simulateur-dividendes.html"}]}</script>
+</head>
+<body>
+<div class="container">
+
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <a href="index.html#societe">👷 Créateurs & gérants</a> › <span>💰 Simulateur de dividendes : 2026</span></nav>
+  <h1>💰 Simulateur de dividendes : 2026</h1>
+  <p class="subtitle">Combien puis-je me verser en dividendes ? Le piège des 10% du capital, la flat tax révocable (LF 2026), et le levier d'augmentation de capital. Taux 2026 sourcés.</p>
+
+  <div class="nav">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="jargon-en-clair.html">🔤 Jargon</a>
+    <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+    <a href="simulateur-sasu.html">🚀 SASU/SAS</a>
+    <a href="comparateur-societes.html">⚖️ Comparateur</a>
+    <a href="flat-tax-2026.html">💶 Flat tax 2026</a>
+    <a href="guide-optimisation-sarl.html">📖 Guide</a>
+  
+    
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+<details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="comparateur-societes.html" class="menu-cat">⚖️ Comparateur : démarrez ici</a>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+  </div>
+
+  <div class="card" style="border-left: 3px solid var(--accent);">
+    <h2>📊 Votre situation</h2>
+    <div class="grid-3">
+      <div>
+        <label>CA HT annuel (€)</label>
+        <input type="number" id="ca" value="65000" min="0" step="1000">
+      </div>
+      <div>
+        <label>Charges pro annuelles (€)</label>
+        <input type="number" id="charges" value="18000" min="0" step="1000">
+      </div>
+      <div>
+        <label>Capital social (€)</label>
+        <input type="number" id="capital" value="1000" min="0" step="500">
+      </div>
+    </div>
+    <div class="grid-3" style="margin-top:.8rem;">
+      <div>
+        <label>Forme de la société</label>
+        <select id="forme">
+          <option value="sarl" selected>SARL / EURL (piège 10%)</option>
+          <option value="sasu">SASU / SAS (pas de seuil)</option>
+        </select>
+      </div>
+      <div>
+        <label>Salaire du dirigeant (€/an brut)</label>
+        <input type="number" id="salaire" value="20000" min="0" step="1000">
+      </div>
+      <div>
+        <label>Autres revenus du foyer (€/an)</label>
+        <input type="number" id="autresRevenus" value="0" min="0" step="1000">
+      </div>
+    </div>
+    <div style="margin-top:.8rem;font-size:.85rem;color:var(--muted);">
+      📊 <strong>TMI estimé du foyer : <span id="tmiEstime" style="color:var(--accent);">:</span></strong>
+    </div>
+    <button class="btn" onclick="calc()">💰 Calculer mes dividendes</button>
+    <button class="btn-outline" style="margin-left:.5rem;" onclick="exemple()">🎨 Exemple type (artisan 65 k€)</button>
+  </div>
+
+  <div id="results" class="hidden">
+
+    <div class="card" style="border:1px solid var(--accent);">
+      <h2 style="color:var(--green);">Capacité de dividendes</h2>
+      <div class="grid-4" style="text-align:center;margin-bottom:1rem;">
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Résultat après IS</div>
+          <div class="big-num" id="resNetIs">0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Dividendes bruts possibles</div>
+          <div class="big-num" id="divBrut">0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Impôt (flat tax ou barème)</div>
+          <div class="big-num charge-amount" id="divImpot">0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Dividendes nets</div>
+          <div class="big-num net-amount" id="divNet">0€</div>
+        </div>
+      </div>
+      <table>
+        <tr><th>Poste</th><th></th><th>Montant</th></tr>
+        <tr><td>Résultat brut (CA − charges)</td><td></td><td id="resBrut">0€</td></tr>
+        <tr><td>Salaire du dirigeant</td><td></td><td id="sal">0€</td></tr>
+        <tr><td>Cotisations TNS</td><td></td><td id="tns" class="charge-amount">0€</td></tr>
+        <tr><td>IS (15% / 25%)</td><td></td><td id="is" class="charge-amount">0€</td></tr>
+        <tr style="border-top:2px solid var(--border);"><td><strong>Résultat distribuable (après IS)</strong></td><td></td><td id="resNetIsTab" style="font-weight:700;">0€</td></tr>
+        <tr id="rowSafe"><td>Part "protégée" (≤ 10% capital)</td><td></td><td id="divSafe" class="net-amount">0€</td></tr>
+        <tr id="rowSurplus"><td>Surplus (&gt; 10% capital, rechargé cotisations ~45%)</td><td></td><td id="divSurplus" class="charge-amount">0€</td></tr>
+      </table>
+      <div id="piegeTip" class="tip"></div>
+    </div>
+
+    <!-- ASTUCE ROI -->
+    <div class="card" style="border:1px solid var(--green);">
+      <h2 style="color:var(--green);">🏆 L'astuce Roi pour vos dividendes</h2>
+      <div id="astuceRoi"></div>
+    </div>
+
+    <!-- FLAT TAX -->
+    <div class="card" style="border:1px solid var(--accent);">
+      <h2 style="color:var(--accent);">🎯 Flat tax vs barème (choix révocable depuis la LF 2026)</h2>
+      <table>
+        <tr><th>Option</th><th></th><th>Taux</th><th>Sur vos dividendes bruts</th></tr>
+        <tr><td>Flat tax (PFU) 30%</td><td></td><td>30,0%</td><td id="divPFU" class="net-amount">0€</td></tr>
+        <tr><td>Barème progressif <span id="barèmeLabel"></span></td><td></td><td id="tauxBarème">0%</td><td id="divBarème" class="net-amount">0€</td></tr>
+        <tr style="border-top:2px solid var(--accent);"><td><strong>Option recommandée</strong></td><td></td><td id="meilleurTaux">0%</td><td id="divMeilleur" class="net-amount" style="font-weight:700;">0€</td></tr>
+      </table>
+      <div id="flatTaxTip" class="tip"></div>
+    </div>
+
+    <!-- LEVIER CAPITAL -->
+    <div class="card">
+      <h2>📈 Levier : augmenter le capital social</h2>
+      <div class="grid-3">
+        <div>
+          <label>Capital envisagé (€)</label>
+          <input type="number" id="capitalCible" value="20000" min="0" step="1000">
+        </div>
+        <div style="display:flex;align-items:flex-end;">
+          <button class="btn" style="margin:0;" onclick="calcLevier()">Comparer</button>
+        </div>
+      </div>
+      <table style="margin-top:.8rem;">
+        <tr><th>Capital</th><th>Seuil 10%</th><th>Dividendes protégés</th><th>Gain net estimé</th></tr>
+        <tr><td id="capActuel">0€</td><td id="seuilActuel">0€</td><td id="protActuel">0€</td><td>:</td></tr>
+        <tr id="rowCible"><td id="capCible">0€</td><td id="seuilCible">0€</td><td id="protCible">0€</td><td id="gainCible" class="net-amount">0€</td></tr>
+      </table>
+      <div id="capitalTip" class="tip"></div>
+    </div>
+
+    <!-- SALAIRE VS DIVIDENDE -->
+    <div class="card">
+      <h2>⚖️ Salaire ou dividende : le plus efficace ?</h2>
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:.6rem;">Pour 1 000 € de résultat, combien reste-t-il en poche selon la voie choisie ?</p>
+      <table>
+        <tr><th>Voie</th><th></th><th>Net en poche</th><th>Verdict</th></tr>
+        <tr><td>Salaire (TNS)</td><td></td><td id="vsSalaire">0€</td><td id="vsSalaireV" class="charge-amount"></td></tr>
+        <tr><td>Dividende (protégé)</td><td></td><td id="vsDividende">0€</td><td id="vsDividendeV" class="net-amount"></td></tr>
+      </table>
+      <div id="vsTip" class="tip"></div>
+    </div>
+
+    <!-- GÉRANT NON RÉMUNÉRÉ -->
+    <div class="card" style="border:1px solid var(--blue);">
+      <h2 style="color:var(--blue);">📉 Gérant non rémunéré ? Les cotisations minimales</h2>
+      <p style="font-size:.85rem;color:var(--muted);">Même sans salaire ni dividendes, un gérant majoritaire de SARL/EURL doit payer des cotisations minimales :</p>
+      <table>
+        <tr><td>Retraite de base (assiette minimale)</td><td>~960 €/an</td></tr>
+        <tr><td>CSG-CRDS + divers</td><td>~400 €/an</td></tr>
+        <tr style="border-top:2px solid var(--blue);"><td><strong>Total cotisations minimales 2026</strong></td><td id="cotMin" style="font-weight:700;color:var(--blue);">~1 360 €/an</td></tr>
+      </table>
+      <div class="tip">💡 <strong>À savoir</strong> : un gérant non rémunéré doit quand même cotiser (~1 360 €/an) : et ce montant est déductible du résultat. Source : moteur officiel URSSAF 2026 (revenu professionnel 0 €).</div>
+    </div>
+
+  </div>
+
+  <!-- FAQ -->
+  <div class="card" style="margin-top:1.5rem;">
+    <h2>❓ Questions fréquentes</h2>
+    <details>
+      <summary>Le piège des 10% du capital, c'est quoi exactement ?</summary>
+      <p>En SARL/EURL, les dividendes du gérant majoritaire au-delà de 10% du capital social sont réintégrés dans l'assiette des cotisations sociales TNS (~45%). Le simulateur calcule le surplus et son net réel : et le levier capital montre le gain d'une augmentation de capital.</p>
+    </details>
+    <details>
+      <summary>Flat tax ou barème : comment choisir ?</summary>
+      <p>Comparez votre TMI à 12,8% : en dessous, l'option barème (TMI + 17,2% de PS) gagne ; au-dessus, la flat tax 30% gagne. Depuis la LF 2026, ce choix est révocable chaque année : voir la <a href="flat-tax-2026.html" style="color:var(--accent);">page flat tax</a>.</p>
+    </details>
+    <details>
+      <summary>Faut-il augmenter le capital social ?</summary>
+      <p>Si votre résultat après IS dépasse 10% du capital, oui : chaque euro de capital en plus débloque 0,10 € de dividendes "propres" par an. L'argent reste dans l'entreprise : c'est aussi une épargne de sécurité. L'outil chiffre le gain.</p>
+    </details>
+    <details>
+      <summary>Salaire ou dividendes : quel est le plus efficace ?</summary>
+      <p>Ça dépend de votre TMI et du taux d'IS. À TMI faible, le dividende protégé bat le salaire ; à TMI élevé, le salaire (déductible) reprend l'avantage. Le simulateur affiche le verdict pour 1 000 € de résultat.</p>
+    </details>
+    <details>
+      <summary>Et si je ne me verse rien du tout ?</summary>
+      <p>Même sans rémunération, ~1 360 €/an de cotisations minimales TNS restent dues (gérant majoritaire). C'est déductible du résultat : voir la carte "Gérant non rémunéré".</p>
+    </details>
+  </div>
+
+  <div style="margin-top:1.5rem;padding:1rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--muted);text-align:center;">
+    ⚠️ Simulation indicative : taux 2026 sourcés (URSSAF, service-public.fr). Consultez votre expert-comptable.
+  </div>
+</div>
+
+<script src="parametres-2026.js"></script>
+<script src="moteur-calcul.js"></script>
+<script>
+// ═══════════════ EXEMPLE TYPE ═══════════════
+function exemple() {
+  document.getElementById('ca').value = '65000';
+  document.getElementById('charges').value = '18000';
+  document.getElementById('capital').value = '1000';
+  document.getElementById('forme').value = 'sarl';
+  document.getElementById('salaire').value = '20000';
+  document.getElementById('autresRevenus').value = '0';
+  document.getElementById('capitalCible').value = '20000';
+  calc();
+}
+
+function fmt(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+let dernier = null; // état du dernier calcul pour le levier capital
+
+function calc() {
+  const ca = parseFloat(document.getElementById('ca').value) || 0;
+  const charges = parseFloat(document.getElementById('charges').value) || 0;
+  const capital = parseFloat(document.getElementById('capital').value) || 1000;
+  const forme = document.getElementById('forme').value;
+  const salaire = parseFloat(document.getElementById('salaire').value) || 0;
+  const autresRevenus = parseFloat(document.getElementById('autresRevenus').value) || 0;
+
+  const resultat = ca - charges;
+  if (resultat <= 0) { alert('Résultat (CA − charges) doit être positif.'); return; }
+
+  // TMI estimé (auto) : salaire net TNS + autres revenus, abattement 10%
+  const tns = calcTns(salaire);
+  const revenuImposable = (salaire - tns) * 0.9 + autresRevenus;
+  const tmiCalc = calcTmiBracket(revenuImposable);
+  document.getElementById('tmiEstime').textContent = tmiCalc.nom;
+
+  // Taux optimal dividendes (flat tax révocable LF 2026)
+  const tauxBarème = tmiCalc.taux + 0.172;
+  const flatTaxOK = PFU <= tauxBarème;
+  const tauxDiv = Math.min(PFU, tauxBarème);
+
+  const resIS = resultat - salaire - tns;
+  const is = calcIs(resIS);
+  const netIs = Math.max(0, resIS - is);
+  const seuil = capital * 0.10;
+
+  // SARL : piège 10% : le surplus est rechargé de cotisations TNS (~45%)
+  let divBrut, divSafe, surplus;
+  if (forme === 'sasu') {
+    divBrut = netIs;
+    divSafe = netIs; surplus = 0;
+  } else {
+    divSafe = Math.min(netIs, seuil);
+    surplus = Math.max(0, netIs - seuil);
+    divBrut = divSafe + surplus * 0.55; // le surplus net après cotisations
+  }
+  const divNet = divSafe * (1 - tauxDiv) + surplus * 0.55 * (1 - tauxDiv);
+  const divImpot = divSafe * tauxDiv + surplus * 0.55 * tauxDiv;
+
+  // Affichage
+  const set = (id, v) => document.getElementById(id).textContent = v;
+  document.getElementById('results').classList.remove('hidden');
+  set('resBrut', fmt(resultat));
+  set('sal', fmt(salaire));
+  set('tns', '−' + fmt(tns));
+  set('is', '−' + fmt(is));
+  set('resNetIs', fmt(netIs));
+  document.getElementById('divBrut').textContent = fmt(divBrut);
+  document.getElementById('divImpot').textContent = '−' + fmt(divImpot);
+  document.getElementById('divNet').textContent = fmt(divNet);
+  set('divSafe', fmt(divSafe));
+  set('divSurplus', fmt(surplus) + ' → net ' + fmt(surplus * 0.55 * (1 - tauxDiv)));
+
+  document.getElementById('rowSafe').style.display = forme === 'sasu' ? 'none' : '';
+  document.getElementById('rowSurplus').style.display = (forme === 'sasu' || surplus <= 0) ? 'none' : '';
+
+  document.getElementById('piegeTip').innerHTML = forme === 'sasu'
+    ? `💡 <strong>SASU : pas de seuil 10%.</strong> Vos ${fmt(netIs)} de résultat après IS sont distribuables en totalité, sans cotisations sociales supplémentaires (hors rémunération déguisée).`
+    : (surplus > 0
+      ? `⚠️ <strong>Piège des 10%</strong> : avec ${fmt(capital)} de capital, seuls ${fmt(seuil)} de dividendes sont protégés. Le surplus (${fmt(surplus)}) est <strong>réintégré dans l'assiette des cotisations TNS (~45%)</strong> : sur ${fmt(surplus)}, il ne reste que ${fmt(surplus * 0.55)} avant impôt. Augmentez votre capital (voir levier ci-dessous).`
+      : `Votre résultat après IS (${fmt(netIs)}) est sous le seuil des 10% du capital (${fmt(seuil)}) : pas de surplus rechargé.`);
+
+  // Flat tax vs barème
+  const divEx = divSafe + surplus * 0.55;
+  const divPFU = divEx * (1 - PFU);
+  const divBar = divEx * (1 - tauxBarème);
+  set('divPFU', fmt(divPFU));
+  set('divBarème', fmt(Math.max(0, divBar)));
+  set('tauxBarème', (tauxBarème * 100).toFixed(1) + '%');
+  set('meilleurTaux', (Math.min(PFU, tauxBarème) * 100).toFixed(1) + '%');
+  set('divMeilleur', fmt(flatTaxOK ? divPFU : Math.max(0, divBar)));
+  document.getElementById('barèmeLabel').textContent = '(TMI ' + (tmiCalc.taux * 100).toFixed(0) + '% + 17,2% PS)';
+  document.getElementById('flatTaxTip').innerHTML = flatTaxOK
+    ? `💡 À votre TMI (${(tmiCalc.taux * 100).toFixed(0)}%), la <strong>flat tax 30%</strong> reste plus avantageuse que le barème (${(tauxBarème * 100).toFixed(1)}%). Depuis la LF 2026 (art. 126), ce choix est révisable chaque année.`
+    : `💡 À votre TMI (${(tmiCalc.taux * 100).toFixed(0)}%), l'option <strong>barème progressif</strong> est plus avantageuse (${(tauxBarème * 100).toFixed(1)}% vs 30%). Gain : <strong>${fmt(Math.max(0, divBar) - divPFU)}</strong>/an. Révocable chaque année depuis la LF 2026 (art. 126).`;
+
+  // Salaire vs dividende (pour 1 000 € de résultat)
+  const netSalaire1000 = 1000 * 0.555 * (1 - Math.max(tmiCalc.taux, 0) * 0.9); // TNS net puis IR approximatif
+  const netDiv1000 = 1000 * 0.85 * (1 - tauxDiv); // IS 15% puis impôt dividende
+  set('vsSalaire', fmt(netSalaire1000));
+  set('vsDividende', fmt(netDiv1000));
+  const divGagne = netDiv1000 > netSalaire1000;
+  document.getElementById('vsSalaireV').textContent = divGagne ? '' : '🏆 plus efficace';
+  document.getElementById('vsDividendeV').textContent = divGagne ? '🏆 plus efficace' : '';
+  document.getElementById('vsTip').innerHTML = divGagne
+    ? `💡 À votre TMI, le <strong>dividende protégé</strong> est plus efficace que le salaire : ${fmt(netDiv1000)} vs ${fmt(netSalaire1000)} pour 1 000 € de résultat. En SASU ou sous le seuil des 10%, maximisez les dividendes.`
+    : `💡 À votre TMI, le <strong>salaire</strong> est plus efficace que le dividende : ${fmt(netSalaire1000)} vs ${fmt(netDiv1000)} pour 1 000 € de résultat. Privilégiez la rémunération.`;
+
+  // ── Astuce Roi ──
+  const astuces = [];
+  if (forme === 'sarl' && surplus > 0) {
+    const protCibleCalc = Math.min(netIs, 2000);
+    const gainCalc = Math.max(0, protCibleCalc - Math.min(netIs, seuil)) * 0.45 * (1 - tauxDiv);
+    astuces.push(`<div class="roi">📈 <strong>Augmentez votre capital social</strong> : votre surplus de ${fmt(surplus)} est rechargé de cotisations TNS. En passant le capital à 20 000 €, ${fmt(Math.min(netIs, 2000) - divSafe)} de dividendes deviennent protégés. <span class="gain">+${fmt(gainCalc)}/an</span></div>`);
+  }
+  if (!flatTaxOK) {
+    astuces.push(`<div class="roi">💶 <strong>Choisissez le barème progressif cette année</strong> (LF 2026 art. 126 : choix révocable) : ${fmt(Math.max(0, divBar) - divPFU)} de plus que la flat tax sur vos dividendes. <span class="gain">+${fmt(Math.max(0, divBar) - divPFU)}/an</span></div>`);
+  } else if (forme === 'sasu') {
+    astuces.push(`<div class="roi">💶 <strong>Flat tax révocable (LF 2026)</strong> : à votre TMI, la flat tax 30% reste le bon choix : mais surveillez chaque année : si vos revenus baissent (TMI 11% ou moins), le barème repasse devant. <span class="gain">+0 à 3% selon l'année</span></div>`);
+  }
+  if (netSalaire1000 < netDiv1000) {
+    astuces.push(`<div class="roi">⚖️ <strong>Le dividende bat le salaire chez vous</strong> : ${fmt(netDiv1000)} nets vs ${fmt(netSalaire1000)} pour 1 000 € de résultat. Versez le minimum de salaire nécessaire (couverture sociale) et sortez le reste en dividendes. <span class="gain">+${fmt(netDiv1000 - netSalaire1000)}/1 000 €</span></div>`);
+  } else {
+    astuces.push(`<div class="roi">⚖️ <strong>Le salaire bat le dividende chez vous</strong> : ${fmt(netSalaire1000)} nets vs ${fmt(netDiv1000)} pour 1 000 € de résultat. Privilégiez la rémunération plutôt que les dividendes. <span class="gain">+${fmt(netSalaire1000 - netDiv1000)}/1 000 €</span></div>`);
+  }
+  document.getElementById('astuceRoi').innerHTML = astuces.slice(0, 3).join('');
+
+  // Mémo pour le levier capital
+  dernier = { netIs, tauxDiv, surplus, forme, seuil };
+
+  // Capital actuel
+  set('capActuel', fmt(capital));
+  set('seuilActuel', fmt(seuil));
+  set('protActuel', fmt(Math.min(netIs, seuil)));
+  calcLevier();
+}
+
+function calcLevier() {
+  if (!dernier) return;
+  const capCible = parseFloat(document.getElementById('capitalCible').value) || 0;
+  const seuilCible = capCible * 0.10;
+  const protCible = Math.min(dernier.netIs, seuilCible);
+  const protActuel = Math.min(dernier.netIs, dernier.seuil);
+  const set = (id, v) => document.getElementById(id).textContent = v;
+  set('capCible', fmt(capCible));
+  set('seuilCible', fmt(seuilCible));
+  set('protCible', fmt(protCible));
+  // Gain = surplus qui devient protégé (cotisations TNS évitées, puis impôt)
+  const gainBrut = Math.max(0, protCible - protActuel);
+  const gainNet = gainBrut * 0.45 * (1 - dernier.tauxDiv);
+  set('gainCible', '+' + fmt(gainNet));
+  document.getElementById('capitalTip').innerHTML = gainNet > 0
+    ? `📈 En passant le capital de ${fmt(dernier.seuil / 0.10)} à ${fmt(capCible)}, ${fmt(gainBrut)} de dividendes supplémentaires deviennent protégés : économie de cotisations TNS : <strong>+${fmt(gainNet)}/an nets</strong>. L'argent reste dans l'entreprise (épargne de sécurité).`
+    : `ℹ️ Augmenter le capital n'apporte rien ici : votre résultat après IS (${fmt(dernier.netIs)}) est déjà sous le seuil actuel des 10%.`;
+}
+
+calc();
+</script>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<script src="sauvegarde.js"></script>
+<div class="sources">Sources : <a href="https://entreprendre.service-public.fr/vosdroits/F23575" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">service-public F23575 (création & IS)</a> · <a href="https://www.legifrance.gouv.fr/eli/loi/2026/2/19/CPPX2524517L/jo/texte" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">Loi de finances 2026</a> · <a href="https://www.impots.gouv.fr/" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">impots.gouv.fr</a></div>
+<script src="sw-register.js"></script>
+</body>
+</html>

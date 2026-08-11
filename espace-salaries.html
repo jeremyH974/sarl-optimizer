@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espace salariés & parents : droits et outils</title>
+<meta name="description" content="L'espace des salariés et des parents : lire son bulletin, préparer ses impôts, congés, RTT, vacances scolaires, chômage, CPF, aides CAF.">
+<meta property="og:title" content="Espace salariés & parents">
+<meta property="og:description" content="Bulletin de salaire, impôts, congés, vacances scolaires, aides : vos droits en clair.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "👔 L’espace salariés & parents", "item": "espace-salaries.html"}]}</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="index.html">🏠 Accueil</a>
+    
+    
+    <a href="guide-optimisation-sarl.html">📖 Guide</a>
+  
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+
+    <details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="espace-createurs.html" class="menu-cat">👷 Espace créateurs & gérants</a>
+        <a href="espace-salaries.html" class="menu-cat">👔 Espace salariés & parents</a>
+        <a href="comparateur-societes.html" class="menu-cat menu-cta">⚖️ Comparateur : démarrez ici</a>
+        <a href="parcours-creation.html">🚀 Parcours création (8 étapes)</a>
+        <a href="parcours-gestion.html">🧰 Parcours gestion (8 étapes)</a>
+        <div class="menu-titre">👷 Créateurs &amp; gérants</div>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <div class="menu-titre">👔 Salariés &amp; parents</div>
+        <a href="parcours-parents.html">👨‍👩‍👧 Parcours parents (8 étapes)</a>
+        <a href="optimiseur-conges.html">🏖️ Optimiser mes congés</a>
+        <a href="calcul-rtt.html">⚡ Calculer mes RTT</a>
+        <a href="jours-ouvres-2026.html">🗓️ Jours ouvrés</a>
+        <a href="vacances-scolaires-2026-2027.html">🏫 Vacances scolaires</a>
+        <a href="bulletin-paie-gerant.html">💰 Bulletin de paie</a>
+        <a href="leviers-optimisation-2026.html">💶 Tous les leviers, par profil</a>
+        <div class="menu-titre">🤖 IA &amp; automatisation</div>
+        <a href="ia-pour-tpe.html">🤖 IA pour votre TPE</a>
+        <a href="abonnement-ia-tpe.html">💳 Kit IA TPE (abonnement)</a>
+        <a href="ia-pour-compta.html">🤖 IA pour la compta</a>
+        <a href="nouveautes-2026.html">📰 Nouveautés 2026</a>
+        <a href="loi-finances-2026.html">📜 Loi de finances 2026</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+  </div>
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <span>👔 L’espace salariés & parents</span></nav>
+  <h1>👔 L’espace salariés & parents</h1>
+  <p class="subtitle">Vous êtes salarié ou parent ? Tout est ici : <strong>votre bulletin, vos impôts, vos congés, vos aides</strong>. Les pages entreprises sont ailleurs : vous ne croiserez que ce qui vous concerne.</p>
+  <div class="tldr"><strong>En clair :</strong> commencez par <strong>lire votre bulletin</strong>
+    <div class="card" id="demarrer" style="border:2px solid var(--accent);padding:1.1rem 1.3rem;margin-top:1.2rem;background:rgba(245,158,11,.06);">
+    <h2 style="margin-top:0;font-size:1.1rem;">🆕 Vous ne savez pas par où commencer ?</h2>
+    <p style="font-size:.9rem;margin:.2rem 0 .6rem;">Répondez à <strong>3 questions</strong> et on vous dit quel outil utiliser en premier.</p>
+    <button onclick="var q=document.getElementById('mini-quiz');q.style.display=q.style.display==='none'?'block':'none';" style="padding:.5rem 1.2rem;border-radius:30px;border:none;background:var(--accent);color:#fff;cursor:pointer;font-size:.9rem;">🎯 Faire le mini-quiz</button>
+    <div id="mini-quiz" style="display:none;margin-top:.8rem;font-size:.9rem;">
+      <p><strong>1. Vous êtes plutôt :</strong></p>
+      <button onclick="mq(1,'crea')" style="padding:.4rem .9rem;border-radius:20px;border:1px solid var(--border);background:var(--bg);color:var(--text);cursor:pointer;margin:.2rem;">👷 Je crée / je gère une entreprise</button>
+      <button onclick="mq(1,'sal')" style="padding:.4rem .9rem;border-radius:20px;border:1px solid var(--border);background:var(--bg);color:var(--text);cursor:pointer;margin:.2rem;">👔 Je suis salarié / parent</button>
+      <p id="mq1" style="margin-top:.6rem;"></p>
+      <p><strong>2. Votre priorité :</strong></p>
+      <button onclick="mq(2,'argent')" style="padding:.4rem .9rem;border-radius:20px;border:1px solid var(--border);background:var(--bg);color:var(--text);cursor:pointer;margin:.2rem;">💶 Gagner / garder plus d'argent</button>
+      <button onclick="mq(2,'temps')" style="padding:.4rem .9rem;border-radius:20px;border:1px solid var(--border);background:var(--bg);color:var(--text);cursor:pointer;margin:.2rem;">⏱️ Gagner du temps</button>
+      <p id="mq2" style="margin-top:.6rem;"></p>
+      <p><strong>3. Votre situation :</strong></p>
+      <button onclick="mq(3,'deb')" style="padding:.4rem .9rem;border-radius:20px;border:1px solid var(--border);background:var(--bg);color:var(--text);cursor:pointer;margin:.2rem;">🚀 Je démarre</button>
+      <button onclick="mq(3,'etab')" style="padding:.4rem .9rem;border-radius:20px;border:1px solid var(--border);background:var(--bg);color:var(--text);cursor:pointer;margin:.2rem;">🏗️ J'ai déjà une activité</button>
+      <p id="mq3" style="margin-top:.6rem;"></p>
+      <div id="mq-reco" style="margin-top:.8rem;font-weight:600;color:var(--accent);"></div>
+    </div>
+  </div>
+  <script>
+  var MQ = {};
+  function mq(n, v) {
+    MQ[n] = v;
+    var reco = '';
+    if (MQ[1] === 'sal') reco = '👔 Espace salarié : commencez par <a href="lire-bulletin-salaire.html">lire votre bulletin</a> (5 min), puis <a href="preparer-ses-impots.html">vos impôts</a>.';
+    else if (MQ[1] === 'crea' && MQ[2] === 'temps') reco = '🤖 L’IA peut vous libérer 5 à 10 h/sem : <a href="ia-pour-tpe.html">ia-pour-tpe.html</a>.';
+    else if (MQ[1] === 'crea' && MQ[3] === 'deb') reco = '🚀 Parfait : commencez par le <a href="comparateur-societes.html">comparateur de statuts</a> (2 min).';
+    else if (MQ[1] === 'crea') reco = '👷 Commencez par <a href="optimiseur-sarl-couple.html">l’optimiseur de rémunération</a> ou <a href="guide-optimisation-sarl.html">le guide des leviers</a>.';
+    else reco = '🎯 Votre premier pas : <a href="optimiseur-conges.html">optimiser vos congés</a> ou <a href="espace-salaries.html">parcourir l’espace salarié</a>.';
+    document.getElementById('mq-reco').innerHTML = '' + reco;
+  }
+  </script>
+    <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin:.8rem 0 1rem;">
+    <button onclick="filtreEspace('tout')" id="f-tout" style="padding:.5rem 1rem;border-radius:30px;border:1px solid var(--border);background:var(--accent);color:#fff;cursor:pointer;font-size:.85rem;">Tout</button>
+    <button onclick="filtreEspace('parcours')" id="f-parcours" style="padding:.5rem 1rem;border-radius:30px;border:1px solid var(--border);background:var(--bg);color:var(--text);cursor:pointer;font-size:.85rem;">🚀 Parcours</button>
+    <button onclick="filtreEspace('simu')" id="f-simu" style="padding:.5rem 1rem;border-radius:30px;border:1px solid var(--border);background:var(--bg);color:var(--text);cursor:pointer;font-size:.85rem;">🧮 Simulateurs</button>
+    <button onclick="filtreEspace('guide')" id="f-guide" style="padding:.5rem 1rem;border-radius:30px;border:1px solid var(--border);background:var(--bg);color:var(--text);cursor:pointer;font-size:.85rem;">📖 Guides</button>
+  </div>
+  <script>
+  function filtreEspace(cat) {
+    document.querySelectorAll('[data-cat]').forEach(function (c) {
+      c.style.display = (cat === 'tout' || c.getAttribute('data-cat') === cat) ? 'block' : 'none';
+    });
+    document.querySelectorAll('[id^="f-"]').forEach(function (b) {
+      b.style.background = b.id === 'f-' + cat ? 'var(--accent)' : 'var(--bg)';
+      b.style.color = b.id === 'f-' + cat ? '#fff' : 'var(--text)';
+    });
+  }
+  </script> (5 minutes), vérifiez vos <strong>impôts</strong>, puis optimisez vos <strong>congés</strong> avec les vacances scolaires. Le tout sans jargon.</div>
+  <h2 style="margin-top:1.6rem;">🍼 Le parcours parent</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;">
+  <a href="parcours-parents.html" class="card" data-cat="parcours" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">👨‍👩‍👧 Parcours parents (8 étapes)</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">Congés parentaux, aides CAF, crédit d’impôt, vacances scolaires.</p>
+  </a>
+  <a href="vacances-scolaires-2026-2027.html" class="card" data-cat="parcours" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">🏫 Vacances scolaires par zone</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">Trouvez votre zone A/B/C en 2 secondes sur la carte.</p>
+  </a>
+  <a href="optimiseur-conges.html" class="card" data-cat="parcours" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">🏖️ Optimiseur de congés</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">25 jours posés → jusqu’à 57 jours de repos, calculés.</p>
+  </a>
+  <a href="calcul-rtt.html" class="card" data-cat="parcours" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">⚡ Calculateur de RTT</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">Vos RTT 2026 et 2027 (forfait 218 jours).</p>
+  </a>
+  </div>
+  <h2 style="margin-top:1.6rem;">📄 Comprendre et payer moins d’impôts</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;">
+  <a href="lire-bulletin-salaire.html" class="card" data-cat="simu" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">📄 Lire un bulletin de salaire</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">Brut → net imposable → net à payer, sans jargon.</p>
+  </a>
+  <a href="preparer-ses-impots.html" class="card" data-cat="simu" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">🧾 Préparer ses impôts</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">La déclaration en 6 étapes + le prélèvement à la source.</p>
+  </a>
+  <a href="leviers-impots-salaries.html" class="card" data-cat="simu" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">💶 Les 8 leviers du salarié</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">PER, frais réels, garde, dons, scolarité : chiffrés.</p>
+  </a>
+  <a href="brut-net.html" class="card" data-cat="simu" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">💰 Calculateur brut → net</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">Votre salaire brut converti en net, expliqué.</p>
+  </a>
+  <a href="modulation-prelevement-source.html" class="card" data-cat="simu" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">🎛️ Moduler son prélèvement</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">Le geste gratuit qui évite les mauvaises surprises.</p>
+  </a>
+  <a href="prime-activite.html" class="card" data-cat="simu" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">💵 Prime d’activité</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">L’argent que vous ne demandez peut-être pas (CAF).</p>
+  </a>
+  </div>
+  <h2 style="margin-top:1.6rem;">🏖️ Congés, chômage, formation</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;">
+  <a href="conges-parentaux.html" class="card" data-cat="guide" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">👶 Congés parentaux</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">Maternité 16 semaines, paternité 25 jours, parental 3 ans.</p>
+  </a>
+  <a href="rupture-conventionnelle.html" class="card" data-cat="guide" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">🤝 Rupture conventionnelle</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">L’indemnité calculée + la procédure en 4 étapes.</p>
+  </a>
+  <a href="demission-preavis.html" class="card" data-cat="guide" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">📤 Démission</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">Préavis, pièges, alternative rupture conventionnelle.</p>
+  </a>
+  <a href="allocations-chomage-are.html" class="card" data-cat="guide" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">🛡️ Chômage (ARE)</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">Vos droits : 57 % du salaire, les conditions.</p>
+  </a>
+  <a href="compte-formation-cpf.html" class="card" data-cat="guide" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">🎓 CPF (formation)</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">Vos 500 €/an de formation, les arnaques à éviter.</p>
+  </a>
+  <a href="retraite-agirc-arrco.html" class="card" data-cat="guide" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">📊 Retraite par points</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">Le système de points Agirc-Arrco expliqué.</p>
+  </a>
+  <a href="indemnite-licenciement.html" class="card" data-cat="guide" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">📤 Indemnité de licenciement</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">Le calcul légal en clair.</p>
+  </a>
+  </div>
+  <h2 style="margin-top:1.6rem;">🧒 Aides et vie quotidienne</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;">
+  <a href="aides-famille-caf.html" class="card" data-cat="guide" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">💵 Aides CAF famille</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">PAJE, allocations familiales, CMG : ce que la CAF verse.</p>
+  </a>
+  <a href="credit-impot-garde-enfant.html" class="card" data-cat="guide" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">👶 Crédit d’impôt garde d’enfant</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">50 % des frais, jusqu’à 1 750 €/enfant (vérifié).</p>
+  </a>
+  <a href="titre-restaurant-2026.html" class="card" data-cat="guide" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">🍽️ Titres-restaurant</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">Les plafonds 2026, la part patronale, les usages.</p>
+  </a>
+  <a href="teletravail-2026.html" class="card" data-cat="guide" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">💻 Télétravail</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">Indemnité exonérée, droit à la déconnexion.</p>
+  </a>
+  <a href="conserver-documents.html" class="card" data-cat="guide" style="text-decoration:none;display:block;">
+    <h3 style="margin:0 0 .2rem;color:var(--text);">🗄️ Combien de temps garder ses papiers</h3>
+    <p style="margin:0;font-size:.85rem;color:var(--muted);">3 ans, 6 ans, 10 ans, 30 ans : le tableau.</p>
+  </a>
+  </div>
+  <div class="card" style="text-align:center;margin-top:1.5rem;"><h2 style="margin-top:0;">🎯 Le réflexe rentable</h2>
+  <p style="font-size:.9rem;">Garde d’enfant (1 750 €) + scolarité (214 €) + congés optimisés : <strong>plus de 2 000 €/an</strong> juste en déclarant et en planifiant. Tous les leviers : <a href="leviers-optimisation-2026.html" style="color:var(--accent);">par profil</a>.</p></div>
+  <div class="sources">Sources : <a href="https://www.legifrance.gouv.fr/eli/loi/2026/2/19/CPPX2524517L/jo/texte" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">Loi de finances 2026</a> · <a href="https://www.impots.gouv.fr/" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">impots.gouv.fr</a></div>
+<div class="footer">Taux vérifiés le 02/08/2026 (sources officielles) · ⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+<script src="sw-register.js"></script>
+</body>
+</html>

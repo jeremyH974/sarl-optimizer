@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulateur plan 3 ans : gérant vs salarié</title>
+<meta name="description" content="Comparez salaire et dividendes sur 3 ans (2026-2028) : gérant majoritaire, gérant minoritaire, assimilé salarié. Projection chiffrée.">
+<meta property="og:image" content="https://SIMULATEUR-SARL.github.io/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:title" content="Simulateur plan 3 ans : micro ou société ?">
+<meta property="og:description" content="Le cumul sur 3 ans de votre activité : micro vs société, avec ACRE, IK et conjoint.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Pourquoi le scénario société verse parfois moins que la micro ?", "acceptedAnswer": {"@type": "Answer", "text": "Parce qu'en société, vous ne vous versez que votre besoin : le reste reste dans la société (trésorerie, investissement, épargne). C'est le total (net versé + trésorerie) qu'il faut comparer, pas le salaire seul. La trésorerie pourra servir à acheter du matériel, rembourser un emprunt ou être distrib"}}, {"@type": "Question", "name": "L'ACRE s'applique-t-elle aux deux scénarios ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui : l'ACRE (25% de cotisations la 1ʳᵉ année) est accessible en micro et en EURL/SARL (gérant TNS). Le scénario \"bascule\" suppose : micro + ACRE l'année 1, puis création de la société au 1er janvier de l'année 2. En pratique, la bascule réelle intervient souvent en cours d'année : le principe reste"}}, {"@type": "Question", "name": "Pourquoi les IK n'apparaissent qu'en société ?", "acceptedAnswer": {"@type": "Answer", "text": "Les indemnités kilométriques sont réservées aux régimes qui déduisent les frais réels : gérant TNS de SARL/EURL, entrepreneur individuel au réel. En micro-entreprise, l'abattement forfaitaire couvre déjà vos frais : les IK ne s'appliquent pas. C'est un des avantages cachés de la société."}}, {"@type": "Question", "name": "Et si je veux comparer avec la SASU ?", "acceptedAnswer": {"@type": "Answer", "text": "Ce simulateur compare micro vs EURL/SARL TNS. Pour la SASU (coût employeur ~1,40x, dividendes sans seuil 10%), utilisez le comparateur puis reportez les tendances ici."}}]}</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "👷 Créateurs & gérants", "item": "index.html#societe"}, {"@type": "ListItem", "position": 3, "name": "📅 Votre plan sur 3 ans : micro ou société ?", "item": "simulateur-plan-3-ans.html"}]}</script>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="jargon-en-clair.html">🔤 Jargon</a>
+    <a href="comparateur-societes.html">⚖️ Comparateur</a>
+    <a href="guide-optimisation-sarl.html">📖 Guide</a>
+    
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+<details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="comparateur-societes.html" class="menu-cat">⚖️ Comparateur : démarrez ici</a>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+  </div>
+
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <a href="index.html#societe">👷 Créateurs & gérants</a> › <span>📅 Votre plan sur 3 ans : micro ou société ?</span></nav>
+  <h1>📅 Votre plan sur 3 ans : micro ou société ?</h1>
+  <p class="subtitle">L'outil de décision : projetez votre activité sur 3 ans et comparez <strong>rester en micro</strong> vs <strong>basculer en EURL/SARL</strong>. ACRE la 1ʳᵉ année, indemnités kilométriques, conjoint : tout est chiffré.</p>
+
+  <button onclick="window.print()" class="btn-outline" style="margin-bottom:1rem;">🖨️ Imprimer / enregistrer en PDF</button>
+
+  <div class="tldr">
+    <strong>Le plus important :</strong> ce simulateur ne regarde pas UNE année mais <strong>3 ans d'affilée</strong>. Pourquoi ? Parce que l'ACRE (25% la 1ʳᵉ année) rend la micro très attractive au départ, mais qu'une société devient souvent meilleure sur la durée (charges déductibles, IK, conjoint). Le total affiché = <strong>net en poche + trésorerie restée en société</strong>.
+  </div>
+
+  <div class="card" style="border-left: 3px solid var(--accent);">
+    <h2>📊 Votre situation</h2>
+    <div class="grid-3">
+      <div>
+        <label>Chiffre d'affaires annuel (€)</label>
+        <input type="number" id="ca" value="65000" min="0" step="1000">
+      </div>
+      <div>
+        <label>Charges pro réelles par an (€)</label>
+        <input type="number" id="charges" value="18000" min="0" step="500">
+      </div>
+      <div>
+        <label>Besoin net mensuel pour vivre (€)</label>
+        <input type="number" id="besoin" value="2000" min="0" step="100">
+      </div>
+    </div>
+    <div class="grid-3" style="margin-top:.8rem;">
+      <div>
+        <label>Activité</label>
+        <select id="activite">
+          <option value="service" selected>Services</option>
+          <option value="vente">Vente / marchandises</option>
+        </select>
+      </div>
+      <div>
+        <label>Kilomètres pro / an (IK en société)</label>
+        <input type="number" id="km" value="5000" min="0" step="500">
+      </div>
+      <div>
+        <label>Conjoint qui travaille avec vous</label>
+        <select id="conjoint">
+          <option value="aucun" selected>Aucun</option>
+          <option value="collaborateur">Collaborateur (12%)</option>
+          <option value="salarie">Salarié (45%)</option>
+        </select>
+      </div>
+    </div>
+    <div class="switch-container" style="margin-top:.8rem;">
+      <label class="switch">
+        <input type="checkbox" id="vl" checked onchange="calc()">
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-label">Versement libératoire en micro (2,2% : si RFR ≤ 29 579 €/part)</span>
+    </div>
+    <button class="btn" onclick="calc()">📅 Calculer mon plan 3 ans</button>
+    <button class="btn-outline" style="margin-left:.5rem;" onclick="exemple()">🎨 Exemple N2C</button>
+  </div>
+
+  <div id="results" class="hidden">
+    <div class="card" style="border:1px solid var(--accent);">
+      <h2 style="color:var(--accent);">📋 Comparaison sur 3 ans</h2>
+      <table>
+        <tr><th>Année</th><th>🪙 Reste en micro</th><th></th><th>🏢 Bascule en EURL/SARL</th></tr>
+        <tr><td><strong>Année 1</strong> (ACRE)</td><td id="micro1" class="net-amount">:</td><td></td><td id="soc1" class="net-amount">:</td></tr>
+        <tr><td><strong>Année 2</strong></td><td id="micro2" class="net-amount">:</td><td></td><td id="soc2" class="net-amount">:</td></tr>
+        <tr><td><strong>Année 3</strong></td><td id="micro3" class="net-amount">:</td><td></td><td id="soc3" class="net-amount">:</td></tr>
+        <tr style="border-top:2px solid var(--accent);"><td><strong>Total sur 3 ans</strong></td><td id="microTot" class="net-amount" style="font-weight:700;">:</td><td></td><td id="socTot" class="net-amount" style="font-weight:700;">:</td></tr>
+      </table>
+      <div id="planTip" class="tip"></div>
+    </div>
+
+    <div class="card">
+      <h2>🔍 Le détail du scénario société</h2>
+      <table>
+        <tr><th>Poste (année 2, plein tarif)</th><th></th><th>Montant</th></tr>
+        <tr><td>Résultat avant rémunération</td><td></td><td id="detResultat">:</td></tr>
+        <tr><td>Salaire brut du gérant</td><td></td><td id="detSalaire">:</td></tr>
+        <tr><td>Cotisations TNS</td><td></td><td id="detCot">:</td></tr>
+        <tr><td>Bénéfice après salaire</td><td></td><td id="detBeneffice">:</td></tr>
+        <tr><td>IS (15%/25%)</td><td></td><td id="detIs">:</td></tr>
+        <tr><td><strong>Trésorerie restée en société (3 ans)</strong></td><td></td><td id="detTreso" class="net-amount">:</td></tr>
+      </table>
+      <div id="detTip" class="tip"></div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card" style="margin-top:1rem;">
+    <h2>❓ Questions fréquentes</h2>
+    <details>
+      <summary>Pourquoi le scénario société verse parfois moins que la micro ?</summary>
+      <p>Parce qu'en société, vous ne vous versez <strong>que votre besoin</strong> : le reste reste dans la société (trésorerie, investissement, épargne). C'est le <strong>total (net versé + trésorerie)</strong> qu'il faut comparer, pas le salaire seul. La trésorerie pourra servir à acheter du matériel, rembourser un emprunt ou être distribuée plus tard.</p>
+    </details>
+    <details>
+      <summary>L'ACRE s'applique-t-elle aux deux scénarios ?</summary>
+      <p>Oui : l'<strong>ACRE (25% de cotisations la 1ʳᵉ année)</strong> est accessible en micro <strong>et</strong> en EURL/SARL (gérant TNS). Le scénario "bascule" suppose : micro + ACRE l'année 1, puis création de la société au 1er janvier de l'année 2. En pratique, la bascule réelle intervient souvent en cours d'année : le principe reste le même.</p>
+    </details>
+    <details>
+      <summary>Pourquoi les IK n'apparaissent qu'en société ?</summary>
+      <p>Les <strong>indemnités kilométriques</strong> sont réservées aux régimes qui déduisent les frais réels : gérant TNS de SARL/EURL, entrepreneur individuel au réel. En <strong>micro-entreprise</strong>, l'abattement forfaitaire couvre déjà vos frais : les IK ne s'appliquent pas. C'est un des avantages cachés de la société.</p>
+    </details>
+    <details>
+      <summary>Et si je veux comparer avec la SASU ?</summary>
+      <p>Ce simulateur compare micro vs <strong>EURL/SARL TNS</strong>. Pour la SASU (coût employeur ~1,40x, dividendes sans seuil 10%), utilisez le <a href="comparateur-societes.html" style="color:var(--accent);">comparateur</a> puis reportez les tendances ici.</p>
+    </details>
+  </div>
+
+  <div class="sources">Sources : <a href="https://entreprendre.service-public.fr/vosdroits/F23575" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">service-public F23575</a> · <a href="https://www.legifrance.gouv.fr/eli/loi/2026/2/19/CPPX2524517L/jo/texte" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">Loi de finances 2026</a></div>
+<div class="footer">Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · 
+    ⚠️ Estimation indicative : taux 2026 sourcés (URSSAF, service-public). Modèle simplifié : pas de dividendes en EURL (piège 10%), IR micro = barème réel (via le moteur du site), cotisations TNS ~45% (ou 22,5% avec ACRE). Consultez votre expert-comptable.
+   Taux vérifiés le 01/08/2026 (sources officielles).</div>
+</div>
+
+<script src="parametres-2026.js"></script>
+<script src="moteur-calcul.js"></script>
+<script>
+// Deep link : pré-remplir depuis un autre outil (ex. comparateur ?ca=…&charges=…&activite=…)
+(function () {
+  try {
+    const p = new URLSearchParams(location.search);
+    const set = (id, v) => { const el = document.getElementById(id); if (el && v !== null && v !== '') el.value = v; };
+    set('ca', p.get('ca')); set('charges', p.get('charges')); set('activite', p.get('activite'));
+    set('besoin', p.get('besoin')); set('km', p.get('km')); set('conjoint', p.get('conjoint'));
+    if (p.get('vl') === '1') { const vl = document.getElementById('vl'); if (vl) vl.checked = true; }
+  } catch (e) {}
+})();
+
+function fmt(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+
+function exemple() {
+  document.getElementById('ca').value = '65000';
+  document.getElementById('charges').value = '18000';
+  document.getElementById('besoin').value = '2000';
+  document.getElementById('activite').value = 'service';
+  document.getElementById('km').value = '5000';
+  document.getElementById('conjoint').value = 'aucun';
+  document.getElementById('vl').checked = true;
+  calc();
+}
+
+// Année en micro : net après cotisations (ACRE éventuel) et IR
+function anneeMicro(ca, activite, acre, vl) {
+  const m = MICRO[activite]; // {urssaf, abattement}
+  let taux = m.urssaf;
+  if (acre) taux = taux * (1 - ACRE.taux); // ACRE = réduction de 25% (LFSS 2026)
+  let ir = 0;
+  if (vl) {
+    ir = ca * 0.022; // versement libératoire : 2,2% (services/vente), RFR ≤ 29 579 €/part
+  } else {
+    const imposable = ca * m.abattement;
+    ir = Math.max(0, calcIr(imposable));
+  }
+  return ca * (1 - taux) - ir;
+}
+
+// Année en société : salaire finançable + trésorerie
+function anneeSociete(ca, charges, besoinNet, km, conjointType, acre) {
+  const ik = km * 0.42; // barème moyen IK 7 CV
+  let conjointCout = 0, conjointNet = 0;
+  if (conjointType === 'collaborateur') {
+    const sal = Math.min(18000, ca * 0.3);
+    conjointCout = sal * CONJOINT.collaborateur.cotisations;
+    conjointNet = sal - conjointCout;
+  } else if (conjointType === 'salarie') {
+    const sal = Math.min(18000, ca * 0.3);
+    conjointCout = sal * CONJOINT.salarie.chargesPatronales;
+    conjointNet = sal * CONJOINT.salarie.netRatio;
+  }
+  const resultat = ca - charges - ik - conjointCout;
+  const tauxCot = acre ? 0.45 * (1 - ACRE.taux) : 0.45; // ACRE = réduction de 25% des cotisations TNS
+  const salaireBrut = Math.max(0, Math.min(besoinNet / (1 - tauxCot), Math.max(0, resultat)));
+  const salaireNet = salaireBrut * (1 - tauxCot);
+  const beneffice = Math.max(0, resultat - salaireBrut);
+  const is = calcIs(beneffice);
+  const tresorerie = beneffice - is;
+  return { net: salaireNet + conjointNet, tresorerie, resultat, salaireBrut, salaireNet, beneffice, is, cot: salaireBrut * tauxCot };
+}
+
+function calc() {
+  const ca = parseFloat(document.getElementById('ca').value) || 0;
+  const charges = parseFloat(document.getElementById('charges').value) || 0;
+  const besoin = parseFloat(document.getElementById('besoin').value) || 0;
+  const activite = document.getElementById('activite').value;
+  const km = parseFloat(document.getElementById('km').value) || 0;
+  const conjoint = document.getElementById('conjoint').value;
+  const vl = document.getElementById('vl').checked;
+
+  document.getElementById('results').classList.remove('hidden');
+  const set = (id, v) => document.getElementById(id).textContent = v;
+
+  // Micro : 3 ans, ACRE année 1
+  const m1 = anneeMicro(ca, activite, true, vl);
+  const m2 = anneeMicro(ca, activite, false, vl);
+  const m3 = anneeMicro(ca, activite, false, vl);
+  const microTotal = m1 + m2 + m3;
+
+  // Société : année 1 = micro + ACRE (préparation), années 2-3 = société
+  const s2 = anneeSociete(ca, charges, besoin * 12, km, conjoint, false);
+  const s3 = anneeSociete(ca, charges, besoin * 12, km, conjoint, false);
+  const societeTotal = m1 + s2.net + s3.net + s2.tresorerie + s3.tresorerie;
+
+  set('micro1', fmt(m1));
+  set('micro2', fmt(m2));
+  set('micro3', fmt(m3));
+  set('microTot', fmt(microTotal));
+  set('soc1', fmt(m1) + ' (préparation)');
+  set('soc2', fmt(s2.net));
+  set('soc3', fmt(s3.net));
+  set('socTot', fmt(societeTotal));
+
+  const diff = societeTotal - microTotal;
+  document.getElementById('planTip').innerHTML = diff >= 0
+    ? `🏆 <strong>Le scénario société gagne sur 3 ans : ${fmt(diff)} de plus.</strong> Il inclut ${fmt(s2.tresorerie + s3.tresorerie)} de trésorerie restée en société (investissement, épargne, matériel).`
+    : `📊 La micro garde l'avantage sur 3 ans : ${fmt(-diff)} de plus. La société devient intéressante quand vos charges réelles, vos kilomètres ou le travail du conjoint augmentent : retestez avec des valeurs plus hautes.`;
+
+  // Détail société (année 2)
+  set('detResultat', fmt(s2.resultat));
+  set('detSalaire', fmt(s2.salaireBrut));
+  set('detCot', fmt(s2.cot));
+  set('detBeneffice', fmt(s2.beneffice));
+  set('detIs', fmt(s2.is));
+  set('detTreso', fmt(s2.tresorerie + s3.tresorerie));
+  document.getElementById('detTip').innerHTML = s2.salaireBrut < besoin * 12
+    ? `⚠️ Attention : avec ces chiffres, le salaire net (${fmt(s2.salaireNet)}) ne couvre pas votre besoin (${fmt(besoin * 12)}). La société ne peut pas verser plus sans s'endetter : c'est le signal qu'il faut augmenter le CA ou réduire les charges.`
+    : `Le salaire (${fmt(s2.salaireNet)}) couvre votre besoin : et ${fmt(s2.tresorerie + s3.tresorerie)} restent en société sur 3 ans.`;
+}
+
+calc();
+</script>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="sw-register.js"></script>
+</body>
+</html>

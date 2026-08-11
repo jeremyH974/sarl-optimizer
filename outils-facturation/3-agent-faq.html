@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent FAQ — Facturation Électronique 2026-2027</title>
+<style>
+:root{--dark:#0f172a;--card:#1e293b;--border:#334155;--text:#e2e8f0;--muted:#94a3b8;--accent:#f59e0b;--blue:#3b82f6;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--dark);color:var(--text);line-height:1.6;}
+.container{max-width:760px;margin:0 auto;padding:30px 20px;}
+h1{text-align:center;margin-bottom:8px;font-size:1.8rem;}
+.sub{text-align:center;color:var(--muted);margin-bottom:26px;}
+.chat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;min-height:380px;max-height:500px;overflow-y:auto;margin-bottom:16px;}
+.msg{display:flex;margin-bottom:14px;}
+.msg .bubble{max-width:80%;padding:12px 16px;border-radius:14px;font-size:.92rem;line-height:1.5;}
+.msg.bot .bubble{background:var(--dark);border:1px solid var(--border);border-top-left-radius:4px;}
+.msg.user{justify-content:flex-end;}
+.msg.user .bubble{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.35);border-top-right-radius:4px;}
+.input-row{display:flex;gap:10px;}
+input{flex:1;padding:13px 16px;background:var(--dark);border:1px solid var(--border);border-radius:30px;color:var(--text);font-size:.95rem;}
+input:focus{outline:none;border-color:var(--accent);}
+.btn{padding:13px 24px;background:var(--accent);color:var(--dark);border:none;border-radius:30px;font-weight:700;cursor:pointer;}
+.suggestions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.chip{background:var(--dark);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-size:.8rem;cursor:pointer;color:var(--muted);}
+.chip:hover{border-color:var(--accent);color:var(--accent);}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "FAQ facturation électronique : agent de réponses",
+  "description": "Réponses aux questions fréquentes sur la facturation électronique : échéances, sanctions, formats, PDP et PPF.",
+  "author": {"@type": "Person", "name": "Jeremy Henry", "jobTitle": "Consultant IA & automatisation"},
+  "datePublished": "2026-08-09",
+  "dateModified": "2026-08-09"
+}</script>
+</head>
+<body>
+<div class="container">
+  <h1>🤖 Agent FAQ Facturation Électronique</h1>
+  <p class="sub">Posez votre question sur la réforme 2026-2027 — réponses sourcées</p>
+
+  <div class="suggestions">
+    <span class="chip" onclick="ask('Suis-je concerné en micro-entreprise ?')">Micro-entreprise, concerné ?</span>
+    <span class="chip" onclick="ask('Quelles sont les dates clés ?')">Dates clés</span>
+    <span class="chip" onclick="ask('Qu\'est-ce qu\'une PDP ?')">C'est quoi une PDP ?</span>
+    <span class="chip" onclick="ask('Quels sont les formats de facture ?')">Formats</span>
+    <span class="chip" onclick="ask('Quelles sont les sanctions ?')">Sanctions</span>
+    <span class="chip" onclick="ask('Je vends à des particuliers uniquement')">Ventes B2C</span>
+  </div>
+
+  <div class="chat" id="chat">
+    <div class="msg bot"><div class="bubble">Bonjour ! 👋 Je réponds à vos questions sur la facturation électronique obligatoire en France (réforme 2026-2027).</div></div>
+  </div>
+
+  <div class="input-row">
+    <input id="question" placeholder="Votre question..." onkeydown="if(event.key==='Enter')send()">
+    <button class="btn" onclick="send()">Envoyer</button>
+  </div>
+</div>
+
+<script>
+// Base de connaissances (règles + mots-clés) — sources officielles
+const KB = [
+  { kw: ['micro', 'auto-entrepreneur', 'autoentrepreneur', 'concerné', 'concernée'],
+    rep: "Oui, les micro-entrepreneurs sont concernés ! La franchise en base de TVA ne dispense pas.\n\n📅 <b>Réception</b> : obligatoire depuis le 01/09/2026\n📅 <b>Émission</b> : obligatoire au 01/09/2027 (factures B2B France)\n\nSeules les activités totalement exonérées de TVA (art. 261 D du CGI) échappent à l'obligation.\nSources : economie.gouv.fr, entreprendre.service-public.gouv.fr" },
+  { kw: ['date', 'calendrier', 'quand', 'délai', 'deadline', 'échéance'],
+    rep: "📅 <b>Calendrier officiel :</b>\n\n• <b>01/09/2026</b> — Réception obligatoire pour TOUTES les entreprises assujetties à la TVA\n• <b>01/09/2026</b> — Émission obligatoire pour les grandes entreprises et ETI\n• <b>01/09/2027</b> — Émission obligatoire pour les PME, TPE et micro-entreprises\n\nVotre prochaine échéance : être prêt à recevoir (fait) puis à émettre en 2027.\nSource : entreprendre.service-public.gouv.fr" },
+  { kw: ['pdp', 'plateforme', 'portail', 'ppf', 'agréée', 'agréé'],
+    rep: "🏢 <b>PDP</b> = Plateforme de Dématérialisation Partenaire : opérateur privé certifié par la DGFiP (Tiime, Pennylane, Sage...). Elle émet, transmet, reçoit vos factures et transmet les données au fisc.\n\n🏛️ <b>PPF</b> = Portail Public de Facturation : l'alternative gratuite de l'État.\n\n✅ Vérifiez la certification dans l'annuaire officiel : impots.gouv.fr → Facturation électronique → Plateformes agréées.\n💡 Les PDP coûtent généralement 0 à 30€/mois (offres micro souvent gratuites)." },
+  { kw: ['format', 'factur-x', 'ubl', 'cii', 'xml', 'pdf'],
+    rep: "📄 <b>3 formats officiels</b> (reconnus par la DGFiP) :\n\n• <b>Factur-X</b> : PDF lisible + données XML intégrées — LE format des TPE/PME/artisans\n• <b>UBL</b> : XML pur, standard européen (Peppol) — ETI, grands comptes, export\n• <b>CII</b> : XML pur, norme ONU — chaînes logistiques complexes\n\n💡 <b>Bonne nouvelle</b> : vous n'avez pas à choisir ! Votre plateforme convertit automatiquement.\nSource : impots.gouv.fr (Dossier spécifications B2B)" },
+  { kw: ['sanction', 'amende', 'pénalité', 'penalite', 'risque', '15000', '50'],
+    rep: "⚠️ <b>Sanctions (Loi de Finances 2026 — revues à la hausse) :</b>\n\n• <b>50€ par facture</b> non conforme (plafond 15 000€/an) — avant : 15€\n• <b>250€ par transaction</b> pour e-reporting manquant (plafond 15 000€/an)\n• <b>15€ par mention</b> obligatoire manquante (plafond 15 000€/an)\n• <b>5 000€</b> pour non-communication de la liste des clients\n\nLe total des amendes est plafonné à 15 000€ par année civile.\nSources : entreprendre.service-public.gouv.fr, impots.gouv.fr" },
+  { kw: ['b2c', 'particulier', 'particuliers', 'consommateur', 'clients'],
+    rep: "🛒 <b>Ventes à des particuliers (B2C) :</b>\n\n• Pas de facture électronique <i>obligatoire</i> pour le B2C\n• Mais <b>e-reporting</b> : vos données de vente sont transmises automatiquement au fisc (via votre plateforme)\n• Vous ne faites rien : c'est votre outil de facturation qui s'en charge\n\n⚠️ Par contre, vous DEVEZ être capable de <b>recevoir</b> les factures de vos fournisseurs dès 01/09/2026.\nSource : economie.gouv.fr" },
+  { kw: ['coût', 'cout', 'prix', 'cher', 'gratuit', 'gratuite', 'budget'],
+    rep: "💰 <b>Coût :</b>\n\n• <b>PPF (portail public)</b> : GRATUIT, géré par l'État\n• <b>PDP privées</b> : généralement 0 à 30€/mois\n• Offres <b>micro-entrepreneurs souvent gratuites</b> (Tiime, Pennylane)\n• Le coût est <b>déductible fiscalement</b>\n\n💡 Conseil : commencez par vérifier si votre logiciel actuel est déjà certifié PDP — souvent rien à payer en plus." },
+  { kw: ['exonér', 'exempt', 'franchise', 'tva', '261', 'pas concerné'],
+    rep: "🔍 <b>Franchise en base de TVA :</b>\n\n• Les micro-entrepreneurs en franchise de TVA <b>sont concernés</b> par la réforme\n• Seules les activités <b>totalement exonérées</b> de TVA (art. 261 D du CGI) sont exemptées\n\n⚠️ La franchise de TVA = vous ne facturez pas de TVA, mais vous restez assujetti à la réforme de facturation électronique.\nSource : economie.gouv.fr, lecoindesentrepreneurs.fr" },
+  { kw: ['comment', 'procédure', 'procédure', 'étape', 'étape', 'faire', 'commencer', 'préparer', 'preparer'],
+    rep: "🛠️ <b>Vos 5 étapes pour être prêt :</b>\n\n1. <b>Choisir</b> votre plateforme certifiée PDP (ou le PPF gratuit)\n2. <b>Vérifier</b> que votre logiciel de facturation actuel est compatible (Factur-X)\n3. <b>Préparer</b> votre réception : donnez votre canal à vos fournisseurs\n4. <b>Contrôler</b> vos mentions obligatoires (12 mentions — voir l'analyseur)\n5. <b>Tester</b> avec un vrai client avant l'échéance 2027\n\n⏳ Vous avez ~1 an. Commencez par l'étape 1 !" },
+  { kw: ['bonjour', 'salut', 'merci', 'coucou'],
+    rep: "Bonjour ! 👋 Posez-moi vos questions sur la facturation électronique : dates, PDP, formats, sanctions, votre cas précis. Je suis là pour ça !" }
+];
+
+function addMsg(role, text) {
+  const chat = document.getElementById('chat');
+  const div = document.createElement('div');
+  div.className = 'msg ' + role;
+  div.innerHTML = '<div class="bubble">' + text + '</div>';
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function repondre(q) {
+  const t = q.toLowerCase();
+  // Chercher la meilleure entrée (score = nb de mots-clés trouvés)
+  let best = null, bestScore = 0;
+  KB.forEach(entry => {
+    let score = entry.kw.filter(k => t.includes(k)).length;
+    if (score > bestScore) { best = entry; bestScore = score; }
+  });
+  if (best) return best.rep;
+  return "Hmm, je n'ai pas trouvé de réponse précise à cette question dans ma base. 🤔\n\nEssayez avec les thèmes : dates, PDP, formats, sanctions, B2C, coût, ou demandez <b>\"suis-je concerné\"</b>.\n\nPour les cas particuliers, consultez le site officiel : impots.gouv.fr → Facturation électronique.";
+}
+
+function send() {
+  const input = document.getElementById('question');
+  const q = input.value.trim();
+  if (!q) return;
+  addMsg('user', q.replace(/</g, '&lt;'));
+  input.value = '';
+  const rep = repondre(q);
+  setTimeout(() => addMsg('bot', rep.replace(/\n/g, '<br>')), 400);
+}
+
+function ask(q) {
+  addMsg('user', q);
+  const rep = repondre(q);
+  setTimeout(() => addMsg('bot', rep.replace(/\n/g, '<br>')), 400);
+}
+</script>
+</body>
+</html>

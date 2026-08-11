@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ma Conformité Facturation Électronique — Suivi Personnalisé</title>
+<style>
+:root{--dark:#0f172a;--card:#1e293b;--border:#334155;--text:#e2e8f0;--muted:#94a3b8;--accent:#f59e0b;--green:#22c55e;--red:#ef4444;--blue:#3b82f6;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--dark);color:var(--text);line-height:1.6;}
+.container{max-width:760px;margin:0 auto;padding:30px 20px;}
+h1{text-align:center;margin-bottom:8px;font-size:1.8rem;}
+.sub{text-align:center;color:var(--muted);margin-bottom:26px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:20px;}
+.card h2{margin-bottom:14px;font-size:1.15rem;}
+.status{display:flex;align-items:center;gap:12px;padding:16px;border-radius:12px;margin-bottom:16px;}
+.status .big{font-size:2rem;}
+.status .txt b{display:block;font-size:1.05rem;}
+.status .txt span{color:var(--muted);font-size:.85rem;}
+.status.preready{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.35);}
+.status.warning{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.35);}
+.status.late{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.35);}
+.steps{display:flex;flex-direction:column;gap:0;margin-bottom:20px;}
+.step{display:flex;gap:14px;padding:14px;border-radius:10px;cursor:pointer;transition:background .2s;}
+.step:hover{background:rgba(255,255,255,.03);}
+.step .num{width:32px;height:32px;border-radius:50%;background:var(--dark);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.step.done .num{background:var(--green);border-color:var(--green);color:var(--dark);}
+.step .info{flex:1;}
+.step .info b{display:block;font-size:.92rem;}
+.step .info span{color:var(--muted);font-size:.82rem;}
+.step input{width:auto;margin-top:2px;accent-color:var(--accent);}
+.date-badge{font-size:.8rem;color:var(--muted);background:var(--dark);padding:4px 12px;border-radius:16px;display:inline-block;margin-bottom:14px;}
+.progress{height:12px;background:var(--dark);border-radius:10px;overflow:hidden;margin-bottom:10px;border:1px solid var(--border);}
+.progress div{height:100%;background:var(--green);width:0%;transition:width .4s;}
+.msg-gen{display:none;background:var(--dark);border:1px solid rgba(59,130,246,.3);border-radius:10px;padding:14px;font-size:.85rem;white-space:pre-wrap;margin-top:14px;}
+.btn{display:inline-block;padding:11px 24px;background:var(--accent);color:var(--dark);border:none;border-radius:30px;font-weight:700;font-size:.9rem;cursor:pointer;margin-top:10px;}
+.btn.ghost{background:transparent;border:1.5px solid var(--accent);color:var(--accent);margin-left:8px;}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Suivi de conformité facturation électronique",
+  "description": "Tableau de bord pour suivre votre progression vers la conformité facturation électronique : étapes, échéances et actions restantes.",
+  "author": {"@type": "Person", "name": "Jeremy Henry", "jobTitle": "Consultant IA & automatisation"},
+  "datePublished": "2026-08-09",
+  "dateModified": "2026-08-09"
+}</script>
+</head>
+<body>
+<div class="container">
+  <h1>✅ Ma conformité facturation électronique</h1>
+  <p class="sub">Votre tableau de bord personnel — étapes à cocher, échéances, et message de rappel généré</p>
+
+  <div class="card">
+    <h2>📊 Votre état de conformité</h2>
+    <div id="statusBox"></div>
+    <div class="progress"><div id="progressFill"></div></div>
+    <p id="progressText" style="color:var(--muted);font-size:.85rem;">0/6 étapes</p>
+  </div>
+
+  <div class="card">
+    <h2>📋 Les 6 étapes clés</h2>
+    <p class="date-badge">⏰ Prochaine échéance : <b id="prochEch">01/09/2027</b> (émission obligatoire PME)</p>
+    <div class="steps" id="steps"></div>
+  </div>
+
+  <div class="card">
+    <h2>📧 Générer mon rappel</h2>
+    <p style="color:var(--muted);font-size:.85rem;margin-bottom:10px;">Créez un email/message de rappel à envoyer à votre expert-comptable ou à vous-même pour rester sur les rails.</p>
+    <button class="btn" onclick="genMsg()">📧 Générer le message de rappel</button>
+    <button class="btn ghost" onclick="resetAll()">🔄 Réinitialiser</button>
+    <div class="msg-gen" id="msgGen"></div>
+  </div>
+</div>
+
+<script>
+const STEPS = [
+  { t: "J'ai choisi ma plateforme (PDP certifiée ou PPF)", d: "Tiime, Pennylane, Sage... ou le portail public gratuit" },
+  { t: "Mon logiciel de facturation est compatible", d: "Vérifiez que votre outil actuel est certifié PDP (souvent gratuit si déjà client)" },
+  { t: "Je peux recevoir les factures électroniques", d: "Donnez votre canal de réception à vos fournisseurs (obligation 01/09/2026)" },
+  { t: "Mes factures ont les 12 mentions obligatoires", d: "Utilisez l'analyseur de conformité pour vérifier" },
+  { t: "J'ai informé mon expert-comptable", d: "Il doit être prêt pour les flux e-reporting de vos données" },
+  { t: "J'ai testé un envoi avec un vrai client", d: "Testez avant l'échéance 2027 — évitez la panique de dernière minute" }
+];
+
+const stepsBox = document.getElementById('steps');
+STEPS.forEach((s, i) => {
+  const div = document.createElement('div');
+  div.className = 'step';
+  div.id = 'step' + i;
+  div.innerHTML = '<div class="num">' + (i + 1) + '</div>' +
+    '<div class="info"><b>' + s.t + '</b><span>' + s.d + '</span></div>' +
+    '<input type="checkbox" onchange="updateStatus()">';
+  stepsBox.appendChild(div);
+});
+
+function updateStatus() {
+  let done = 0;
+  STEPS.forEach((_, i) => {
+    const cb = document.querySelector('#step' + i + ' input');
+    const step = document.getElementById('step' + i);
+    if (cb.checked) { done++; step.classList.add('done'); }
+    else { step.classList.remove('done'); }
+  });
+  const pct = Math.round(done / STEPS.length * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = done + '/6 étapes — ' + (pct === 100 ? '🎉 Prêt pour 2027 !' : (done === 0 ? 'par où commencer ?' : 'continuez...'));
+
+  const box = document.getElementById('statusBox');
+  if (pct === 100) {
+    box.className = 'status preready';
+    box.innerHTML = '<div class="big">🎉</div><div class="txt"><b>Vous êtes prêt pour la réforme !</b><span>Toutes les étapes sont faites. Vous pouvez aborder 2027 sereinement.</span></div>';
+  } else if (done >= 3) {
+    box.className = 'status warning';
+    box.innerHTML = '<div class="big">🚧</div><div class="txt"><b>Bonne avancée — ' + done + '/6</b><span>Il reste ' + (6 - done) + ' étapes. La réception est déjà obligatoire (09/2026), l\'émission arrive en 09/2027.</span></div>';
+  } else {
+    box.className = 'status late';
+    box.innerHTML = '<div class="big">⏳</div><div class="txt"><b>Vous êtes en retard sur la préparation</b><span>La réception est obligatoire depuis le 01/09/2026. Commencez par choisir votre plateforme (étape 1).</span></div>';
+  }
+}
+
+function genMsg() {
+  let done = 0;
+  STEPS.forEach((_, i) => {
+    if (document.querySelector('#step' + i + ' input').checked) done++;
+  });
+  const reste = STEPS.length - done;
+  const msg = 'Bonjour,\n\n' +
+    'Dans le cadre de la réforme de la facturation électronique (obligatoire pour toutes les entreprises), voici mon point de situation :\n\n' +
+    '✅ Étapes réalisées : ' + done + '/6\n' +
+    (reste > 0 ? '⏳ Reste à faire (' + reste + ') :\n' + STEPS.filter((_, i) => !document.querySelector('#step' + i + ' input').checked).map((s, i) => '  • ' + (done + i + 1) + '. ' + s.t).join('\n') : '🎉 Toutes les étapes sont faites !') +
+    '\n\nRappel des échéances :\n' +
+    '  • 01/09/2026 : réception des factures électroniques (en vigueur)\n' +
+    '  • 01/09/2027 : émission obligatoire pour les PME/TPE/micro\n\n' +
+    'Pouvez-vous me confirmer que nous sommes en phase pour finaliser ?\n\n' +
+    'Merci !';
+  const el = document.getElementById('msgGen');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function resetAll() {
+  STEPS.forEach((_, i) => {
+    const cb = document.querySelector('#step' + i + ' input');
+    cb.checked = false;
+  });
+  document.getElementById('msgGen').style.display = 'none';
+  updateStatus();
+}
+
+updateStatus();
+</script>
+</body>
+</html>

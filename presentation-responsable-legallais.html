@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Clients — Le potentiel de la base SIRENE (démo interactive)</title>
+<meta name="description" content="Présentation interactive : 11 pistes data clients, démos en direct (API INSEE réelle), feuille de route. Prêt pour le futur.">
+<style>
+:root{--dark:#0b1220;--card:#141f36;--border:#26355c;--text:#e8edf7;--muted:#93a4c0;--accent:#f59e0b;--green:#22c55e;--red:#ef4444;--blue:#3b82f6;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--dark);color:var(--text);line-height:1.65;}
+.container{max-width:1080px;margin:0 auto;padding:0 22px;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(11,18,32,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.nav-inner{display:flex;gap:8px;overflow-x:auto;max-width:1080px;margin:0 auto;padding:10px 22px;white-space:nowrap;}
+.nav a{color:var(--muted);text-decoration:none;font-size:.78rem;padding:5px 12px;border-radius:18px;border:1px solid transparent;transition:all .2s;}
+.nav a:hover{color:var(--accent);border-color:var(--accent);}
+
+/* HERO */
+.hero{padding:64px 0 40px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#1d3155 0%,var(--dark) 62%);}
+.hero .badge{display:inline-block;background:rgba(245,158,11,.12);color:var(--accent);border:1px solid rgba(245,158,11,.35);padding:6px 16px;border-radius:30px;font-size:.78rem;font-weight:600;margin-bottom:16px;}
+.hero h1{font-size:clamp(1.7rem,4.2vw,2.7rem);line-height:1.2;margin-bottom:14px;}
+.hero .hl{color:var(--accent);}
+.hero p{color:var(--muted);max-width:700px;margin:0 auto 24px;font-size:1rem;}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-block;padding:12px 26px;border-radius:30px;font-weight:700;text-decoration:none;font-size:.92rem;transition:all .2s;}
+.btn-primary{background:var(--accent);color:var(--dark);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(245,158,11,.3);}
+.btn-ghost{border:1.5px solid var(--accent);color:var(--accent);}
+.btn-ghost:hover{background:rgba(245,158,11,.1);}
+
+section{padding:46px 0;}
+.label{color:var(--accent);font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+h2{font-size:clamp(1.35rem,3vw,1.9rem);margin-bottom:10px;}
+.sub{color:var(--muted);max-width:740px;margin-bottom:24px;font-size:.95rem;}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:18px 0 28px;}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;}
+.kpi b{display:block;font-size:1.6rem;color:var(--accent);}
+.kpi span{font-size:.76rem;color:var(--muted);}
+
+/* CARDS PISTES */
+.pistes{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:14px;}
+.piste{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;transition:all .2s;}
+.piste:hover{border-color:var(--accent);transform:translateY(-2px);}
+.piste .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.piste .num{background:rgba(245,158,11,.15);color:var(--accent);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;}
+.lvl{font-size:.68rem;padding:2px 9px;border-radius:14px;font-weight:600;}
+.lvl.qw{background:rgba(34,197,94,.15);color:var(--green);}
+.lvl.val{background:rgba(245,158,11,.15);color:var(--accent);}
+.lvl.diff{background:rgba(59,130,246,.15);color:var(--blue);}
+.piste h3{font-size:.95rem;margin-bottom:4px;}
+.piste p{color:var(--muted);font-size:.84rem;margin-bottom:8px;}
+.piste .demo-mini{margin-top:8px;}
+
+/* DEMO BLOCKS */
+.demo-block{background:linear-gradient(135deg,rgba(245,158,11,.05),var(--card));border:1px solid rgba(245,158,11,.28);border-radius:14px;padding:20px;margin:22px 0;}
+.demo-block h3{color:var(--accent);font-size:1rem;margin-bottom:6px;}
+.demo-block .note{color:var(--muted);font-size:.8rem;margin-bottom:12px;}
+input,select{background:var(--dark);border:1px solid var(--border);color:var(--text);padding:9px 13px;border-radius:8px;font-size:.88rem;margin-right:8px;max-width:100%;}
+button{background:var(--accent);color:var(--dark);border:none;padding:9px 18px;border-radius:18px;font-weight:700;font-size:.86rem;cursor:pointer;margin-top:4px;}
+button:hover{transform:scale(1.03);}
+.live-result{background:var(--dark);border:1px solid var(--border);border-radius:10px;padding:13px;margin-top:12px;font-size:.85rem;display:none;}
+.live-result.show{display:block;}
+table{width:100%;border-collapse:collapse;font-size:.82rem;margin:8px 0;}
+th{text-align:left;color:var(--accent);padding:7px 9px;border-bottom:2px solid var(--border);}
+td{padding:7px 9px;border-bottom:1px solid var(--border);}
+tr:hover{background:rgba(255,255,255,.03);}
+.tag{display:inline-block;padding:2px 9px;border-radius:14px;font-size:.7rem;font-weight:600;}
+.tag.green{background:rgba(34,197,94,.15);color:var(--green);}
+.tag.red{background:rgba(239,68,68,.15);color:var(--red);}
+.tag.orange{background:rgba(245,158,11,.15);color:var(--accent);}
+.tag.blue{background:rgba(59,130,246,.15);color:var(--blue);}
+.bar{background:var(--dark);border-radius:7px;height:12px;overflow:hidden;margin:3px 0;}
+.bar div{height:100%;background:var(--accent);border-radius:7px;}
+.alert{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);border-radius:10px;padding:9px 13px;font-size:.8rem;margin:8px 0;}
+
+/* ROADMAP */
+.roadmap{position:relative;padding-left:26px;}
+.roadmap::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--border);}
+.rm{position:relative;margin-bottom:24px;}
+.rm::before{content:'';position:absolute;left:-25px;top:5px;width:13px;height:13px;border-radius:50%;background:var(--accent);}
+.rm .ph{font-weight:700;color:var(--accent);}
+.rm p{color:var(--muted);font-size:.87rem;margin-top:3px;}
+
+/* CTA */
+.cta{text-align:center;padding:50px 0;border-top:1px solid var(--border);}
+.cta h2{margin-bottom:10px;}
+.cta p{color:var(--muted);margin-bottom:22px;max-width:620px;margin-left:auto;margin-right:auto;}
+footer{text-align:center;color:#5a6a85;font-size:.76rem;padding:26px 0 36px;border-top:1px solid rgba(255,255,255,.05);}
+@media(max-width:600px){input{width:100%;margin-bottom:6px;}button{margin-left:0;}}
+
+/* ═══ UX 2026 : base typo, mobile, accessibilité ═══ */
+html{font-size:100%;-webkit-text-size-adjust:100%;}
+body{font-size:1rem;line-height:1.7;}
+:focus-visible{outline:3px solid var(--accent,#f59e0b);outline-offset:2px;border-radius:4px;}
+::selection{background:rgba(245,158,11,.35);}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
+}
+img{max-width:100%;height:auto;}
+@media(max-width:640px){
+  body{font-size:.95rem;}
+  input,select,button{font-size:1rem !important;min-height:44px;}
+  table{display:block;overflow-x:auto;white-space:nowrap;}
+  h1{font-size:1.5rem !important;} h2{font-size:1.25rem !important;} h3{font-size:1.05rem !important;}
+}
+
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "Connaissance client : le potentiel, en direct", "item": "presentation-responsable-legallais.html"}]}</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<nav><div class="nav-inner">
+  <a href="#contexte">Contexte</a><a href="#potentiel">Le potentiel</a>
+  <a href="#demo-base">Démo live</a><a href="#pistes">Les 11 pistes</a>
+  <a href="#roadmap">Feuille de route</a><a href="poc-11-idees.html">🧪 Lab complet →</a>
+</div></nav>
+
+<header class="hero">
+  <div class="container">
+    <span class="badge">📊 DÉMO INTERACTIVE — BASE INSEE SIRENE</span>
+    <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <span>Connaissance client : le potentiel, en direct</span></nav>
+  <h1>Connaissance client : <span class="hl">le potentiel, en direct</span></h1>
+    <p>Cette page explore comment la base SIRENE (INSEE, gratuite et officielle) peut enrichir notre connaissance client. Les démos ci-dessous sont <b>fonctionnelles</b> — testez-les vous-même. Elles sont proposées en complément des outils déjà en place.</p>
+    <div class="hero-cta">
+      <a href="#demo-base" class="btn btn-primary">🧪 Tester les démos ↓</a>
+      <a href="#pistes" class="btn btn-ghost">Voir les 11 pistes</a>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- CONTEXTE -->
+  <section id="contexte">
+    <div class="label">Contexte</div>
+    <h2>Un socle data officiel, gratuit, quotidien</h2>
+    <p class="sub">SIRENE est l'annuaire officiel des entreprises françaises (12M+ entreprises). Il est en open data (licence ouverte), mis à jour chaque jour — et interrogeable gratuitement par API. Cette page en est la démonstration.</p>
+    <div class="kpis">
+      <div class="kpi"><b>0 €</b><span>Coût de la donnée</span></div>
+      <div class="kpi"><b>12M+</b><span>entreprises</span></div>
+      <div class="kpi"><b>Quotidien</b><span>Mise à jour</span></div>
+      <div class="kpi"><b>Officiel</b><span>Source INSEE</span></div>
+    </div>
+  </section>
+
+  <!-- DEMO LIVE -->
+  <section id="demo-base">
+    <div class="label">La preuve — données réelles</div>
+    <h2>Ce POC fonctionne déjà</h2>
+    <p class="sub">Les deux démos suivantes interrogent la <b>vraie API INSEE</b>, en direct depuis cette page. Aucun serveur intermédiaire.</p>
+
+    <div class="demo-block">
+      <h3>🧪 Démo 1 — Que révèle SIRENE sur une entreprise ?</h3>
+      <p class="note">Saisissez un SIREN (essayez <b>563820489</b> ou <b>443061841</b>) : métier, taille, adresse, statut — en 1 seconde.</p>
+      <input id="siretInput" placeholder="SIREN ou SIRET (9 ou 14 chiffres)">
+      <button onclick="verifier()">🔍 Vérifier</button>
+      <div class="live-result" id="liveResult"></div>
+    </div>
+
+    <div class="demo-block">
+      <h3>📡 Démo 2 — Radar de créations d'entreprises BTP</h3>
+      <p class="note">Les nouvelles entreprises BTP créées récemment, détectées via l'API réelle. En production : alerte hebdomadaire par agence.</p>
+      <button onclick="radar()">📡 Scanner les créations BTP</button>
+      <div class="live-result" id="radarResult"></div>
+    </div>
+  </section>
+
+  <!-- LES 11 PISTES -->
+  <section id="pistes">
+    <div class="label">Le potentiel</div>
+    <h2>11 pistes, du quick win à la différenciation</h2>
+    <p class="sub">Chaque piste est un cas d'usage concret. Les niveaux indiquent un ordre de priorité suggéré — à valider ensemble selon les outils déjà en place.</p>
+
+    <div class="pistes">
+      <div class="piste"><div class="head"><span class="num">1</span><span class="lvl qw">0-3 mois</span></div><h3>Assainir la base (conformité 2027)</h3><p>Détecter les SIRET radiés avant la facturation électronique obligatoire.</p><div class="demo-mini"><span class="tag green">🔴 Prioritaire</span> <span class="tag blue">3-5 j</span></div></div>
+      <div class="piste"><div class="head"><span class="num">2</span><span class="lvl qw">0-3 mois</span></div><h3>Fiche client enrichie</h3><p>Métier (NAF), effectifs, ancienneté sur chaque compte — la base des pistes suivantes.</p><div class="demo-mini"><span class="tag blue">5-7 j</span></div></div>
+      <div class="piste"><div class="head"><span class="num">3</span><span class="lvl qw">0-3 mois</span></div><h3>Dashboard clients</h3><p>Répartition CA et clients par métier, taille, zone — un premier livrable visible.</p><div class="demo-mini"><span class="tag blue">3-5 j</span></div></div>
+      <div class="piste"><div class="head"><span class="num">4</span><span class="lvl val">3-9 mois</span></div><h3>Segmentation métiers × univers</h3><p>Croiser le métier et les familles achetées pour personnaliser l'offre.</p><div class="demo-mini"><span class="tag orange">CA ↑</span></div></div>
+      <div class="piste"><div class="head"><span class="num">5</span><span class="lvl val">3-9 mois</span></div><h3>Radar de créations</h3><p>Nouvelles entreprises BTP → nouveaux comptes au bon moment (démo 2 ci-dessus).</p><div class="demo-mini"><span class="tag orange">Clients ↑</span></div></div>
+      <div class="piste"><div class="head"><span class="num">6</span><span class="lvl val">3-9 mois</span></div><h3>Scoring de potentiel</h3><p>Prioriser l'action commerciale sur les comptes à plus fort potentiel.</p><div class="demo-mini"><span class="tag orange">Priorité</span></div></div>
+      <div class="piste"><div class="head"><span class="num">7</span><span class="lvl val">3-9 mois</span></div><h3>Réactivation SIRET</h3><p>Repérer les sociétés fermées puis rouvertes → proposer la bascule proprement.</p><div class="demo-mini"><span class="tag orange">Fidélité</span></div></div>
+      <div class="piste"><div class="head"><span class="num">8</span><span class="lvl diff">9-18 mois</span></div><h3>Fiche client 360°</h3><p>Une vue unique : web + agence + e-commerce + SIRENE.</p><div class="demo-mini"><span class="tag blue">Avantage</span></div></div>
+      <div class="piste"><div class="head"><span class="num">9</span><span class="lvl diff">9-18 mois</span></div><h3>E-commerce data-driven</h3><p>Recommandations par métier, réassort prédictif, promos segmentées.</p><div class="demo-mini"><span class="tag blue">Panier ↑</span></div></div>
+      <div class="piste"><div class="head"><span class="num">10</span><span class="lvl diff">9-18 mois</span></div><h3>Prédiction</h3><p>Scores de défaillance, d'attrition et de croissance — anticiper.</p><div class="demo-mini"><span class="tag blue">Anticipation</span></div></div>
+      <div class="piste"><div class="head"><span class="num">11</span><span class="lvl diff">9-18 mois</span></div><h3>Agents IA commerciaux</h3><p>Préparation de visite générée : résumé, argumentaire, 3 actions.</p><div class="demo-mini"><span class="tag blue">Accélérateur</span></div></div>
+    </div>
+  </section>
+
+  <!-- DEMO SIMULEE : FICHE 360 + SCORING -->
+  <section id="demo-sim">
+    <div class="label">Illustrations (données simulées)</div>
+    <h2>À quoi ça ressemblerait en interne</h2>
+    <p class="sub">Les deux démos suivantes utilisent une base clients fictive et réaliste, pour illustrer le rendu. Les données réelles viendraient de nos systèmes.</p>
+
+    <div class="demo-block">
+      <h3>👁️ Fiche client enrichie (illustration)</h3>
+      <p class="note">Ce que verrait un conseiller : le métier, la taille, le CA, les familles achetées, et les opportunités.</p>
+      <select id="clientSelect"></select>
+      <button onclick="fiche360()">Afficher la fiche</button>
+      <div class="live-result" id="ficheResult"></div>
+    </div>
+
+    <div class="demo-block">
+      <h3>📊 Scoring de potentiel (illustration)</h3>
+      <p class="note">Tiers A/B/C pour prioriser l'action commerciale — modèle à co-construire avec les équipes.</p>
+      <div id="scoringTable"></div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap">
+    <div class="label">La feuille de route</div>
+    <h2>Un chemin clair, étape par étape</h2>
+    <div class="roadmap">
+      <div class="rm"><div class="ph">Phase 1 — Fondations (0-3 mois)</div><p>Assainir la base (conformité 2027) → enrichir les fiches → dashboard visible. Premier livrable en quelques jours.</p></div>
+      <div class="rm"><div class="ph">Phase 2 — Valeur (3-9 mois)</div><p>Segmentation métiers, radar de créations, scoring commercial, réactivation — les pistes à plus fort impact CA.</p></div>
+      <div class="rm"><div class="ph">Phase 3 — Différenciation (9-18 mois)</div><p>Fiche 360°, e-commerce data-driven, prédiction, agents IA — l'avantage durable, prêt pour le futur.</p></div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Et maintenant ?</h2>
+    <p>Cette page n'est qu'une exploration. Les pistes sont à prioriser ensemble, selon nos priorités et nos outils. Un premier POC ciblé peut être livré rapidement, à coût data nul.</p>
+    <a href="poc-11-idees.html" class="btn btn-primary">🧪 Ouvrir le lab complet (11 démos)</a>
+  </section>
+
+  <footer>
+    Démo Data Clients — Base INSEE SIRENE · Données officielles, licence ouverte v2.0 (attribution « source : INSEE Sirene ») ·
+    <br>Les données internes illustrées sont fictives · Ton : exploration, en complément des outils existants.
+  </footer>
+</div>
+
+<script>
+/* ═══════ BASE SIMULÉE (étiquetée fictive) ═══════ */
+const CLIENTS = [
+  {siren:"107456774", nom:"MN PEINTRE EN BATIMENT", naf:"43.34Z", metier:"Peinture", eff:"1-2", ca:82000, panier:340, fam:["Peinture","Consommables"], retard:5, tendance:+8},
+  {siren:"903313146", nom:"MC PEINTRE EN BATIMENT", naf:"43.34Z", metier:"Peinture", eff:"3-5", ca:145000, panier:410, fam:["Peinture","Outillage","EPI"], retard:12, tendance:+15},
+  {siren:"913834743", nom:"PRO BAT PEINTRE", naf:"43.34Z", metier:"Peinture", eff:"1-2", ca:61000, panier:290, fam:["Peinture"], retard:0, tendance:-5},
+  {siren:"999326960", nom:"SOCIETE LEITE PEINTRE", naf:"43.34Z", metier:"Peinture", eff:"3-5", ca:98000, panier:375, fam:["Peinture","Consommables"], retard:8, tendance:+3},
+  {siren:"920148137", nom:"PETER MIX PEINTRE", naf:"43.34Z", metier:"Peinture", eff:"6-9", ca:210000, panier:455, fam:["Peinture","Outillage","EPI","Quincaillerie"], retard:3, tendance:+22},
+  {siren:"801123456", nom:"SARL ELEC NORMANDIE", naf:"43.21Z", metier:"Électricité", eff:"3-5", ca:132000, panier:520, fam:["Appareillage","Câblage","Outillage"], retard:15, tendance:+10},
+  {siren:"812987654", nom:"ELECTRICITE DU CALVADOS", naf:"43.21Z", metier:"Électricité", eff:"6-9", ca:265000, panier:610, fam:["Appareillage","Câblage","Sécurité"], retard:7, tendance:+18},
+  {siren:"824567890", nom:"PLOMBERIE FALAISE", naf:"43.22Z", metier:"Plomberie", eff:"1-2", ca:74000, panier:450, fam:["Cuivre","Robinetterie","Chauffage"], retard:2, tendance:+5},
+  {siren:"835678901", nom:"SARL CHAUFFAGE ORNE", naf:"43.22Z", metier:"Plomberie", eff:"10-19", ca:340000, panier:720, fam:["Chauffage","Cuivre","Outillage"], retard:9, tendance:-8},
+  {siren:"846789012", nom:"MENUISERIE DU BOCAGE", naf:"43.32Z", metier:"Menuiserie", eff:"3-5", ca:118000, panier:530, fam:["Bois","Quincaillerie","Colles"], retard:1, tendance:+12},
+  {siren:"857890123", nom:"TOITURE BRETTEVILLE", naf:"43.91Z", metier:"Toiture", eff:"6-9", ca:198000, panier:680, fam:["Couverture","EPI","Quincaillerie"], retard:4, tendance:+9},
+  {siren:"868901234", nom:"CARRELAGE CAEN", naf:"43.33Z", metier:"Revêtement", eff:"1-2", ca:56000, panier:380, fam:["Carrelage","Colles"], retard:0, tendance:-3},
+  {siren:"879012345", nom:"SAS PLATRERIE HEROUVILLE", naf:"43.31Z", metier:"Plâtrerie", eff:"10-19", ca:285000, panier:490, fam:["Plâtre","Cloisons","Isolation"], retard:6, tendance:+14},
+  {siren:"880123456", nom:"SARL DEMOLITION 14", naf:"43.11Z", metier:"Démolition", eff:"3-5", ca:92000, panier:760, fam:["EPI","Outillage"], retard:18, tendance:-12},
+  {siren:"891234567", nom:"GROS OEUVRE FALAISE", naf:"41.20Z", metier:"Construction", eff:"20-49", ca:780000, panier:890, fam:["Quincaillerie","EPI","Outillage","Bois"], retard:11, tendance:+25},
+];
+const UNIVERS = ["Peinture","Appareillage","Câblage","Cuivre","Chauffage","Bois","Quincaillerie","Outillage","EPI"];
+
+/* ═══════ API INSEE réelle ═══════ */
+async function verifier() {
+  const q = document.getElementById('siretInput').value.trim();
+  const box = document.getElementById('liveResult');
+  if (!q) { box.innerHTML = "Saisissez un SIREN ou SIRET."; box.classList.add('show'); return; }
+  box.innerHTML = "🔍 Interrogation de l'API INSEE...";
+  box.classList.add('show');
+  try {
+    const r = await fetch("https://recherche-entreprises.api.gouv.fr/search?q=" + encodeURIComponent(q) + "&per_page=1");
+    const d = await r.json();
+    const e = d.results && d.results[0];
+    if (!e) { box.innerHTML = "❌ Identifiant introuvable dans SIRENE (possiblement radié ou inexistant)."; return; }
+    const s = e.siege || {};
+    const etat = s.etat_administratif === "A" ? '<span class="tag green">ACTIF</span>' : '<span class="tag red">FERMÉ</span>';
+    box.innerHTML = "<b>" + (e.nom_complet||"?") + "</b><br>SIREN : " + e.siren + " · NAF : " + (s.activite_principale||"?") + " · " + etat +
+      "<br>Adresse : " + (s.adresse||"?") + "<br>Créé le : " + (s.date_creation||"?") + " · Établissements ouverts : " + (e.nombre_etablissements_ouverts||"?") + "/" + (e.nombre_etablissements||"?") +
+      "<br><span style='color:var(--muted);font-size:.78rem'>Données officielles INSEE — source : recherche-entreprises.api.gouv.fr</span>";
+  } catch(err) { box.innerHTML = "❌ Erreur réseau : " + err.message; }
+}
+
+async function radar() {
+  const box = document.getElementById('radarResult');
+  box.innerHTML = "📡 Interrogation API INSEE...";
+  box.classList.add('show');
+  try {
+    const r = await fetch("https://recherche-entreprises.api.gouv.fr/search?q=peintre&per_page=8");
+    const d = await r.json();
+    box.innerHTML = "<b>Nouvelles entreprises BTP (métier peintre) — données réelles</b><br><table><tr><th>Entreprise</th><th>Ville</th><th>NAF</th><th>Création</th></tr>" +
+      d.results.map(e => { const s=e.siege||{}; return "<tr><td>"+(e.nom_complet||"?")+"</td><td>"+(s.libelle_commune||"?")+"</td><td>"+(s.activite_principale||"?")+"</td><td>"+(s.date_creation||"?")+"</td></tr>"; }).join("") +
+      "</table><span style='color:var(--muted);font-size:.78rem'>En production : filtre NAF BTP + zone agence + alerte hebdo.</span>";
+  } catch(err) { box.innerHTML = "❌ Erreur API : " + err.message; }
+}
+
+/* ═══════ Fiche 360 (simulée) ═══════ */
+(function fill(){
+  const opts = CLIENTS.map((c,i)=>"<option value='"+i+"'>"+c.nom+"</option>").join("");
+  document.getElementById('clientSelect').innerHTML = opts;
+})();
+
+function fiche360() {
+  const c = CLIENTS[document.getElementById('clientSelect').value];
+  const box = document.getElementById('ficheResult');
+  const manquants = UNIVERS.filter(u=>!c.fam.includes(u)).slice(0,2);
+  const risque = c.retard >= 10 ? '<span class="tag red">⚠️ Retards de paiement</span>' : '<span class="tag green">✅ Paiements sains</span>';
+  box.innerHTML = "<div style='display:grid;grid-template-columns:1fr 1fr;gap:12px'>" +
+    "<div><b style='color:var(--accent)'>"+c.nom+"</b><br><span style='font-size:.8rem;color:var(--muted)'>SIREN "+c.siren+" · "+c.naf+" · "+c.eff+" salariés</span></div>" +
+    "<div><b>CA</b> : "+c.ca.toLocaleString('fr-FR')+" € · <b>Panier</b> : "+c.panier+" € · <b>Tendance</b> : "+(c.tendance>0?"▲":"▼")+" "+Math.abs(c.tendance)+"%</div>" +
+    "<div><b>Achète</b> : "+c.fam.join(", ")+"</div><div>"+risque+"<br><b>Opportunité</b> : "+manquants.join(", ")+" non acheté</div></div>" +
+    "<span style='color:var(--muted);font-size:.78rem'>Données fictives d'illustration — fusion ERP + SIRENE en production.</span>";
+  box.classList.add('show');
+}
+
+/* ═══════ Scoring (simulé) ═══════ */
+(function scoring(){
+  const scored = CLIENTS.map(c=>{
+    const taille = {"1-2":10,"3-5":20,"6-9":30,"10-19":40,"20-49":50}[c.eff]||10;
+    const score = Math.round(taille*0.4 + (c.ca/10000)*0.3 + (c.tendance+20)*0.3);
+    const tier = score>=40?"A":score>=25?"B":"C";
+    return {nom:c.nom, metier:c.metier, score, tier, ca:c.ca};
+  }).sort((a,b)=>b.score-a.score);
+  document.getElementById('scoringTable').innerHTML =
+    "<table><tr><th>Tier</th><th>Client</th><th>Métier</th><th>Score</th><th>CA</th></tr>" +
+    scored.map(c=>"<tr><td><span class='tag "+(c.tier==='A'?'green':c.tier==='B'?'orange':'blue')+"'>"+c.tier+"</span></td><td>"+c.nom+"</td><td>"+c.metier+"</td><td><b>"+c.score+"</b></td><td>"+c.ca.toLocaleString('fr-FR')+" €</td></tr>").join("") +
+    "</table><span style='color:var(--muted);font-size:.78rem'>Modèle d'illustration à co-construire — données fictives.</span>";
+})();
+</script>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<div class="sources">Sources : <a href="https://www.legifrance.gouv.fr/eli/loi/2026/2/19/CPPX2524517L/jo/texte" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">Loi de finances 2026</a> · <a href="https://www.impots.gouv.fr/" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">impots.gouv.fr</a></div>
+<script src="sw-register.js"></script>
+</body>
+</html>

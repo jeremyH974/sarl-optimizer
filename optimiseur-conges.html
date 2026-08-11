@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optimiseur de congés 2026-2032 : plan annuel optimal, jours fériés, ponts</title>
+<meta name="description" content="Optimisez vos congés payés : jours fériés 2026-2032, les ponts, et le plan annuel optimal : où poser chaque jour pour maximiser votre repos total, mois par mois.">
+<meta property="og:title" content="Optimiseur de congés 2026-2032">
+<meta property="og:description" content="Jours fériés, ponts et plan annuel optimal : le max de repos avec votre budget de jours.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://SIMULATEUR-SARL.github.io/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Optimiseur de congés 2026-2032","description":"Trouve le plan annuel optimal : où poser vos jours de congés pour maximiser le repos (ponts, jours fériés).","applicationCategory":"LifestyleApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}
+</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "👔 Salariés & parents", "item": "index.html#salarie"}, {"@type": "ListItem", "position": 3, "name": "🏖️ Optimiseur de congés : le plan annuel optimal", "item": "optimiseur-conges.html"}]}</script>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="jargon-en-clair.html">🔤 Jargon</a>
+    
+    <a href="guide-optimisation-sarl.html">📖 Guide</a>
+  
+    
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+<details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="comparateur-societes.html" class="menu-cat">⚖️ Comparateur : démarrez ici</a>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <a href="nouveautes-2026.html">📰 Nouveautés 2026</a>
+        <a href="ia-pour-compta.html">🤖 IA pour la compta</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+  </div>
+
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <a href="index.html#salarie">👔 Salariés & parents</a> › <span>🏖️ Optimiseur de congés : le plan annuel optimal</span></nav>
+  <h1>🏖️ Optimiseur de congés : le plan annuel optimal</h1>
+  <p class="subtitle">Salariés et indépendants : avec VOTRE nombre de jours, où les poser pour obtenir le maximum de repos sur l'année : mois par mois.</p>
+  <div class="tldr"><strong>Le plus important :</strong> entrez vos <strong>jours de congés</strong> (ex. 25) et vos <strong>RTT</strong> → l'outil calcule les <strong>jours fériés</strong> (Pâques compris), affiche les <strong>vacances scolaires</strong> de votre zone (A/B/C) sur le calendrier, et trouve le <strong>plan annuel optimal</strong> : quels jours poser pour transformer chaque pont en longue pause. <strong>2027 : l'Ascension tombe le jeudi 6 mai.</strong></div>
+
+  <div class="card">
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.6rem;">
+      <div>
+        <label>📅 Année</label>
+        <select id="annee" oninput="optiConges()"></select>
+      </div>
+      <div>
+        <label>🗓️ Jours de congés</label>
+        <input id="jours" type="number" value="25" min="1" max="30" step="1" oninput="optiConges()">
+      </div>
+      <div>
+        <label>⚡ Jours de RTT</label>
+        <input id="rtt" type="number" value="0" min="0" max="15" step="1" oninput="optiConges()">
+      </div>
+      <div>
+        <label>🎒 Zone scolaire (vacances)</label>
+        <select id="zone" oninput="optiConges()">
+          <option value="">Aucune</option>
+          <option value="A">Zone A</option>
+          <option value="B">Zone B</option>
+          <option value="C">Zone C</option>
+        </select>
+      </div>
+    </div>
+    <label style="margin-top:.7rem;display:flex;gap:.5rem;align-items:center;font-size:.9rem;">
+      <input type="checkbox" id="contrainteVac" onchange="optiConges()">
+      🎒 Je pose uniquement pendant les vacances scolaires de ma zone
+    </label>
+    <button class="btn" onclick="optiConges()">🏖️ Optimiser mes congés</button>
+    <div id="resultats" style="margin-top:1.2rem;"></div>
+  </div>
+
+  <div class="card">
+    <h2>👷 Pour les salariés : les règles de pose</h2>
+    <ul style="margin:.4rem 0 .4rem 1.4rem;">
+      <li><strong>Demandez avant de planifier</strong> : l'ordre des départs est fixé par l'employeur : le pont idéal doit être validé à l'avance ;</li>
+      <li><strong>Ouvrés ou ouvrables ?</strong> l'outil compte en jours ouvrés (lundi-vendredi) ; certaines conventions comptent en ouvrables (6 jours) : 30 jours/an = 25 ouvrés ;</li>
+      <li><strong>Un férié pendant vos congés n'est pas décompté</strong> : poser autour d'un férié = double gain ;</li>
+      <li><strong>Fractionnement</strong> : si vous posez moins de 5 semaines entre le 1er mai et le 31 octobre, des jours de fractionnement peuvent s'ajouter (selon convention) ;</li>
+      <li><strong>RTT</strong> : si vous avez des RTT, utilisez-les pour « boucher les trous » : ils allongent le pont sans toucher aux congés payés.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📋 Les règles du jeu</h2>
+    <ul style="margin:.4rem 0 .4rem 1.4rem;">
+      <li>Les <strong>jours fériés</strong> ne sont pas décomptés de vos congés (sauf accord contraire) ;</li>
+      <li>L'outil compte en <strong>jours ouvrés</strong> (lundi-vendredi) : le mode le plus courant ;</li>
+      <li>Une fenêtre = vos jours posés + les week-ends et fériés qui s'y rattachent (le « pont ») ;</li>
+      <li>Le <strong>plan annuel</strong> répartit votre budget de jours sur les meilleurs ponts de l'année (sans chevauchement).</li>
+    </ul>
+  </div>
+
+  <div class="ressources">
+    <a href="jours-feries-2026.html">🗓️ Jours fériés 2026</a>
+    <a href="ponts-2026.html">🌉 Ponts 2026</a>
+    <a href="conges-payes-salarie.html">🏖️ Calcul des congés payés</a>
+    <a href="conges-gerant.html">🏖️ Congés du gérant</a>
+    <a href="premier-salarie.html">👷 Premier salarié</a>
+  </div>
+
+  <div class="sources">Sources : <a href="https://data.education.gouv.fr/explore/dataset/fr-en-calendrier-scolaire/" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">data.education.gouv.fr (vacances scolaires)</a></div>
+<div class="footer">Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · 
+    ⚠️ Jours fériés calculés par l'algorithme de Computus (Pâques) : vérifiés pour 2026-2028. Les jours fériés légaux peuvent varier localement (Alsace-Moselle, collectivités). · <a href="mentions-legales.html" style="color:var(--muted);">📜 Mentions légales</a> Taux vérifiés le 01/08/2026 (sources officielles).
+  </div>
+</div>
+<script src="vacances-scolaires.js"></script>
+<script>
+// ─── Jours fériés par algorithme (Computus) : pas de dates en dur ───
+function paques(annee) {
+  const a = annee % 19, b = Math.floor(annee / 100), c = annee % 100;
+  const d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25);
+  const g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30;
+  const i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7;
+  const m = Math.floor((a + 11 * h + 22 * l) / 451);
+  const mois = Math.floor((h + l - 7 * m + 114) / 31) - 1;
+  const jour = ((h + l - 7 * m + 114) % 31) + 1;
+  return new Date(annee, mois, jour);
+}
+const JOURS = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+const MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+const MOIS_COURT = ['janv', 'févr', 'mars', 'avr', 'mai', 'juin', 'juil', 'août', 'sept', 'oct', 'nov', 'déc'];
+
+function feries(annee) {
+  const p = paques(annee);
+  const lundiPaques = new Date(p.getFullYear(), p.getMonth(), p.getDate() + 1);
+  const ascension = new Date(p.getFullYear(), p.getMonth(), p.getDate() + 39);
+  const pentecote = new Date(p.getFullYear(), p.getMonth(), p.getDate() + 50);
+  const fixes = [
+    [0, 1, "Jour de l'an"], [4, 1, "Fête du Travail"], [4, 8, "Victoire 1945"],
+    [6, 14, "Fête nationale"], [7, 15, "Assomption"], [10, 1, "Toussaint"],
+    [10, 11, "Armistice"], [11, 25, "Noël"]
+  ];
+  const liste = fixes.map(f => ({ d: new Date(annee, f[0], f[1]), nom: f[2] }));
+  liste.push({ d: lundiPaques, nom: "Lundi de Pâques" });
+  liste.push({ d: ascension, nom: "Ascension" });
+  liste.push({ d: pentecote, nom: "Lundi de Pentecôte" });
+  return liste.sort((a, b) => a.d - b.d);
+}
+function estTravaille(d, fset) {
+  const j = d.getDay();
+  if (j === 0 || j === 6) return false;
+  return !fset.has(d.getTime());
+}
+
+// ─── Vacances scolaires (données officielles vacances-scolaires.js) ───
+function vacancesPour(zone, annee) {
+  if (!zone || typeof VACANCES_SCOLAIRES === 'undefined') {
+    return { per: [], est: function () { return false; } };
+  }
+  const per = [];
+  for (const v of VACANCES_SCOLAIRES) {
+    if (v[2] !== zone) continue;
+    const dd = v[0].split('-'), ff = v[1].split('-');
+    const d = new Date(+dd[0], +dd[1] - 1, +dd[2]);
+    const f = new Date(+ff[0], +ff[1] - 1, +ff[2]);
+    // garde les périodes qui touchent l'année civile (année N-1 à N+1 pour les chevauchements)
+    if (d.getFullYear() >= annee - 1 && f.getFullYear() <= annee + 1) per.push({ d, f });
+  }
+  per.sort((a, b) => a.d - b.d);
+  return { per, est: function (x) { return per.some(p => x >= p.d && x <= p.f); } };
+}
+
+// ─── Set des jours posables (optimisation : O(1) au lieu de vac.est × itérations) ───
+function setPermis(annee, fset, contrainte, vac) {
+  if (!contrainte) return null;
+  const s = new Set();
+  let d = new Date(annee, 0, 1);
+  const fin = new Date(annee + 1, 0, 15);
+  while (d <= fin) {
+    if (estTravaille(d, fset) && vac.est(d)) s.add(d.getTime());
+    d = plus1(d);
+  }
+  return s;
+}
+function fmtDate(d) {
+  return JOURS[d.getDay()] + ' ' + d.getDate() + ' ' + MOIS[d.getMonth()] + ' ' + d.getFullYear();
+}
+function plus1(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1); }
+function moins1(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() - 1); }
+
+// ─── Fenêtre : poser K jours ouvrés à partir de d (permis = jours posables) ───
+// Retourne null si K jours posables introuvables avant 400 jours (évite la boucle infinie)
+function fenetreDepuis(d, K, fset, permis) {
+  const p = permis || estTravaille;
+  const poses = [];
+  let cur = new Date(d);
+  let garde = 0;
+  while (poses.length < K) {
+    if (p(cur, fset)) poses.push(new Date(cur));
+    cur = plus1(cur);
+    if (++garde > 400) return null;
+  }
+  let rd = new Date(poses[0]);
+  while (!estTravaille(moins1(rd), fset)) rd = moins1(rd);
+  let rf = new Date(poses[poses.length - 1]);
+  while (!estTravaille(plus1(rf), fset)) rf = plus1(rf);
+  const repos = Math.round((rf - rd) / 86400000) + 1;
+  return { d, poses, rd, rf, repos, K, gain: repos - K };
+}
+
+// ─── Plan annuel optimal : programmation dynamique (knapsack sur intervalles) ───
+// Choisit l'ensemble de blocs (sans chevauchement) qui maximise le repos total
+// avec le budget de jours disponibles. Blocs de 3+ jours (vraies pauses).
+function planAnnuel(annee, fset, N, fer, permis) {
+  const debut = new Date(annee, 0, 1);
+  // fin étendue au 15 janvier N+1 : le pont Noël → Jour de l'An traverse l'année
+  const fin = new Date(annee + 1, 0, 15);
+  const dernierJour = new Date(annee, 11, 31);
+  const p = permis || estTravaille;
+  const cands = [];
+  const KMax = Math.min(N, 15); // jamais plus de 3 semaines d'affilée dans un plan optimisé
+  for (let d = new Date(debut); d <= dernierJour; d = plus1(d)) {
+    if (!estTravaille(d, fset)) continue;
+    for (let K = 3; K <= KMax; K++) {
+      const f = fenetreDepuis(d, K, fset);
+      if (!f || f.rf > fin) break; // les K suivants échoueront aussi
+      cands.push(f);
+    }
+  }
+  // Contrainte « vacances scolaires » : on ne garde que les blocs ENTIÈREMENT posés
+  // pendant les vacances (les jours posés sont consécutifs, le filtrage vient après)
+  let candsFinal = cands;
+  if (permis) {
+    candsFinal = cands.filter(f => f.poses.every(x => permis(x, fset)));
+  }
+  candsFinal.sort((a, b) => a.rf - b.rf || a.d - b.d);
+  const W = candsFinal.length;
+  const prev = new Array(W).fill(-1);
+  for (let i = 1; i < W; i++) {
+    let lo = 0, hi = i - 1, best = -1;
+    while (lo <= hi) {
+      const mid = (lo + hi) >> 1;
+      if (candsFinal[mid].rf < candsFinal[i].rd) { best = mid; lo = mid + 1; } else hi = mid - 1;
+    }
+    prev[i] = best;
+  }
+  const dp = Array.from({ length: W + 1 }, () => new Int16Array(N + 1).fill(-1));
+  dp[0][0] = 0;
+  for (let i = 1; i <= W; i++) {
+    const c = candsFinal[i - 1];
+    const pIdx = prev[i - 1] + 1;
+    for (let k = 0; k <= N; k++) {
+      dp[i][k] = dp[i - 1][k];
+      if (k >= c.K && dp[pIdx][k - c.K] >= 0) {
+        const val = dp[pIdx][k - c.K] + c.repos;
+        if (val > dp[i][k]) dp[i][k] = val;
+      }
+    }
+  }
+  let bestK = 0, bestVal = 0;
+  for (let kk = 0; kk <= N; kk++) if (dp[W][kk] > bestVal) { bestVal = dp[W][kk]; bestK = kk; }
+  const blocs = [];
+  let k = bestK, i = W;
+  while (i > 0 && k > 0) {
+    const c = candsFinal[i - 1];
+    if (dp[i][k] !== dp[i - 1][k] && k >= c.K) {
+      blocs.push(c);
+      k -= c.K;
+      i = prev[i - 1] + 1;
+    } else i -= 1;
+  }
+  blocs.sort((a, b) => a.rd - b.rd);
+  const joursUtilises = blocs.reduce((s, b) => s + b.K, 0);
+  const reposTotal = blocs.reduce((s, b) => s + b.repos, 0);
+  const feriesInclus = blocs.reduce((s, b) => s + fer.filter(f => f.d >= b.rd && f.d <= b.rf).length, 0);
+  return { blocs, joursUtilises, reposTotal, feriesInclus, joursRestants: N - joursUtilises };
+}
+
+// ─── Mini-calendrier d'un mois (fériés rouges, congés orange, week-ends gris) ───
+// blocsDuMois : les périodes de repos du plan qui touchent ce mois → le label
+// compte les jours posés et les jours de repos de la période (fériés + week-ends
+// AUTOUR des blocs uniquement, pas tous les week-ends du mois).
+function miniCal(mois, annee, fset, joursPoses, blocsDuMois, vacancesEst, zoneCoul) {
+  const premier = new Date(annee, mois, 1);
+  const nbJours = new Date(annee, mois + 1, 0).getDate();
+  const videAvant = (premier.getDay() + 6) % 7;
+  let cells = '<div class="mc-dow">L</div><div class="mc-dow">M</div><div class="mc-dow">M</div><div class="mc-dow">J</div><div class="mc-dow">V</div><div class="mc-dow">S</div><div class="mc-dow">D</div>';
+  for (let i = 0; i < videAvant; i++) cells += '<div class="mc-num mc-vide"></div>';
+  const setPoses = new Set(joursPoses.map(x => x.getTime()));
+  const ve = vacancesEst || function () { return false; };
+  // jours du mois couverts par une période de repos du plan (union des blocs)
+  const joursRepos = new Set();
+  blocsDuMois.forEach(b => {
+    let d = new Date(b.rd);
+    while (d <= b.rf) {
+      if (d.getMonth() === mois && d.getFullYear() === annee) joursRepos.add(d.getTime());
+      d = plus1(d);
+    }
+  });
+  for (let j = 1; j <= nbJours; j++) {
+    const d = new Date(annee, mois, j);
+    const f = fset.has(d.getTime());
+    const w = d.getDay() === 0 || d.getDay() === 6;
+    const pos = setPoses.has(d.getTime());
+    const vac = ve(d);
+    // couleur officielle de la zone (A orange / B bleu / C vert) ou bleu par défaut
+    const cls = f ? 'mc-ferie' : pos ? 'mc-conge' : vac ? (zoneCoul ? '' : 'mc-vacances') : w ? 'mc-week' : '';
+    const st = vac && !f && !pos && zoneCoul ? ' style="background:rgba(' + zoneCoul + ',.25);border:1px dashed rgba(' + zoneCoul + ',.6);"' : '';
+    cells += '<div class="mc-num ' + cls + '"' + st + '>' + j + '</div>';
+  }
+  const k = joursPoses.length;
+  const reposTotal = blocsDuMois.reduce((s, b) => s + b.repos, 0);
+  const reposMois = joursRepos.size;
+  const label = k > 0
+    ? '<b>' + k + ' j posés → ' + reposTotal + ' j de repos</b>'
+    : 'Aucun congé ce mois-ci';
+  const total = k > 0 ? ' · dont <b>' + reposMois + ' j</b> dans ce mois' : '';
+  return '<div class="mini-cal-wrap"><div class="mini-cal-title">' + MOIS[mois] + ' ' + annee + '</div><div class="mini-cal">' + cells + '</div><div class="mc-leg">' + label + total + '</div></div>';
+}
+
+function optiConges() {
+  const annee = parseInt(document.getElementById('annee').value) || 2026;
+  const N = Math.max(1, Math.min(30, parseInt(document.getElementById('jours').value) || 25));
+  const RTT = Math.max(0, Math.min(15, parseInt(document.getElementById('rtt').value) || 0));
+  const zone = document.getElementById('zone').value || '';
+  const contrainte = !!document.getElementById('contrainteVac').checked;
+  const budget = N + RTT;
+  const fer = feries(annee);
+  // ⚠️ le pont Noël → Jour de l'An traverse l'année : on inclut les fériés de janvier N+1
+  const ferJanv = feries(annee + 1).filter(f => f.d.getFullYear() === annee + 1 && f.d.getMonth() === 0);
+  const fset = new Set(fer.concat(ferJanv).map(f => f.d.getTime()));
+  const vac = vacancesPour(zone, annee);
+  const sPermis = setPermis(annee, fset, contrainte, vac);
+  const permis = sPermis ? function (d) { return sPermis.has(d.getTime()); } : null;
+  // couleurs OFFICIELLES education.gouv.fr (A orange / B bleu / C vert)
+  const COUL_ZONE = { A: '240,140,100', B: '100,140,240', C: '60,180,140' };
+  const zoneCoul = COUL_ZONE[zone] || null;
+
+  // ── Plan annuel optimal ──
+  const plan = planAnnuel(annee, fset, budget, fer, permis);
+  // noms courts des fériés (style SERP : « Mai (1er mai + Ascension) »)
+  function nomCourt(n) {
+    return n.replace('Fête du Travail', '1er mai').replace('Victoire 1945', '8 mai')
+      .replace('Fête nationale', '14 juillet').replace('Jour de l\'an', 'Nouvel An')
+      .replace('Lundi de Pâques', 'Pâques').replace('Lundi de Pentecôte', 'Pentecôte')
+      .replace('Armistice', '11 novembre').replace('Assomption', '15 août');
+  }
+  const rowsPlan = plan.blocs.map((b, i) => {
+    const fers = fer.filter(f => f.d >= b.rd && f.d <= b.rf);
+    const moisNom = fers.length ? fers[0].d.getMonth() : b.rd.getMonth();
+    const nom = fers.length ? MOIS[moisNom] + ' (' + nomCourt(fers.map(f => f.nom).join(' + ')) + ')' : MOIS[moisNom] + ' (repos)';
+    const posesFmt = b.poses.map(p => JOURS[p.getDay()].slice(0, 3) + ' ' + p.getDate() + ' ' + MOIS_COURT[p.getMonth()]).join(', ');
+    return `<tr><td><strong>${nom}</strong></td><td>${fmtDate(b.rd)}</td><td>${fmtDate(b.rf)}</td><td>${b.K} j</td><td><strong>${b.repos} j</strong></td><td style="font-size:.8rem;">${posesFmt}</td></tr>`;
+  }).join('');
+
+  // mini-calendriers du plan : tous les mois touchés par un bloc (mois+année, le bloc Noël peut aller en janvier N+1)
+  const moisPlan = new Set();
+  plan.blocs.forEach(b => {
+    let d = new Date(b.rd);
+    while (d <= b.rf) { moisPlan.add(d.getMonth() + '-' + d.getFullYear()); d = plus1(d); }
+  });
+  // + mois avec fériés (pour montrer les mois sans pont)
+  fer.forEach(f => { if (f.d.getDay() >= 1 && f.d.getDay() <= 5) moisPlan.add(f.d.getMonth() + '-' + f.d.getFullYear()); });
+  const moisTries = [...moisPlan].sort((a, b) => {
+    const [ma, ya] = a.split('-').map(Number), [mb, yb] = b.split('-').map(Number);
+    return ya - yb || ma - mb;
+  });
+  let calsPlan = '';
+  for (const cle of moisTries) {
+    const [mois, anneeCal] = cle.split('-').map(Number);
+    const poses = [];
+    const blocsDuMois = [];
+    plan.blocs.forEach(b => {
+      b.poses.forEach(p => { if (p.getMonth() === mois && p.getFullYear() === anneeCal) poses.push(p); });
+      if ((b.rd.getMonth() === mois && b.rd.getFullYear() === anneeCal) || (b.rf.getMonth() === mois && b.rf.getFullYear() === anneeCal)) blocsDuMois.push(b);
+    });
+    calsPlan += miniCal(mois, anneeCal, fset, poses, blocsDuMois, vac.est, zoneCoul);
+  }
+
+  // ── Tableau des fériés ──
+  const rowsFer = fer.map(f =>
+    `<tr><td>${f.nom}</td><td>${fmtDate(f.d)}</td><td class="${[0,6].includes(f.d.getDay()) ? 'no' : 'yes'}">${[0,6].includes(f.d.getDay()) ? 'Week-end' : 'Férié ouvré'}</td></tr>`
+  ).join('');
+  const feriesOuvres = fer.filter(f => ![0,6].includes(f.d.getDay())).length;
+
+  // ── Week-ends prolongés SANS poser (férié vendredi ou lundi) + petits ponts à 1 jour ──
+  const gratis = fer.filter(f => f.d.getDay() === 5 || f.d.getDay() === 1)
+    .map(f => ({ f, duree: f.d.getDay() === 5 || f.d.getDay() === 1 ? 3 : 3 }));
+  const rowsGratis = gratis.map(g =>
+    `<tr><td>${g.f.nom}</td><td>${fmtDate(g.f.d)}</td><td class="yes">${g.f.d.getDay() === 5 ? 'ven' : 'lun'} → week-end de 3 jours</td></tr>`
+  ).join('');
+  const microPonts = fer.filter(f => f.d.getDay() === 2 || f.d.getDay() === 4)
+    .map(f => `<tr><td>${f.nom}</td><td>${fmtDate(f.d)}</td><td>Posez ${f.d.getDay() === 2 ? 'le lundi' : 'le vendredi'} avant/après → 4 jours de repos pour 1 seul jour posé</td></tr>`).join('');
+
+  // ── Comparatif des années proches (année choisie −1 → +2 : pas besoin de tout charger) ──
+  const scores = [];
+  for (let a = annee - 1; a <= annee + 2; a++) {
+    const fa = feries(a);
+    const ouvresA = fa.filter(f => f.d.getDay() >= 1 && f.d.getDay() <= 5).length;
+    const venA = fa.filter(f => f.d.getDay() === 5).length;
+    const lunA = fa.filter(f => f.d.getDay() === 1).length;
+    const fj = feries(a + 1).filter(f => f.d.getMonth() === 0);
+    const fsetA = new Set(fa.concat(fj).map(f => f.d.getTime()));
+    const vacA = vacancesPour(zone, a);
+    const sA = setPermis(a, fsetA, contrainte, vacA);
+    const permisA = sA ? function (d) { return sA.has(d.getTime()); } : null;
+    const planA = planAnnuel(a, fsetA, budget, fa, permisA);
+    scores.push({ a, ouvresA, venA, lunA, maxRepos: planA.reposTotal, periodes: planA.blocs.length });
+  }
+  const bestA = scores.reduce((m, s) => (s.maxRepos > m.maxRepos ? s : m), scores[0]);
+  const rowsScores = scores.map(s =>
+    `<tr${s.a === bestA.a ? ' style="background:rgba(34,197,94,.12);font-weight:700;"' : ''}><td>${s.a}</td><td>${s.ouvresA}</td><td>${s.venA}</td><td>${s.lunA}</td><td><strong>${s.maxRepos} j</strong> (${s.periodes} périodes)${s.a === bestA.a ? ' 🏆' : ''}</td></tr>`
+  ).join('');
+
+  document.getElementById('resultats').innerHTML = `
+    <div class="roi">🎯 <strong>En posant seulement ${budget} jours en ${annee}${RTT ? ' (' + N + ' congés + ' + RTT + ' RTT)' : ''}, vous obtenez jusqu'à ${plan.reposTotal} jours de repos</strong> : répartis en ${plan.blocs.length} périodes (${plan.feriesInclus} fériés inclus)${plan.joursRestants > 0 ? ' · il vous reste <strong>' + plan.joursRestants + ' jours</strong> à poser où vous voulez (idéal : un bloc d’été ou à Noël)' : ''}${contrainte ? ' · contrainte « vacances scolaires zone ' + zone + ' » appliquée 🎒' : ''}.</div>
+
+    <h3 style="margin-top:1rem;">🗓️ Le détail mois par mois</h3>
+    <div class="mc-legend"><span><span class="mc-dot" style="background:#dc2626;"></span>Jours fériés</span><span><span class="mc-dot" style="background:#f59e0b;"></span>Congés à poser</span>${zone ? '<span><span class="mc-dot" style="background:rgba(' + (zoneCoul || '37,99,235') + ',.6);"></span>Vacances scolaires zone ' + zone + '</span>' : ''}<span><span class="mc-dot" style="background:rgba(100,116,139,.35);"></span>Week-ends</span></div>
+    <div class="mini-cal-grid">${calsPlan}</div>
+
+    <h3 style="margin-top:1rem;">📋 Le plan en tableau (dans l'ordre de l'année)</h3>
+    <table>
+      <tr><th>Période</th><th>Repos du</th><th>au</th><th>Posés</th><th>Repos</th><th>Jours à poser</th></tr>
+      ${rowsPlan}
+    </table>
+
+    ${gratis.length ? `<h3 style="margin-top:1rem;">🎉 Sans poser de congé : les week-ends prolongés de ${annee}</h3>
+    <table>
+      <tr><th>Férié</th><th>Date</th><th>Gain</th></tr>
+      ${rowsGratis}
+    </table>` : ''}
+
+    ${microPonts ? `<h3 style="margin-top:1rem;">⚡ Les mini-ponts à 1 jour (4 jours de repos pour 1 seul jour posé)</h3>
+    <table>
+      <tr><th>Férié</th><th>Date</th><th>Astuce</th></tr>
+      ${microPonts}
+    </table>` : ''}
+
+    <h3 style="margin-top:1rem;">📊 Quelle année est la plus avantageuse ? (avec ${budget} jours posés)</h3>
+    <table>
+      <tr><th>Année</th><th>Fériés ouvrés</th><th>dont vendredis</th><th>dont lundis</th><th>Repos max</th></tr>
+      ${rowsScores}
+    </table>
+    <p style="font-size:.8rem;color:var(--muted);">🏆 <strong>${bestA.a} est l'année la plus rentable</strong> : ${bestA.maxRepos} jours de repos avec ${N} jours posés (${bestA.venA} fériés un vendredi + ${bestA.lunA} un lundi). La règle : plus de fériés en vendredi/lundi = plus de week-ends prolongés gratuits.</p>
+
+    <h3 style="margin-top:1rem;">🗓️ Jours fériés ${annee}</h3>
+    <table>
+      <tr><th>Férié</th><th>Date</th><th>Type</th></tr>
+      ${rowsFer}
+    </table>
+    <p style="margin-top:.8rem;font-size:.8rem;color:var(--muted);">L'outil suppose que vous ne travaillez pas les week-ends. Votre convention peut prévoir d'autres règles (jours ouvrés vs ouvrables, fériés chômés payés).</p>`;
+}
+
+// ── Initialisation : années dynamiques (2026-2032) + deep link ?annee= ──
+(function initAnnees() {
+  const sel = document.getElementById('annee');
+  const m = (typeof location !== 'undefined' ? (location.search || '') : '').match(/[?&]annee=(\d{4})/);
+  const voulue = m ? parseInt(m[1]) : 2026;
+  let opts = '';
+  for (let a = 2026; a <= 2032; a++) {
+    opts += '<option value="' + a + '"' + (a === voulue ? ' selected' : '') + '>' + a + '</option>';
+  }
+  sel.innerHTML = opts;
+  optiConges();
+})();
+</script>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="sw-register.js"></script>
+</body>
+</html>

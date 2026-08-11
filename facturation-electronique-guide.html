@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facturation électronique : le guide complet TPE/PME</title>
+<meta name="description" content="La facturation électronique expliquée simplement : calendrier, obligations, formats (Factur-X), sanctions, checklist. Le guide complet pour les TPE.">
+<meta property="og:title" content="Facturation électronique : le guide complet TPE/PME">
+<meta property="og:description" content="Calendrier, obligations, formats (Factur-X), sanctions : la réforme expliquée simplement.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "👷 Espace créateurs & gérants", "item": "espace-createurs.html"}, {"@type": "ListItem", "position": 3, "name": "📜 La facturation électronique, expliquée simplement", "item": "facturation-electronique-guide.html"}]}</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<style>
+/* ═══ UX 2026 : base typo, mobile, accessibilité ═══ */
+html{font-size:100%;-webkit-text-size-adjust:100%;}
+body{font-size:1rem;line-height:1.7;}
+:focus-visible{outline:3px solid var(--accent,#f59e0b);outline-offset:2px;border-radius:4px;}
+::selection{background:rgba(245,158,11,.35);}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
+}
+img{max-width:100%;height:auto;}
+@media(max-width:640px){
+  body{font-size:.95rem;}
+  input,select,button{font-size:1rem !important;min-height:44px;}
+  table{display:block;overflow-x:auto;white-space:nowrap;}
+  h1{font-size:1.5rem !important;} h2{font-size:1.25rem !important;} h3{font-size:1.05rem !important;}
+}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quand la facturation électronique devient-elle obligatoire ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La réception des factures électroniques devient obligatoire pour toutes les entreprises le 1er septembre 2026. L'émission est obligatoire pour les grandes entreprises et ETI à la même date, et pour les PME et micro-entreprises le 1er septembre 2027."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelles sont les sanctions en cas de non-conformité ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les sanctions vont de 50 euros par facture non conforme (plafonnées à 15 000 euros par an) à 250 euros pour le e-reporting, et jusqu'à 5 000 euros pour le défaut de communication des données."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Suis-je concerné par la facturation électronique si je suis en franchise de TVA ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. La franchise de TVA n'exempte pas de la facturation électronique : toutes les entreprises assujetties à la TVA sont concernées, y compris celles en franchise."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quels sont les formats de facture électronique acceptés ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Trois formats sont acceptés : Factur-X, UBL et CII (Cross Industry Invoice). Le format PDF seul ne sera plus considéré comme une facture électronique."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "PDP ou PPF : quelle plateforme choisir ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le PPF (Portail Public de Facturation) est la plateforme publique gratuite de l'État. Les PDP (Plateformes de Dématérialisation Partenaires) sont des solutions privées certifiées, qui ajoutent des services (gestion, archivage, intégration comptable)."
+      }
+    }
+  ]
+}</script>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="index.html">🏠 Accueil</a>
+    
+    
+    <a href="guide-optimisation-sarl.html">📖 Guide</a>
+  
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+
+    <details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="espace-createurs.html" class="menu-cat">👷 Espace créateurs & gérants</a>
+        <a href="espace-salaries.html" class="menu-cat">👔 Espace salariés & parents</a>
+        <a href="comparateur-societes.html" class="menu-cat menu-cta">⚖️ Comparateur : démarrez ici</a>
+        <a href="parcours-creation.html">🚀 Parcours création (8 étapes)</a>
+        <a href="parcours-gestion.html">🧰 Parcours gestion (8 étapes)</a>
+        <div class="menu-titre">👷 Créateurs &amp; gérants</div>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <div class="menu-titre">👔 Salariés &amp; parents</div>
+        <a href="parcours-parents.html">👨‍👩‍👧 Parcours parents (8 étapes)</a>
+        <a href="optimiseur-conges.html">🏖️ Optimiser mes congés</a>
+        <a href="calcul-rtt.html">⚡ Calculer mes RTT</a>
+        <a href="jours-ouvres-2026.html">🗓️ Jours ouvrés</a>
+        <a href="vacances-scolaires-2026-2027.html">🏫 Vacances scolaires</a>
+        <a href="bulletin-paie-gerant.html">💰 Bulletin de paie</a>
+        <a href="leviers-optimisation-2026.html">💶 Tous les leviers, par profil</a>
+        <div class="menu-titre">🤖 IA &amp; automatisation</div>
+        <a href="ia-pour-tpe.html">🤖 IA pour votre TPE</a>
+        <a href="abonnement-ia-tpe.html">💳 Kit IA TPE (abonnement)</a>
+        <a href="ia-pour-compta.html">🤖 IA pour la compta</a>
+        <a href="nouveautes-2026.html">📰 Nouveautés 2026</a>
+        <a href="loi-finances-2026.html">📜 Loi de finances 2026</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+  </div>
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <a href="espace-createurs.html">👷 Espace créateurs & gérants</a> › <span>📜 La facturation électronique, expliquée simplement</span></nav>
+  <h1>📜 La facturation électronique, expliquée simplement</h1>
+  <p class="subtitle">Le guide complet de la réforme facturation électronique pour les TPE/PME : calendrier, obligations, formats, sanctions. Mise à jour 2026.</p>
+  <div class="container">
+
+  <!-- CALENDRIER -->
+  <div class="card" id="calendrier">
+    <h2>📅 Le calendrier officiel</h2>
+    <div class="timeline">
+      <div class="tl-item done">
+        <div class="date done">1er septembre 2026 : RÉCEPTION obligatoire pour TOUS</div>
+        <p>Toutes les entreprises assujetties à la TVA (GE, ETI, PME, TPE, micro-entrepreneurs) doivent être <b>en capacité de recevoir</b> des factures électroniques via une plateforme agréée.</p>
+      </div>
+      <div class="tl-item done">
+        <div class="date done">1er septembre 2026 : ÉMISSION obligatoire pour les GE & ETI</div>
+        <p>Les grandes entreprises (+5 000 salariés / 1,5 Md€ CA) et ETI (250-5 000 salariés) doivent <b>émettre</b> leurs factures au format électronique.</p>
+      </div>
+      <div class="tl-item">
+        <div class="date">⏳ 1er septembre 2027 : ÉMISSION obligatoire pour PME, TPE & micro</div>
+        <p>Les PME (moins de 250 salariés), TPE et micro-entrepreneurs doivent <b>émettre</b> leurs factures électroniques. C'est LA date qui vous concerne si vous êtes une petite entreprise.</p>
+      </div>
+    </div>
+    <div class="warn"><b>⚠️ Pas d'exception pour la franchise en base de TVA :</b> les micro-entrepreneurs sont concernés dès 2026 pour la réception et 2027 pour l'émission. Seules les activités totalement exonérées de TVA (art. 261 D du CGI) échappent à l'obligation.</div>
+  </div>
+
+  <!-- SUIS-JE CONCERNE (OUTIL 1) -->
+  <div class="card tool" id="suis-je-concerne">
+    <h2>🧭 Outil : Suis-je concerné ? Et quand ?</h2>
+    <p style="color:var(--muted);font-size:.9rem;margin-bottom:16px;">Répondez aux 3 questions → vous obtenez votre situation personnalisée.</p>
+    <div class="form-group">
+      <label>1. Quel est votre statut ?</label>
+      <select id="qStatut">
+        <option value="micro">Micro-entrepreneur / Auto-entrepreneur</option>
+        <option value="tpe">TPE / PME (moins de 250 salariés)</option>
+        <option value="eti">ETI (250 à 4 999 salariés)</option>
+        <option value="ge">Grande entreprise (5 000+ salariés)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>2. Vendez-vous à des professionnels en France ? (B2B)</label>
+      <select id="qB2B">
+        <option value="oui">Oui</option>
+        <option value="non">Non, uniquement des particuliers</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>3. Bénéficiez-vous de la franchise en base de TVA ?</label>
+      <select id="qTVA">
+        <option value="oui">Oui</option>
+        <option value="non">Non, je facture la TVA</option>
+      </select>
+    </div>
+    <button class="btn" onclick="calcConcerned()">🎯 Voir ma situation</button>
+    <div class="result" id="resConcerned"></div>
+  </div>
+
+  <!-- FONCTIONNEMENT -->
+  <div class="card" id="fonctionnement">
+    <h2>⚙️ Comment ça marche ?</h2>
+    <p style="color:var(--muted);font-size:.92rem;margin-bottom:10px;">Vous n'envoyez plus un PDF par email. Vous passez par une <b>plateforme</b> qui transmet la facture de façon structurée, et transmet les données au fisc automatiquement.</p>
+    <div class="flow">
+      <div class="flow-box"><b>🏢</b>Votre entreprise<br><span style="font-size:.75rem;color:var(--muted)">édite la facture</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box"><b>📡</b>Votre plateforme<br><span style="font-size:.75rem;color:var(--muted)">PDP ou PPF</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box"><b>🏭</b>Votre client<br><span style="font-size:.75rem;color:var(--muted)">reçoit la facture</span></div>
+    </div>
+    <div class="flow">
+      <div class="flow-box" style="border-color:rgba(59,130,246,.4)"><b>🏛️</b>Fisc (DGFiP)<br><span style="font-size:.75rem;color:var(--muted)">données automatiques</span></div>
+    </div>
+    <h3>Les 2 mots à connaître</h3>
+    <table>
+      <tr><th>Terme</th><th>Qu'est-ce que c'est ?</th><th>Pour qui ?</th></tr>
+      <tr><td><b>PDP</b> : Plateforme de Dématérialisation Partenaire</td><td>Opérateur privé certifié par la DGFiP (Pennylane, Tiime, Qonto, Sage...). Gère vos factures + données fiscales.</td><td>Recommandé pour toutes les entreprises</td></tr>
+      <tr><td><b>PPF</b> : Portail Public de Facturation</td><td>Portail gratuit de l'État, géré par la DGFiP. Permet de saisir et recevoir des factures sans passer par un privé.</td><td>Possible pour tous, mais moins de fonctionnalités</td></tr>
+    </table>
+    <h3>Les 3 formats officiels</h3>
+    <table>
+      <tr><th>Format</th><th>Qu'est-ce que c'est ?</th><th>Pour qui ?</th></tr>
+      <tr><td><b>Factur-X</b> <span class="tag orange">le + simple</span></td><td>PDF lisible + données XML intégrées. On voit la facture ET la machine la lit.</td><td><b>Artisans, TPE, PME</b> : le choix par défaut</td></tr>
+      <tr><td><b>UBL</b></td><td>Fichier XML pur, standard international (Europe/Peppol).</td><td>ETI, grandes entreprises, export</td></tr>
+      <tr><td><b>CII</b></td><td>Fichier XML pur, norme ONU.</td><td>Grands comptes, chaînes logistiques complexes</td></tr>
+    </table>
+    <div class="tip"><b>💡 Bonne nouvelle :</b> vous n'avez pas besoin de choisir le format vous-même. Votre plateforme le gère et convertit automatiquement. Votre facture reste lisible comme aujourd'hui.</div>
+  </div>
+
+  <!-- CAS -->
+  <div class="card" id="cas">
+    <h2>👥 Les différents cas</h2>
+    <table>
+      <tr><th>Situation</th><th>Réception</th><th>Émission</th><th>E-reporting</th></tr>
+      <tr><td>GE & ETI</td><td class="tag green">01/09/2026</td><td class="tag green">01/09/2026</td><td class="tag green">01/09/2026</td></tr>
+      <tr><td>PME / TPE</td><td class="tag green">01/09/2026</td><td class="tag orange">01/09/2027</td><td class="tag orange">01/09/2027</td></tr>
+      <tr><td>Micro / auto-entrepreneur</td><td class="tag green">01/09/2026</td><td class="tag orange">01/09/2027</td><td class="tag orange">01/09/2027</td></tr>
+      <tr><td>Franchise en base TVA</td><td class="tag green">01/09/2026</td><td class="tag orange">01/09/2027</td><td class="tag blue">Ventes B2C uniquement</td></tr>
+      <tr><td>Activité exonérée (art. 261D)</td><td class="tag blue">Non concerné</td><td class="tag blue">Non concerné</td><td class="tag blue">Non concerné</td></tr>
+    </table>
+    <h3>Ventes à des particuliers (B2C) et à l'étranger</h3>
+    <p style="color:var(--muted);font-size:.92rem;">Pas de facture électronique obligatoire, mais un <b>e-reporting</b> : votre plateforme transmet automatiquement les données de vos ventes au fisc. Vous ne faites rien : c'est votre outil de facturation qui le fait.</p>
+    <h3>Ventes à l'administration (B2G)</h3>
+    <p style="color:var(--muted);font-size:.92rem;">Déjà obligatoire depuis 2017 via Chorus Pro. Rien ne change.</p>
+  </div>
+
+  <!-- CHECKLIST (OUTIL 2) -->
+  <div class="card tool" id="checklist">
+    <h2>Checklist : êtes-vous prêt pour septembre 2026 ?</h2>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <p id="progressText" style="color:var(--muted);font-size:.85rem;margin-bottom:14px;">0/9 étapes : cochez au fur et à mesure</p>
+    <div id="checklistItems"></div>
+  </div>
+
+  <!-- SANCTIONS -->
+  <div class="card" id="sanctions">
+    <h2>⚠️ Les sanctions (revues à la hausse en 2026)</h2>
+    <table>
+      <tr><th>Manquement</th><th>Sanction</th></tr>
+      <tr><td>Absence de facture électronique</td><td><b>50 € par facture</b> (plafond 15 000 €/an) : au lieu de 15 € avant</td></tr>
+      <tr><td>Omission de données e-reporting</td><td>250 € par transaction (plafond 15 000 €/an)</td></tr>
+      <tr><td>Mentions obligatoires manquantes</td><td>15 € par mention (plafond 15 000 €/an)</td></tr>
+      <tr><td>Non-communication de la liste des clients pour e-reporting</td><td>5 000 € d'amende</td></tr>
+    </table>
+    <div class="warn"><b>⚠️ Attention :</b> ces sanctions s'appliquent aux obligations à partir de septembre 2026. Ne pas être prêt coûte cher : et le fisc reçoit déjà vos données.</div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card" id="faq">
+    <h2>❓ Questions fréquentes</h2>
+    <details>
+      <summary>Je suis micro-entrepreneur : suis-je vraiment concerné ?</summary>
+      <p>Oui. La franchise en base de TVA ne vous dispense pas. Depuis le 1er sept. 2026, vous devez pouvoir <b>recevoir</b> vos factures fournisseurs via une plateforme. Au 1er sept. 2027, vous devrez <b>émettre</b> vos factures B2B au format électronique.</p>
+    </details>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+    <details>
+      <summary>Je facture uniquement des particuliers, je n'ai rien à faire ?</summary>
+      <p>Presque. Pas de facture électronique obligatoire pour le B2C, mais vos ventes seront transmises au fisc via <b>e-reporting</b> (automatique, via votre outil de facturation). Vous devez quand même être capable de recevoir les factures de vos fournisseurs dès sept. 2026.</p>
+    </details>
+    <details>
+      <summary>Quelle plateforme choisir ?</summary>
+      <p>Le plus simple : votre outil actuel (Pennylane, Tiime, Sage, Qonto, etc.) s'il est certifié PDP. Sinon, consultez l'annuaire officiel des PDP immatriculées sur impots.gouv.fr. Comparez : prix, fonctionnalités (relances, suivi), et compatibilité avec votre logiciel de compta.</p>
+    </details>
+    <details>
+      <summary>Est-ce que je dois changer ma façon de facturer ?</summary>
+      <p>Non. Vous créez votre facture comme aujourd'hui (depuis votre logiciel ou un traitement de texte). La plateforme se charge de la convertir au bon format et de la transmettre. Le client reçoit une facture lisible.</p>
+    </details>
+    <details>
+      <summary>Ça coûte combien ?</summary>
+      <p>Le portail public (PPF) est <b>gratuit</b>. Les PDP privées facturent en général 5 à 30 €/mois selon les options. Le coût est déductible fiscalement.</p>
+    </details>
+    <details>
+      <summary>Que se passe-t-il si mon client n'a pas de plateforme ?</summary>
+      <p>À partir de sept. 2026, toutes les entreprises françaises doivent avoir un accès de réception. Si votre client n'a rien, il peut utiliser le portail public gratuit (PPF). Dans tous les cas, votre plateforme gère l'envoi.</p>
+    </details>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="card">
+    <h2>📚 Sources officielles</h2>
+    <p class="source">• <a href="https://www.economie.gouv.fr/tout-savoir-sur-la-facturation-electronique-pour-les-entreprises" target="_blank">economie.gouv.fr : Tout savoir sur la facturation électronique</a></p>
+    <p class="source">• <a href="https://www.impots.gouv.fr/facturation-electronique-et-plateformes-agreees" target="_blank">impots.gouv.fr : Facturation électronique et plateformes agréées</a></p>
+    <p class="source">• <a href="https://entreprendre.service-public.gouv.fr/actualites/A15683" target="_blank">Service-Public Entreprendre : Calendrier officiel</a></p>
+    <p class="source">• <a href="https://entreprendre.service-public.gouv.fr/actualites/A18802" target="_blank">Service-Public Entreprendre : Sanctions 2026 (50€/facture)</a></p>
+    <p class="source">• <a href="https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees" target="_blank">impots.gouv.fr : Annuaire des plateformes agréées (PDP)</a></p>
+    <p class="source" style="margin-top:14px;">Dernière vérification : août 2026. Réforme en vigueur (Loi de Finances rectificative 2024 + Loi de Finances 2026).</p>
+  </div>
+
+    <div class="card">
+    <h2>📬 Recevez la checklist PDF & le suivi de conformité</h2>
+    <p style="color:var(--muted);font-size:.9rem;">Votre checklist de mise en conformité + le calendrier personnalisé, envoyés par email. Gratuit.</p>
+    <div id="leadWidgetZone"></div>
+    </div>
+  <footer>
+    Guide pédagogique : ne remplace pas un avis d'expert-comptable. Sources officielles citées ci-dessus.
+    <br>🏠 <a href="index.html" style="color:var(--accent);">Retour aux simulateurs fiscaux</a> · 🧰 <a href="facturation-electronique-2026.html" style="color:var(--accent);">Facturation électronique 2026</a>
+  </footer>
+</div>
+  <div class="sources">Sources : <a href="https://www.impots.gouv.fr/" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">impots.gouv.fr (e-invoicing)</a></div>
+<div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+<script src="sw-register.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html
+  <div class="footer">⚠️ Estimations indicatives : sources officielles citées sur chaque page · <a href="plan-du-site.html">Plan du site</a></div>
+</div>
+<script src="recherche.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="darkmode.js"></script>
+</body>
+</html>

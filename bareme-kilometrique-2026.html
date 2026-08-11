@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%B6%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barème kilométrique 2026 : tableau par CV et calculateur d'IK</title>
+<meta property="og:image" content="https://SIMULATEUR-SARL.github.io/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:title" content="Barème kilométrique 2026 : tableau par CV et calculateur d'IK">
+<meta property="og:description" content="Barème kilométrique 2026 : indemnités kilométriques (IK) par puissance fiscale. Calculateur : km, CV → montant annuel + économie d'IS. Non imposable, non chargé.">
+<meta property="og:type" content="website">
+<meta name="description" content="Barème kilométrique 2026 : indemnités kilométriques (IK) par puissance fiscale. Calculateur : km, CV → montant annuel + économie d'IS. Non imposable, non chargé.">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "IK ou frais réels : que choisir ?", "acceptedAnswer": {"@type": "Answer", "text": "Le barème IK est forfaitaire : simple, sans justificatifs. Les frais réels (essence, entretien, assurance, amortissement) peuvent être plus avantageux pour les gros rouleurs ou les véhicules récents : mais exigent des justificatifs. Comparez : souvent le barème gagne pour < 15 000 km/an."}}, {"@type": "Question", "name": "Le président de SASU peut-il toucher des IK ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Les IK sont réservées aux TNS (gérant majoritaire de SARL/EURL, EI). Le président de SASU (assimilé salarié) se fait rembourser ses frais réels sur justificatifs (essence, péage, repas) : conservez vos tickets."}}, {"@type": "Question", "name": "Faut-il un carnet de kilométrage ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, c'est la formalité essentielle en cas de contrôle : notez dates, trajets (domicile → chantier, rendez-vous clients), motifs et kilométrage. Un simple tableur suffit. Sans carnet, les IK peuvent être remises en cause."}}, {"@type": "Question", "name": "Les IK sont-elles soumises à l'URSSAF ?", "acceptedAnswer": {"@type": "Answer", "text": "Non, dans la limite du barème officiel : ni cotisations sociales, ni impôt sur le revenu. Au-delà du barème, le surplus est réintégré dans l'assiette sociale et fiscale."}}]}</script>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "index.html"}, {"@type": "ListItem", "position": 2, "name": "👷 Créateurs & gérants", "item": "index.html#societe"}, {"@type": "ListItem", "position": 3, "name": "🚗 Barème kilométrique 2026 : le calculateur d'IK", "item": "bareme-kilometrique-2026.html"}]}</script>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="jargon-en-clair.html">🔤 Jargon</a>
+    <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+    <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+  
+    
+    <a href="espace-createurs.html" class="nav-porte">👷 Créateurs</a>
+    <a href="espace-salaries.html" class="nav-porte">👔 Salariés</a>
+    <a href="ia-pour-tpe.html" class="nav-porte">🤖 IA</a>
+<details class="menu">
+      <summary>☰</summary>
+      <div class="menu-content">
+        <a href="comparateur-societes.html" class="menu-cat">⚖️ Comparateur : démarrez ici</a>
+        <a href="guide-optimisation-sarl.html">📖 Guide 30 leviers</a>
+        <a href="optimiseur-sarl-couple.html">🧮 Optimiseur SARL/EURL</a>
+        <a href="simulateur-sasu.html">🚀 Optimiseur SASU</a>
+        <a href="simulateur-micro-sarl.html">🪙 Micro vs SARL</a>
+        <a href="simulateur-plan-3-ans.html">📅 Plan sur 3 ans</a>
+        <a href="jargon-en-clair.html">🔤 Jargon en clair</a>
+        <a href="plan-du-site.html" class="menu-all">🗺️ Toutes les pages →</a>
+      </div>
+    </details>
+<button id="theme-btn" onclick="basculeTheme()" class="theme-btn" aria-label="Changer de thème clair/sombre">☀️</button>
+<div class="recherche-wrap">
+      <input id="recherche-input" type="text" placeholder="🔎 Chercher…" oninput="afficherRecherche(this.value)" autocomplete="off" aria-label="Rechercher dans le site">
+      <div id="recherche-results" class="hidden"></div>
+    </div>
+  </div>
+
+  <nav class="breadcrumb">🏠 <a href="index.html">Accueil</a> › <a href="index.html#societe">👷 Créateurs & gérants</a> › <span>🚗 Barème kilométrique 2026 : le calculateur d'IK</span></nav>
+  <h1>🚗 Barème kilométrique 2026 : le calculateur d'IK</h1>
+  <p class="subtitle">Les indemnités kilométriques (IK) : combien pouvez-vous déduire ? Elles sont <strong>non imposables et non soumises à cotisations</strong> : un levier simple et légal pour le gérant TNS. Calculez le vôtre.</p>
+
+  <div class="tldr">
+    <strong>TL;DR :</strong> Les IK rémunèrent l'usage de votre véhicule personnel à des fins professionnelles, au <strong>barème officiel de l'administration</strong> (~0,40 à 0,50 €/km selon la puissance). Elles sont <strong>déductibles du résultat</strong> de la société (économie d'IS) et <strong>ni imposées ni chargées</strong> pour le gérant. Tenez un <strong>carnet de kilométrage</strong> (dates, trajets, motifs) : c'est la seule vraie formalité.
+  </div>
+
+  <div class="card" style="border-left: 3px solid var(--accent);">
+    <h2>📊 Calculer mes IK</h2>
+    <div class="grid-3">
+      <div>
+        <label>Kilomètres professionnels par an</label>
+        <input type="number" id="km" value="8000" min="0" step="500">
+      </div>
+      <div>
+        <label>Puissance fiscale du véhicule</label>
+        <select id="cv">
+          <option value="4">4 CV</option>
+          <option value="5">5 CV</option>
+          <option value="6">6 CV</option>
+          <option value="7" selected>7 CV</option>
+          <option value="8">8 CV</option>
+          <option value="9">9 CV et +</option>
+        </select>
+      </div>
+      <div>
+        <label>Votre TMI (tranche d'imposition)</label>
+        <select id="tmi">
+          <option value="0">0%</option>
+          <option value="0.11" selected>11%</option>
+          <option value="0.30">30%</option>
+          <option value="0.41">41%</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn" onclick="calc()">🚗 Calculer mes IK</button>
+    <button class="btn-outline" style="margin-left:.5rem;" onclick="exemple()">🎨 Exemple (8 000 km, 7 CV)</button>
+  </div>
+
+  <div id="results" class="hidden">
+    <div class="card" style="border:1px solid var(--accent);">
+      <h2 style="color:var(--accent);">📋 Vos indemnités kilométriques</h2>
+      <div class="grid-4" style="text-align:center;margin-bottom:1rem;">
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Taux applicable</div>
+          <div class="big-num" id="tauxKm" style="font-size:1.2rem;">:</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">IK annuelles</div>
+          <div class="big-num net-amount" id="ikTotal">0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Économie d'IS (15%)</div>
+          <div class="big-num" id="ekonIs">0€</div>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);">Économie totale (IS + IR)</div>
+          <div class="big-num" id="ekonTot">0€</div>
+        </div>
+      </div>
+      <div id="ikTip" class="tip"></div>
+    </div>
+
+    <div class="card">
+      <h2>🗂️ Le barème 2026 (véhicules, tranches principales)</h2>
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:.6rem;">Le barème officiel se présente par tranches de kilométrage. Ordres de grandeur pour un trajet annuel de 8 000 km (tranche 5 001-20 000 km) :</p>
+      <table>
+        <tr><th>Puissance fiscale</th><th></th><th>Taux indicatif (8 000 km)</th></tr>
+        <tr><td>4 CV</td><td></td><td>~0,33 à 0,39 €/km</td></tr>
+        <tr><td>5 CV</td><td></td><td>~0,35 à 0,40 €/km</td></tr>
+        <tr><td>6 CV</td><td></td><td>~0,37 à 0,42 €/km</td></tr>
+        <tr><td>7 CV</td><td></td><td>~0,39 à 0,44 €/km</td></tr>
+        <tr><td>8 CV</td><td></td><td>~0,41 à 0,47 €/km</td></tr>
+        <tr><td>9 CV et +</td><td></td><td>~0,43 à 0,50 €/km</td></tr>
+      </table>
+      <div class="tip">💡 <strong>Astuce Roi</strong> : le barème couvre l'essence, l'entretien et l'assurance : <strong>ne déduisez pas aussi le péage et le parking</strong>… si, justement : ces frais réels restent déductibles <strong>en plus</strong> des IK (gardez les tickets). Et si votre conjoint utilise aussi sa voiture pour la société, il peut percevoir des IK à son nom.</div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card" style="margin-top:1rem;">
+    <h2>❓ Questions fréquentes</h2>
+    <details>
+      <summary>IK ou frais réels : que choisir ?</summary>
+      <p>Le barème IK est <strong>forfaitaire</strong> : simple, sans justificatifs. Les frais réels (essence, entretien, assurance, amortissement) peuvent être plus avantageux pour les gros rouleurs ou les véhicules récents : mais exigent des justificatifs. Comparez : souvent le barème gagne pour &lt; 15 000 km/an.</p>
+    </details>
+    <details>
+      <summary>Le président de SASU peut-il toucher des IK ?</summary>
+      <p><strong>Non.</strong> Les IK sont réservées aux TNS (gérant majoritaire de SARL/EURL, EI). Le président de SASU (assimilé salarié) se fait <strong>rembourser ses frais réels sur justificatifs</strong> (essence, péage, repas) : conservez vos tickets.</p>
+    </details>
+    <details>
+      <summary>Faut-il un carnet de kilométrage ?</summary>
+      <p>Oui, c'est la formalité essentielle en cas de contrôle : notez dates, trajets (domicile → chantier, rendez-vous clients), motifs et kilométrage. Un simple tableur suffit. Sans carnet, les IK peuvent être remises en cause.</p>
+    </details>
+    <details>
+      <summary>Les IK sont-elles soumises à l'URSSAF ?</summary>
+      <p><strong>Non</strong>, dans la limite du barème officiel : ni cotisations sociales, ni impôt sur le revenu. Au-delà du barème, le surplus est réintégré dans l'assiette sociale et fiscale.</p>
+    </details>
+  </div>
+
+  <div class="sources">Sources : <a href="https://www.impots.gouv.fr/particulier/questions/le-bareme-kilometrique" rel="nofollow noopener" target="_blank" style="color:var(--muted);text-decoration:underline dotted;">impots.gouv.fr (barème kilométrique)</a></div>
+<div class="footer">Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · Taux vérifiés le 02/08/2026 (sources officielles) · 
+    ⚠️ Estimation indicative : barème 2026 officiel (impots.gouv.fr). Consultez le barème complet selon votre kilométrage exact.
+   Taux vérifiés le 01/08/2026 (sources officielles).</div>
+</div>
+
+<script src="parametres-2026.js"></script>
+<script src="moteur-calcul.js"></script>
+<script>
+function fmt(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+
+// Taux indicatifs €/km à 8 000 km par CV (approximation du barème officiel)
+const TAUX_PAR_CV = { 4: 0.36, 5: 0.38, 6: 0.40, 7: 0.42, 8: 0.44, 9: 0.47 };
+
+function exemple() {
+  document.getElementById('km').value = '8000';
+  document.getElementById('cv').value = '7';
+  document.getElementById('tmi').value = '0.11';
+  calc();
+}
+
+function calc() {
+  const km = parseFloat(document.getElementById('km').value) || 0;
+  const cv = document.getElementById('cv').value;
+  const tmi = parseFloat(document.getElementById('tmi').value) || 0;
+
+  document.getElementById('results').classList.remove('hidden');
+  const set = (id, v) => document.getElementById(id).textContent = v;
+
+  const taux = TAUX_PAR_CV[cv] || 0.42;
+  const ik = km * taux;
+  const ekonIs = ik * 0.15; // économie d'IS 15%
+  const ekonIr = ik * tmi; // économie d'IR (IK non imposées)
+  set('tauxKm', taux.toFixed(2) + ' €/km');
+  set('ikTotal', fmt(ik));
+  set('ekonIs', fmt(ekonIs));
+  set('ekonTot', fmt(ekonIs + ekonIr));
+
+  document.getElementById('ikTip').innerHTML = `💡 <strong>${fmt(ik)} d'IK par an</strong> : c'est un salaire complémentaire non chargé et non imposé. Économie fiscale : ${fmt(ekonIs)} d'IS (15%) + ${fmt(ekonIr)} d'IR (TMI ${(tmi * 100).toFixed(0)}%) = <strong>${fmt(ekonIs + ekonIr)}/an</strong>. À condition d'avoir un carnet de kilométrage à jour.`;
+}
+
+calc();
+</script>
+<script src="recherche.js"></script>
+<script src="darkmode.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="sw-register.js"></script>
+</body>
+</html>
