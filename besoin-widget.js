@@ -57,4 +57,8 @@
   overlay.querySelector(".besoin-close").addEventListener("click", closeForm);
   overlay.addEventListener("click", function(e){ if(e.target === overlay) closeForm(); });
   document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeForm(); });
+
+  // Exposition globale pour que les CTA des pages puissent ouvrir le formulaire
+  window.openBesoinForm = openForm;
+  window.closeBesoinForm = closeForm;
 })();
