@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parlez-moi de votre besoin — Conseil IA & Automatisation</title>
+<meta name="description" content="Décrivez votre plus gros problème au quotidien : je l'analyse et je reviens vers vous avec des pistes concrètes d'automatisation.">
+<style>
+:root{--dark:#0b1220;--card:#141f36;--border:#26355c;--text:#e8edf7;--muted:#93a4c0;--accent:#f59e0b;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--dark);color:var(--text);line-height:1.7;}
+.container{max-width:720px;margin:0 auto;padding:40px 20px;}
+h1{font-size:1.6rem;margin-bottom:10px;text-align:center;}
+.sub{color:var(--muted);text-align:center;margin-bottom:30px;font-size:.95rem;}
+.promise{background:linear-gradient(135deg,rgba(245,158,11,.08),var(--card));border:1px solid rgba(245,158,11,.3);
+  border-radius:12px;padding:16px 20px;margin-bottom:24px;font-size:.9rem;}
+.promise b{color:var(--accent);}
+.form-box{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.form-box iframe{width:100%;height:600px;border:none;display:block;}
+.back{display:block;text-align:center;margin-top:24px;color:var(--muted);text-decoration:none;font-size:.85rem;}
+.back:hover{color:var(--accent);}
+html{font-size:100%;-webkit-text-size-adjust:100%;}
+body{font-size:1rem;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}}
+@media(max-width:640px){body{font-size:.95rem;}.form-box iframe{height:540px;}}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>💬 Parlez-moi de votre besoin</h1>
+  <p class="sub">Deux minutes pour décrire votre problème, une réponse concrète en retour.</p>
+  <div class="promise">
+    <b>Ce que je fais de votre réponse :</b> je lis chaque message, je l'analyse avec les autres besoins reçus,
+    et je reviens vers vous avec des pistes concrètes si vous laissez votre email. Pas de démarchage,
+    pas de newsletter forcée. Juste de l'aide sur votre problème.
+  </div>
+  <div class="form-box">
+    <iframe src="https://tally.so/r/EkVxb2" title="Formulaire de besoin" loading="lazy"></iframe>
+  </div>
+  <a class="back" href="verticales/index.html">← Retour aux guides par métier</a>
+</div>
+<script src="besoin-widget.js"></script>
+</body>
+</html>
